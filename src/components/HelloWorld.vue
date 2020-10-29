@@ -57,3 +57,13 @@ a {
   color: #42b983;
 }
 </style>
+
+
+  //<div class="line-graph graph__{{ graphColor }}">
+  //  <div class="percent">{{ graphLeight }}%</div>
+  //  <div class="line"><span style="width:{{ graphLeight }}%;"></span></div>
+  //  <div class="row priceinfo">
+  //    <div class="col-6 price"><span>{{ graphPrice }} ₽</span></div>
+  //    <div class="col-6 info"><span>{{ graphName }}</span></div>
+  //  </div>
+  //</div>

@@ -1,0 +1,21 @@
+.app-btn {
+  font-weight: 500;
+  padding: 22px 30px 24px;
+  line-height: 0;
+  border-radius: 10px;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 20px;
+  &.btn__blue {
+    color: white;
+    background-color: $plskyblue;
+    border: 2px solid $plskyblue;
+  }
+  &.btn__red {
+    color: white;
+    background-color: $plcarmin;
+    border: 2px solid $plcarmin;
+  }
+}
