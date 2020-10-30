@@ -1,0 +1,11 @@
+@keyframes progress-circle {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+@keyframes progress-line {
+  0% {
+    width: 0;
+  }
+}

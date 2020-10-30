@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <div class="avatar"><img src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg" alt=""></div>
-          <h2 class="name">{{ name }}</h2>
+          <h2 class="name">{{ name }} {{ family }}</h2>
           <div class="monthly-stat">
             <div class="salary">Заработал с&nbsp;начала месяца на6&nbsp;сегодня<span>256 841 ₽</span></div>
             <div class="sale">{{ sale }} ₽ ({{ sale_persent }}%) — продажи</div>
@@ -22,6 +22,7 @@ export default {
   name: 'Header',
   props: {
     name: String,
+    family: String,
     sale: Number,
     bonus: Number,
     sale_persent: Number,

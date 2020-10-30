@@ -5,96 +5,191 @@
   border: 0;
   box-shadow: 0px 2px 25px $plshadow;
   margin-bottom: 30px;
-  .line-graph:not(:last-child) {
-    margin-bottom: 26px;
-  }
 }
 
-.card-title {
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 30px;
-  margin-bottom: 20px;
-}
-
-.line-graph {
-  .percent {
+.card-diagram {
+  .card-title {
     font-weight: bold;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: start;
-    padding: 0 10px;
-    margin-bottom: 10px;
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 20px;
   }
-  .line {
-    background-color: $pllightgrey;
-    border-radius: 50px;
-    position: relative;
-    height: 20px;
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 10px;
-    span {
-      display: block;
-      position: absolute;
-      height: 20px;
-      left: 0;
+  .line-graph {
+    &:not(:last-child) {
+      margin-bottom: 26px;
+    }
+    .percent {
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: start;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+    .line {
+      background-color: $pllightgrey;
       border-radius: 50px;
-    }
-  }
-  .priceinfo {
-    .price {
+      position: relative;
+      height: 20px;
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 10px;
       span {
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 15px;
-        text-align: left;
-        padding: 0 10px;
         display: block;
+        position: absolute;
+        height: 20px;
+        left: 0;
+        border-radius: 50px;
+        animation: progress-line 1s ease-out forwards;
       }
     }
-    .info {
+    .priceinfo {
+      .price {
+        span {
+          font-weight: bold;
+          font-size: 12px;
+          line-height: 15px;
+          text-align: left;
+          padding: 0 10px;
+          display: block;
+        }
+      }
+      .info {
+        span {
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 15px;
+          text-align: right;
+          padding: 0 10px;
+          display: block;
+        }
+      }
+    }
+  }
+  
+  .graph__blue {
+    .percent {
+      color: $plblue;
+    }
+    .line {
       span {
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 15px;
-        text-align: right;
-        padding: 0 10px;
-        display: block;
+        background-color: $plblue;
+      }
+    }
+  }
+  
+  .graph__red {
+    .percent {
+      color: $plcarmin;
+    }
+    .line {
+      span {
+        background-color: $plcarmin;
+      }
+    }
+  }
+  
+  .graph__gray {
+    .percent {
+      color: $plgrey;
+    }
+    .line {
+      span {
+        background-color: $plgrey;
       }
     }
   }
 }
 
-.graph__blue {
-  .percent {
-    color: $plblue;
+
+
+.donut-diagram {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  .canvas {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 260px;
+    z-index: -1;
+    .donut {
+      transform: rotate(-180deg);
+      .donut-ring {
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+        animation: progress-circle 1s ease-out forwards;
+        &.donut_blue {
+          stroke: $plskyblue;
+        }
+        &.donut_magenta {
+          stroke: $plmagenta;
+        }
+      }
+    }
   }
-  .line {
-    span {
-      background-color: $plblue;
+  .donut-desc {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    .donut-desc__title {
+      width: 100%;
+      padding: 34px 34px 2px 34px;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 23px;
+      align-self: flex-end;
+    }
+    .donut-desc__persent {
+      width: 100%;
+      padding: 2px 34px 34px 34px;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 30px;
+      align-self: flex-start;
     }
   }
 }
 
-.graph__red {
-  .percent {
-    color: $plcarmin;
+.compliment {
+  margin-bottom: 30px;
+  .compliment__name {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 10px;
   }
-  .line {
-    span {
-      background-color: $plcarmin;
-    }
+  .compliment__desc {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 
-.graph__gray {
-  .percent {
-    color: $plgrey;
-  }
-  .line {
-    span {
-      background-color: $plgrey;
+.card-shedule {
+  .card-header {
+    display: flex;
+    width: 100%;
+    .client {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 30px;
+      text-align: left;
+      flex: 0 0 50%;
+      max-width: 50%;
+}
+    }
+    .time {
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 30px;
+      text-align: right;
+      flex: 0 0 50%;
+      max-width: 50%;
     }
   }
 }

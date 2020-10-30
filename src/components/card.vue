@@ -1,6 +1,6 @@
 <template>
   <div class="col-12">
-    <div class="card">
+    <div class="card card-diagram">
       <h3 class="card-title">Самостоятельно</h3>
       <div class="line-graph graph__blue">
         <div class="percent">60%</div>
