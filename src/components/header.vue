@@ -28,11 +28,14 @@ export default {
     sale_persent: Number,
     bonus_persent: Number
   },
+  methods: {
+    numForma() { return this.sale },
+  }
   // computed: {
   //   summa : () => { return this.props.sale + this.props.bonus }
   // }
   // filter: {
-  //   numFormat: sale => `{&sale}`.toLocaleString('ru-RU'),
+  //   
   // }
 }
 </script>
