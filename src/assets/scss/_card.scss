@@ -78,13 +78,13 @@
     }
   }
   
-  .graph__red {
+  .graph__yellow {
     .percent {
-      color: $plcarmin;
+      color: $plyellow;
     }
     .line {
       span {
-        background-color: $plcarmin;
+        background-color: $plyellow;
       }
     }
   }

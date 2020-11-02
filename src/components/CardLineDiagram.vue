@@ -1,39 +1,27 @@
 <template>
   <div class="card card-diagram">
-    {{card}}
-    <h3 class="card-title">Самостоятельно</h3>
-    <div class="line-graph graph__blue">
-      <div class="percent">60%</div>
-      <div class="line"><span style="width:60%"></span></div>
-      <div class="row priceinfo">
-        <div class="col-6 price"><span>115 578,15 ₽</span></div>
-        <div class="col-6 info"><span>art/evo/smart</span></div>
-      </div>
-    </div>
-    <div class="line-graph graph__red">
-      <div class="percent">30%</div>
-      <div class="line"><span style="width:30%"></span></div>
-      <div class="row priceinfo">
-        <div class="col-6 price"><span>115 578,15 ₽</span></div>
-        <div class="col-6 info"><span>art/evo/smart</span></div>
-      </div>
-    </div>
-    <div class="line-graph graph__gray">
-      <div class="percent">15%</div>
-      <div class="line"><span style="width:15%"></span></div>
-      <div class="row priceinfo">
-        <div class="col-6 price"><span>115 578,15 ₽</span></div>
-        <div class="col-6 info"><span>art/evo/smart</span></div>
-      </div>
-    </div>
+    <h3 class="card-title">{{ card.title }}</h3>
+    <DiagramLine
+      v-for="lineDiagram in card.lineDiagram"
+      v-bind:key="lineDiagram.id"
+      v-bind:lineDiagram="lineDiagram"
+    />
   </div>
 </template>
 
 <script>
-//import LineGraph from './line-graph.vue'
+import DiagramLine from '@/components/DiagramLine.vue'
 
 export default {
   name: 'CardLineDiagram',
-  props: ['card']
+  components: {
+    DiagramLine,
+  },
+  props: {
+    card: {
+      type: Object,
+      required: true,
+    }
+  }
 }
 </script>
