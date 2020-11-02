@@ -1,5 +1,4 @@
 <template>
-  <div class="col-12">
     <div class="donut-diagram">
       <div class="canvas">
         <svg width="260" height="260" viewBox="0 0 36 36" class="donut" role="img">
@@ -9,8 +8,9 @@
             stroke-width="4"
             stroke-linejoin="round"
           />
-          <circle class="donut-ring donut_blue" cx="50%" cy="50%" r="15.91549430918954"
-            stroke="#33C5F3"
+          <circle class="donut-ring" cx="50%" cy="50%" r="15.91549430918954"
+            v-bind:class="'donut_' + donut.color"
+            v-bind:style="'stroke-dasharray:' + donut.persent + ', 100;'"
             fill="transparent"
             fill-opacity="0"
             stroke-width="3"
@@ -19,22 +19,23 @@
         </svg>
       </div>
       <div class="donut-desc">
-        <div class="donut-desc__title">Срастаемость</div>
-        <div class="donut-desc__persent">85%</div>
+        <div class="donut-desc__title">{{ donut.title }}</div>
+        <div class="donut-desc__persent">{{ donut.persent }}%</div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
   name: 'Donut',
+  props: {
+    donut: {
+      type: Object,
+      required: true,
+    }
+  }
 }
 </script>
 
 <style>
-.donut .donut-ring {
-  stroke-dasharray: 85, 100;
-}
-
 </style>

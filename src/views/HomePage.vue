@@ -7,42 +7,32 @@
           <CardList
             v-bind:cardInfo="cardInfo"
           />
-          <Loader />
           <DonutList
-            v-for="donut in donutInfo"
-            v-bind:key="donut"
+            v-bind:donutInfo="donutInfo"
           />
           <Compliment name="Константин" />
         </div>
       </div>
     </main>
-    <Footer/>
-    <Slide>
-      <a id="home" href="#">
-        <span>Home</span>
-      </a>
-    </Slide>
   </div>
 </template>
 
 <script>
-import Header from '@/components/header.vue'
+import Header from '@/components/Header.vue'
 import CardList from '@/components/CardList.vue'
 import DonutList from '@/components/DonutList.vue'
-import Compliment from '@/components/compliment.vue'
-import Footer from '@/components/footer.vue'
-import Slide from 'vue-burger-menu'
-import Loader from '@/components/Loader.vue'
+import Compliment from '@/components/Compliment.vue'
+
+//import Loader from '@/components/Loader.vue'
 
 export default {
+    name: 'Home',
     components: {
     Header,
     CardList,
     DonutList,
     Compliment,
-    Footer,
-    Slide,
-    Loader
+    //Loader
   },
   data() {
     return {
@@ -62,7 +52,7 @@ export default {
               line: 2,
               color: 'yellow',
               persent: 18,
-              sale: 34456,
+              sale: 34456.45,
               description: 'art/evo/smart'
             },
             {
@@ -138,11 +128,12 @@ export default {
         },
         {
           id: 2,
-          color: 'blue',
+          color: 'magenta',
           title: 'Доля ламинации',
           persent: 60
         }
-      ]
+      ],
+      loading: true,
     }
   }
 }

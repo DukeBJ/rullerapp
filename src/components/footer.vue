@@ -2,9 +2,11 @@
   <footer>
     <nav class="nav-bottom">
         <div class="nav-bottom__el">
-          <div class="square-button">
-            <span class="date"></span>
-          </div>
+          <router-link to="/schedule/">
+            <div class="square-button">
+              <span class="date"></span>
+            </div>
+          </router-link>
         </div>
         <div class="nav-bottom__el">
           <div class="square-button">
