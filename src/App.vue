@@ -1,26 +1,27 @@
 <template>
   <div id="app">
-    <router-view />
-    <div class="indent"></div>
-    <Footer/>
-    <Slide right>
+    <Reveal right>
       <a id="home" href="#">
         <span>Home</span>
       </a>
-    </Slide>
+    </Reveal>
+    <main id="page-wrap">
+      <router-view />
+      <div class="indent"></div>
+    <Footer/>
+    </main>
   </div>
 </template>
 
 <script>
 import Footer from '@/components/Footer.vue'
-import Slide from 'vue-burger-menu'
+import { Reveal } from 'vue-burger-menu'
 
 export default {
   name: 'App',
   components: {
     Footer,
-    Slide
-    
+    Reveal
   }
 }
 </script>
@@ -28,6 +29,7 @@ export default {
 <style lang="scss">
 #app {
   text-align: center;
+  background-color: white;
   .indent {
     height: 80px;
   }
