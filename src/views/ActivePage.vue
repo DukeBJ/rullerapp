@@ -1,10 +1,10 @@
 <template>
   <div>
-    <TopSchedule date="23.09.2020" />
+    <TopActive title="Список замеров" />
     <main class="card-place">
       <div class="container">
         <div class="row justify-content-center">
-          <ScheduleList
+          <ActiveList
             v-bind:scheduleInfo="scheduleInfo"
           />
         </div>
@@ -14,16 +14,14 @@
 </template>
 
 <script>
-import TopSchedule from '@/components/TopSchedule.vue'
-import ScheduleList from '@/components/ScheduleList.vue'
-
+import TopActive from '@/components/TopActive.vue'
+import ActiveList from '@/components/ActiveList.vue'
 
 export default {
   name: 'SchedulePage',
   components: {
-    TopSchedule,
-    ScheduleList,
-    
+    TopActive,
+    ActiveList
   },
   data() {
     return {

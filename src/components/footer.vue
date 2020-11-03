@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="nav-footer">
     <nav class="nav-bottom">
         <div class="nav-bottom__el">
           <router-link to="/schedule/">

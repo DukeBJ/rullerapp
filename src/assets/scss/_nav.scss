@@ -19,9 +19,13 @@
     background-color: $plcarmin;
     border: 2px solid $plcarmin;
   }
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 
-footer {
+.nav-footer {
   position: fixed;
   bottom: 20px;
   z-index: 10;
@@ -69,5 +73,21 @@ footer {
     &.info {
       background-image: url('../../assets/img/icons/info.svg');
     }
+  }
+}
+
+.tape {
+  &::before {
+    content: "";
+    position: absolute;
+    height: 26px;
+    width: 50px;
+    background-image: url('../../assets/img/icons/tape-arrow.svg');
+    transition: 0.5s;
+    transform: rotateX(180deg);
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 3px;
+    left: 0;
   }
 }
