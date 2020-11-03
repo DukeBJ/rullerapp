@@ -190,8 +190,16 @@
     font-weight: bold;
     & > div {
       margin-bottom: 40px;
-      // display: flex;
-      // flex-wrap: wrap;
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+    .block-info {
+      justify-self: start;
+      width: 100%;
+    }
+    nav {
+      justify-self: flex-end;
     }
     h4 {
       font-weight: normal;
@@ -204,7 +212,6 @@
     }
     .square-button {
       margin: 0;
-      // justify-content: end;
     }
   }
   .time {
