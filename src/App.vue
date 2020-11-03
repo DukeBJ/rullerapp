@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view />
+    <div class="indent"></div>
     <Footer/>
     <Slide>
       <a id="home" href="#">
@@ -26,7 +27,11 @@ export default {
 <style lang="scss">
 #app {
   text-align: center;
+  .indent {
+    height: 80px;
+  }
 }
+
 .bm-burger-button {
       position: fixed;
       width: 36px;

@@ -5,7 +5,7 @@
       v-bind:key="schedule.id"
       v-bind:number="schedule.number"
       v-bind:time="schedule.time"
-      v-bind:customer="schedule.customer['0']"
+      v-bind:customer="schedule.customer[0]"
     />
   </div>
 </template>

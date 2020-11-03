@@ -174,6 +174,8 @@
   .card-header {
     display: flex;
     width: 100%;
+    border: 0;
+    background-color: unset;
     .client {
       font-weight: bold;
       font-size: 18px;
@@ -182,8 +184,27 @@
       flex: 0 0 50%;
       max-width: 50%;
     }
-    .card-body {
-      text-align: left;
+  }
+  .card-body {
+    text-align: left;
+    font-weight: bold;
+    & > div {
+      margin-bottom: 40px;
+      // display: flex;
+      // flex-wrap: wrap;
+    }
+    h4 {
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 20px;
+      margin-bottom: 0;
+    }
+    & :last-child {
+      margin-bottom: 0;
+    }
+    .square-button {
+      margin: 0;
+      // justify-content: end;
     }
   }
   .time {
