@@ -79,7 +79,7 @@
         </div>
 
       <button class="tape" v-on:click="show = !show"></button>
-      <div class="label-left"><span>Завершен</span></div>
+      <div v-show=" number === '6546-54' " class="label-left"><span>Завершен</span></div>
 
       <b-modal
       centered

@@ -8,6 +8,12 @@ import './assets/scss/custom.scss'
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 
+// Vue.filter('ruPrice', function (value) {
+//   //if (!value) return ''
+//   value = value.Number()
+//   return Intl.NumberFormat("ru").format(value)// + '\u00A0₽'
+// })
+
 new Vue({
   router,
   render: h => h(App),

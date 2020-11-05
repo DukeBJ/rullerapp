@@ -9,9 +9,11 @@
           </router-link>
         </div>
         <div class="nav-bottom__el">
-          <div class="square-button">
-            <span class="square"></span>
-          </div>
+          <router-link to="/active/">
+            <div class="square-button">
+              <span class="square"></span>
+            </div>
+          </router-link>
         </div>
         <div class="nav-bottom__el">
           <div class="square-button">

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/HomePage.vue'
 import Schedule from './views/SchedulePage.vue'
-import Active from './views/ActivePage.vue'
+import ActiveP from './views/ActivePage.vue'
 
 Vue.use(Router)
 
@@ -11,15 +11,18 @@ export default new Router ({
   routes: [
     {
       path: '/',
+      name: "main",
       component: Home
     },
     {
       path: '/schedule/',
+      name: "schedule",
       component: Schedule,
     },
     {
       path: '/active/',
-      component: Active,
+      name: "active",
+      component: ActiveP,
     }
   ]
 })

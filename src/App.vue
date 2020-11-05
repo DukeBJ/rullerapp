@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <Reveal right>
+    <div class="main-logo" v-if="isMain"><img src="./assets/img/logo.svg"></div>
+    <div class="backlink" v-else><a @click="$router.go(-1)"></a></div>
+    <Reveal>
       <a id="home" href="#">
         <span>Home</span>
       </a>
     </Reveal>
-    <main id="page-wrap">
+    <div id="page-wrap">
       <router-view />
       <div class="indent"></div>
     <Footer/>
-    </main>
+    </div>
   </div>
 </template>
 
@@ -22,6 +24,11 @@ export default {
   components: {
     Footer,
     Reveal
+  },
+  computed: {
+    isMain() {
+      return this.$route.name === 'main'
+    }
   }
 }
 </script>
@@ -34,22 +41,43 @@ export default {
     height: 80px;
   }
 }
+#page-wrap {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    display: none;
+    background-color:rgba(0, 0, 0, 0.0);
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    transition: 0.3s ease-in;
+  }
+}
 .bm-burger-button {
-      position: fixed;
-      width: 36px;
+      position: absolute;
+      width: 30px;
       height: 30px;
-      left: 36px;
-      top: 36px;
+      right: 15px!important;
+      left: auto!important;
+      top: 20px;
       cursor: pointer;
+      background-image: url('./assets/img/icons/burger.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 10;
+      opacity: 1;
+      transition: 0.3s ease-out;
     }
     .bm-burger-bars {
-      background-color: #373a47;
+      //background-color: #373a47;
+      display: none;
     }
     .line-style {
-      position: absolute;
-      height: 20%;
-      left: 0;
-      right: 0;
+      // position: absolute;
+      // height: 20%;
+      // left: 0;
+      // right: 0;
     }
     .cross-style {
       position: absolute;
@@ -79,6 +107,14 @@ export default {
 
     .bm-overlay {
       background: rgba(0, 0, 0, 0.3);
+      .bm-burger-button {
+        opacity: 0;
+      }
+      #page-wrap::before {
+        display: block;
+        background-color:rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease-out;
+      }
     }
     .bm-item-list {
       color: #b8b7ad;

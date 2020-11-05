@@ -1,25 +1,23 @@
 <template>
   <div class="col-12">
-    <Schedule
-      v-for="schedule in scheduleInfo"
-      v-bind:key="schedule.id"
-      v-bind:number="schedule.number"
-      v-bind:time="schedule.time"
-      v-bind:customer="schedule.customer[0]"
+    <Active
+      v-for="active in calculationPrice"
+      v-bind:key="active.id"
+      v-bind:active="active"
     />
   </div>
 </template>
 
 <script>
-import Schedule from '@/components/Schedule.vue'
+import Active from '@/components/Active.vue'
 
 export default {
-  name: 'ScheduleList',
+  name: 'Active',
   components: {
-    Schedule
+    Active
   },
   props: {
-    scheduleInfo: {
+    calculationPrice: {
       type: Array,
       required: true,
     }

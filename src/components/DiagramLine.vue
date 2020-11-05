@@ -3,7 +3,7 @@
     <div class="percent">{{ lineDiagram.persent }}%</div>
     <div class="line"><span v-bind:style=" 'width:' + lineDiagram.persent + '%'"></span></div>
     <div class="row priceinfo">
-      <div class="col-6 price"><span>{{ lineDiagram.sale | ruPrice }}{{'\u00A0'}}₽</span></div>
+      <div class="col-6 price"><span>{{ lineDiagram.sale | ruPrice }}</span></div>
       <div class="col-6 info"><span>{{ lineDiagram.description }}</span></div>
     </div>
   </div>
@@ -19,8 +19,8 @@ export default {
     }
   },
   filters: {
-    ruPrice(val) {
-      return Intl.NumberFormat("ru").format(val)
+    ruPrice(value) {
+      return Intl.NumberFormat("ru").format(value) + '\u00A0₽'
     }
   }
 }
