@@ -12,7 +12,7 @@
 import Active from '@/components/Active.vue'
 
 export default {
-  name: 'Active',
+  name: 'ActiveList',
   components: {
     Active
   },

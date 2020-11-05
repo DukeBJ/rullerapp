@@ -261,3 +261,72 @@
     line-height: 3;
   }
 }
+
+.bg__ {
+  &yellow{
+    background-color: $plyellow;
+  }
+  &blue{
+    background-color: $plskyblue;
+  }
+}
+
+.card-active {
+  position: relative;
+  overflow-y: hidden;
+  height: 90px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .card-header {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    border: 0;
+    background-color: unset;
+    height: 100%;
+    .price {
+      width: 60%;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 30px;
+      align-self: center;
+    }
+    .custumer-info {
+      width: 40%;
+      align-self: center;
+      .client {
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 30px;
+        text-align: left;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .date {
+        color: $pldarkgreen70;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 30px;
+        text-align: left;
+        line-height: 1;
+      }
+    }
+    .status {
+      width: 20px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 0;
+      }
+    }
+  }
+}
+
+.opacity20 {
+  opacity: 0.2;
+}

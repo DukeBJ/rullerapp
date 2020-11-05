@@ -30,37 +30,43 @@ export default {
           id: 1,
           number: '6541-54',
           date: '23.01.2020',
-          price: '96658'
+          price: '96658',
+          done: true
         },
         {
           id: 2,
           number: '6541-55',
           date: '23.01.2020',
-          price: '969658'
+          price: '969658',
+          done: true
         },
         {
           id: 3,
           number: '6541-56',
           date: '23.01.2020',
-          price: '16658'
+          price: '16658',
+          done: true
         },
         {
           id: 4,
           number: '6541-57',
           date: '23.01.2020',
-          price: '36658'
+          price: '36658',
+          done: false
         },
         {
           id: 5,
           number: '6541-58',
           date: '23.01.2020',
-          price: '46658'
+          price: '46658',
+          done: false
         },
         {
           id: 6,
           number: '6541-59',
           date: '23.01.2020',
-          price: '126658'
+          price: '126658',
+          done: false
         },
       ]
     }

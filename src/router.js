@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/HomePage.vue'
 import Schedule from './views/SchedulePage.vue'
 import ActiveP from './views/ActivePage.vue'
+import CalculateConstruct from './views/CalculateConstruct.vue'
+
 
 Vue.use(Router)
 
@@ -23,6 +25,11 @@ export default new Router ({
       path: '/active/',
       name: "active",
       component: ActiveP,
-    }
+    },
+    {
+      path: '/calculate/',
+      name: "calculate",
+      component: CalculateConstruct,
+    },
   ]
 })
