@@ -31,7 +31,8 @@ export default {
         {
           id: 1,
           number: '6541-54',
-          time: '12:00 — 13:30',
+          time: '15:00 — 16:30',
+          done: false,
           customer: [
             {
               name: 'Вильгельмина Христорождественская',
@@ -47,6 +48,7 @@ export default {
           id: 2,
           number: '6542-54',
           time: '12:00 — 13:30',
+          done: false,
           customer: [
             {
               name: 'Лина Христорождественская',
@@ -61,7 +63,8 @@ export default {
         {
           id: 3,
           number: '6543-54',
-          time: '12:00 — 13:30',
+          time: '14:00 — 15:30',
+          done: false,
           customer: [
             {
               name: 'Нина Христорождественская',
@@ -76,7 +79,8 @@ export default {
         {
           id: 4,
           number: '6544-54',
-          time: '12:00 — 13:30',
+          time: '10:30 — 12:00',
+          done: true,
           customer: [
             {
               name: 'Анна Христорождественская',
@@ -91,7 +95,8 @@ export default {
         {
           id: 5,
           number: '6545-54',
-          time: '12:00 — 13:30',
+          time: '19:00 — 20:30',
+          done: false,
           customer: [
             {
               name: 'Светлана Христорождественская',
@@ -106,7 +111,8 @@ export default {
         {
           id: 6,
           number: '6546-54',
-          time: '12:00 — 13:30',
+          time: '8:00 — 9:30',
+          done: true,
           customer: [
             {
               name: 'Марина Христорождественская',

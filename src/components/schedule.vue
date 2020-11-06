@@ -63,23 +63,33 @@
             </div>
           </div>
 
-          <button class="app-btn btn__blue">Начать замер</button>
+          <div class="flexwrap" v-if=" done === false ">
 
-          <button
+            <button
             class="app-btn btn__blue"
-            @click="modalPhoto = !modalPhoto"
-          >Отправить в расчёт</button>
+            v-on:click="start = !start" v-if="start === false ">Начать замер</button>
+            
+            <div class="flexwrap" v-else>
+              <button
+                class="app-btn btn__blue"
+                @click="modalPhoto = !modalPhoto"
+              >Отправить в расчёт</button>
+              
+              <button class="app-btn btn__blue">Самостоятельный расчёт</button>
+              
+              <button
+              class="app-btn btn__red"
+              @click="modalEnd = !modalEnd"
+              >Завершить замер</button>
+            </div>
 
-          <button class="app-btn btn__blue">Самостоятельный расчёт</button>
+          </div>
+          <div v-else class="work-end">Замер завершён</div>
 
-          <button
-          class="app-btn btn__red"
-          @click="modalEnd = !modalEnd"
-          >Завершить замер</button>
         </div>
 
       <button class="tape" v-on:click="show = !show"></button>
-      <div v-show=" number === '6546-54' " class="label-left"><span>Завершен</span></div>
+      <div v-show=" done === true " class="label-left"><span>Завершен</span></div>
 
       <b-modal
       centered
@@ -145,6 +155,7 @@ export default {
   props: {
     number: String,
     time: String,
+    done: Boolean,
     customer: {
       type: Object,
       required: true,
@@ -152,6 +163,7 @@ export default {
   },
   data() {
     return {
+      start: false,
       show: false,
       modalPhoto: false,
       modalEnd: false,

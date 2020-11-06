@@ -208,6 +208,8 @@
   .card-body {
     text-align: left;
     font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
     & > div {
       margin-bottom: 40px;
       display: flex;
@@ -327,6 +329,18 @@
   }
 }
 
+.flexwrap {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
 .opacity20 {
   opacity: 0.2;
+}
+
+.work-end {
+  font-weight: bold;
+  font-size: 18px;
+  justify-content: center;
 }

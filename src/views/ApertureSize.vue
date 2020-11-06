@@ -4,7 +4,12 @@
     <main class="card-place">
       <div class="container">
         
+<ConstructList/>
+
+
         <TypeBuild/>
+
+        <div>gbcz</div>
         
       </div>
     </main>
