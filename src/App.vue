@@ -18,17 +18,38 @@
 <script>
 import Footer from '@/components/Footer.vue'
 import { Reveal } from 'vue-burger-menu'
+//import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
     Footer,
-    Reveal
+    Reveal,
+  },
+  data() {
+    return {
+      info: null
+    }
   },
   computed: {
     isMain() {
       return this.$route.name === 'main'
     }
+  },
+  mounted() {
+    this.$axios
+      .get('http://localhost:8080/price.json')
+      .then((response) => {
+      console.log(response.data)
+    // this.axios
+    //   .get("http://localhost:8080/price.json")
+    //   .then(response => {
+    //     console.log("response", response);
+    //   })
+    //   .catch(error => {
+    //     console.log("error", error);
+    //   });
+    })
   }
 }
 </script>

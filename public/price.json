@@ -1,0 +1,53 @@
+{
+  "order": {
+    "win1": {
+      "config": {
+        "first": 500,
+        "second": 600,
+        "third": 700,
+        "fourth": 800,
+        "fifth": 900
+      },
+      "profile": {
+        "melke60": 1000,
+        "melke70": 1400,
+        "provedal": 700,
+        "rehau_a": 1100,
+        "rehau_b": 1300
+      },
+      "color": {
+        "white": 500,
+        "mass": 1400,
+        "laminat": 1000
+      },
+      "glassunit": {
+        "climatherm": 555,
+        "climathermb": 1222,
+        "climatherms": 1444,
+        "climathermsc": 1999
+      },
+      "hendless": {
+        "type1": 200,
+        "type2": 400,
+        "type3": 600,
+        "type4": 800
+      },
+      "mosquito": 500,
+      "cildlock": 700,
+      "slope": 999,
+      "ebb": 1222,
+      "sill": {
+        "std300": 500,
+        "kryst300": 700,
+        "estera300": 600,
+        "moller300": 800
+      }
+    },
+    "dop": {
+      "dismantling": 2500,
+      "deliver": 3400,
+      "mounting": 10000,
+      "garbage": 5000
+    }
+  }
+}
