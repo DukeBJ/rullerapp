@@ -1,45 +1,30 @@
 <template>
-  <div class="row justify-content-center">
-    <h4 class="col-12">Тип проёма</h4>
-    <div class="col-6">
-      <div class="card type-construction">
-        <div class="card-body">
-          <img src="@/assets/img/logo.svg" alt="">
-        </div>
+  <div class="container">
+    <WindowList/>
+    <div class="row">
+      <div class="col-12">
+        <button
+          class="app-btn btn__blue"
+          
+          >Добавить окно</button>
       </div>
-    </div>
-    <div class="col-6">
-      <div class="card type-construction">
-        <div class="card-body">
-          <img src="@/assets/img/logo.svg" alt="">
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="card type-construction">
-        <div class="card-body">
-          <img src="@/assets/img/logo.svg" alt="">
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="card type-construction">
-        <div class="card-body">
-          <img src="@/assets/img/logo.svg" alt="">
-        </div>
+      <div class="col-12">
+        <button
+          class="app-btn btn__blue"
+          
+          >Продолжить</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import WindowList from '@/components/WindowList.vue'
+
 export default {
-  name: 'ConstructList',
-  props: {
-    // active: {
-    //   type: Object,
-    //   required: true,
-    // }
-  },
+  name: "ConstructList",
+  components: {
+    WindowList
+  }
 }
 </script>

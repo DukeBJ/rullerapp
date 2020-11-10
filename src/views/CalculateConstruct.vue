@@ -1,35 +1,40 @@
 <template>
   <div>
-    <TopActive title="Расчёт конструкций" />
+    <TopActive :title="title" />
     <main class="card-place">
-      <div class="container">
-        
-          <TypeBuild/>
+          <ApertureCheck/>
+          <ApertureSquare/>
+          <ConstructConfig/>
           <ConstructList/>
-        
-      </div>
+          <OrderDetails/>
     </main>
   </div>
 </template>
 
 <script>
 import TopActive from '@/components/TopActive.vue'
+import ApertureCheck from '@/components/ApertureCheck.vue'
+import ApertureSquare from '@/components/ApertureSquare.vue'
+import ConstructConfig from '@/components/ConstructConfig.vue'
 import ConstructList from '@/components/ConstructList.vue'
-import TypeBuild from '@/components/TypeBuild.vue'
+import OrderDetails from '@/components/OrderDetails.vue'
 
 export default {
   name: 'CalculateConstructPage',
   components: {
     TopActive,
+    ApertureCheck,
+    ApertureSquare,
+    ConstructConfig,
     ConstructList,
-    TypeBuild
+    OrderDetails
   },
   data() {
     return {
       calculationPrice: [
-      ]
+      ],
+      title: "Растчет конструкций"
     }
   }
-
 }
 </script>

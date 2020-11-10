@@ -9,10 +9,10 @@
         "fifth": 900
       },
       "profile": {
-        "melke60": 1000,
-        "melke70": 1400,
-        "provedal": 700,
-        "rehau_a": 1100,
+        "lite60": 1000,
+        "lite70": 1400,
+        "smart": 700,
+        "evolution": 1100,
         "rehau_b": 1300
       },
       "color": {
@@ -33,7 +33,7 @@
         "type4": 800
       },
       "mosquito": 500,
-      "cildlock": 700,
+      "childlock": 700,
       "slope": 999,
       "ebb": 1222,
       "sill": {
