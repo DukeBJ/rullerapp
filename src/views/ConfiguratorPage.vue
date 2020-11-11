@@ -1,8 +1,10 @@
 <template>
   <div>
-    <TopActive :title="title" />
+    <TopActive :title="title.check" />
     <main class="card-place">
-          <ApertureCheck/>
+          <ApertureCheck
+            :order="order"
+          />
           <ApertureSquare/>
           <ConstructConfig/>
           <ConstructList/>
@@ -30,12 +32,18 @@ export default {
     ConstructList,
     OrderDetails
   },
-  data() {
-    return {
-      calculationPrice: [
-      ],
-      title: "Растчет конструкций"
-    }
-  }
+  computed: {
+      ...mapState('configurator', {
+          title: 'title',
+          order: 'order',
+          service: 'service'
+      })
+  },
+  methods: {
+    ...mapActions('configurator', [
+        'updaetBuildType',
+        'addConstruction',
+    ])
+  },
 }
 </script>

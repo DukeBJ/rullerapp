@@ -3,31 +3,40 @@
 let uuid = 0 
 
 const state = {
-  order: {
-    id: "X", // Сюда нужно будет вставить нормер заказа из базы
-    buildType: "Панельный",
-    constructions: {
-      id: uuid, // Подумать как будет генерироваться порядковый id (или в window переименовать)
-      window: {
-        config: "first",
-        profile: "lite60",
-        color: "white",
-        glassunit: "climatherm",
-        hendless: "type1",
-        mosquito: true,
-        childlock: true,
-        slope: true,
-        ebb: true,
-        sill: "std300"
+  title: {
+    check: "Расчет конструкций",
+    aperture: "Размеры проёма",
+    config: "Конфигурация окна"
+  },
+  order: [
+    {
+      id: 999, // Сюда нужно будет вставить нормер заказа из базы
+      buildType: "Панельный",
+      constructions: [
+        {
+          id: uuid, // Подумать как будет генерироваться порядковый id (или в window переименовать)
+          window: {
+            config: "first",
+            profile: "lite60",
+            color: "white",
+            glassunit: "climatherm",
+            hendless: "type1",
+            mosquito: true,
+            childlock: true,
+            slope: true,
+            ebb: true,
+            sill: "std300"
+          }
+        }
+      ],
+      service: {
+        dismantling: true,
+        mounting: true,
+        deliver: true,
+        garbage: true
       }
-    },
-    service: {
-      dismantling: true,
-      mounting: true,
-      deliver: true,
-      garbage: true
     }
-  }
+  ]
 }
 
 // const uuidv4 = require('uuid/v4')
@@ -48,44 +57,57 @@ const state = {
 //     price: 1.50, // base price
 // }
 const actions = {
-    addConstruction({commit}) {
-        commit('addConstructionMut')
-        //commit('updatePriceMut')
-    },
-    // removeProduct({commit}, index) {
-    //     commit('removeProductMut', index)
-    //     commit('updatePriceMut')
-    // },
-    // addToCart({commit}) {
-    //     commit('addToCartMut')
-    // },
-    // updatePrice({commit}) {
-    //     commit('updatePriceMut')
-    // },
-    resetConstruction({commit}, constructionId) {
-        commit('resetConstructionMut', constructionId)
-    }
+  newOrder({commit}) {
+    commit('addOrderMut')
+    commit('updateOrderMut')
+  },
+  addConstruction({commit}) {
+    commit('addConstructionMut')
+    //commit('updatePriceMut')
+  },
+  updaetBuildType({commit}) {
+    commit('updaetBuildTypeMut')
+  },
+  // removeProduct({commit}, index) {
+  //     commit('removeProductMut', index)
+  //     commit('updatePriceMut')
+  // },
+  // addToCart({commit}) {
+  //     commit('addToCartMut')
+  // },
+  // updatePrice({commit}) {
+  //     commit('updatePriceMut')
+  // },
+  resetConstruction({commit}, constructionId) {
+    commit('resetConstructionMut', constructionId)
+  }
 }
 const mutations = {
-    addConstructionMut({constructions}) {
-      constructions.push(createNewConstruction())
-    },
-    // removeProductMut({products}, productId) {
-    //     const index = products.findIndex(prod => prod.id === productId)
-    //     products.splice(index, 1)
-    // },
-    // addToCartMut(state) {
-    //     // reset state?
-    //     console.log('addToCart mutation does nothing')
-    // },
-    // updatePriceMut(state) {
-    //     state.price = state.products.reduce((previous, product) => previous + productPrice(product), 0)
-    // },
-    resetConstructionMut({ constructions }, constructionId) {
-        const index = constructions.findIndex(constr => constr.id === constructionId)
-        const newConstruction = createNewConstruction()
-        constructions.splice(index, 1, newConstruction)
-    },
+  addOrderMut({orders}) {
+    orders.push(createNewOrder())
+  },
+  addConstructionMut({constructions}) {
+    constructions.push(createNewConstruction())
+  },
+  updaetBuildTypeMut (state) {
+    return state.order.buildType
+  },
+  // removeProductMut({products}, productId) {
+  //     const index = products.findIndex(prod => prod.id === productId)
+  //     products.splice(index, 1)
+  // },
+  // addToCartMut(state) {
+  //     // reset state?
+  //     console.log('addToCart mutation does nothing')
+  // },
+  // updateOrderMut(state) {
+  //     state.order = state.products.reduce((previous, product) => previous + productPrice(product), 0)
+  // },
+  resetConstructionMut({ constructions }, constructionId) {
+    const index = constructions.findIndex(constr => constr.id === constructionId)
+    const newConstruction = createNewConstruction()
+    constructions.splice(index, 1, newConstruction)
+  },
 }
 
 export default {
@@ -110,6 +132,13 @@ export default {
 //     price *= config.amount
 //     return price
 // }
+
+const createNewOrder = () => ({
+  id: uuid +=1, // Сюда нужно будет вставить нормер заказа из базы
+  buildType: "Панельный",
+  constructions: '',
+  service: ''
+})
 
 const createNewConstruction = () => ({
     id: uuid =+ 1,
