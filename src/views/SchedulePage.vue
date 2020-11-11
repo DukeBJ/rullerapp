@@ -15,7 +15,7 @@
 
 <script>
 import TopSchedule from '@/components/TopSchedule.vue'
-import ScheduleList from '@/components/ScheduleList.vue'
+import ScheduleList from '@/components/schedule/ScheduleList.vue'
 
 
 export default {

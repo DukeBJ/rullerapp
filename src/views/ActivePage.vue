@@ -15,7 +15,7 @@
 
 <script>
 import TopActive from '@/components/TopActive.vue'
-import ActiveList from '@/components/ActiveList.vue'
+import ActiveList from '@/components/active/ActiveList.vue'
 
 export default {
   name: 'ActivePage',

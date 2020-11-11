@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header name="Константин" family="Константинопольский" sale="192630.75" bonus="64210.25" bonus_persent="25" sale_persent="75" />
+    <Header :name="firstname" :family="lastname" :sale="sale" :bonus="bonus" :bonus_persent="bonusPersent" :sale_persent="salePersent" />
     <main class="card-place">
       <div class="container">
         <div class="row justify-content-center">
@@ -10,7 +10,7 @@
           <DonutList
             v-bind:donutInfo="donutInfo"
           />
-          <Compliment name="Константин" />
+          <Compliment :name="firstname" />
         </div>
       </div>
     </main>
@@ -19,11 +19,9 @@
 
 <script>
 import Header from '@/components/Header.vue'
-import CardList from '@/components/CardList.vue'
-import DonutList from '@/components/DonutList.vue'
-import Compliment from '@/components/Compliment.vue'
-
-//import Loader from '@/components/Loader.vue'
+import CardList from '@/components/maindashboard/CardList.vue'
+import DonutList from '@/components/maindashboard/DonutList.vue'
+import Compliment from '@/components/maindashboard/Compliment.vue'
 
 export default {
     name: 'Home',
@@ -32,10 +30,15 @@ export default {
     CardList,
     DonutList,
     Compliment,
-    //Loader
   },
   data() {
     return {
+      firstname: "Константин",
+      lastname: "Константинопольский",
+      sale: 192630.75,
+      bonus: 64210.25,
+      bonusPersent: 25,
+      salePersent: 75,
       cardInfo: [
         {
           id: 1,

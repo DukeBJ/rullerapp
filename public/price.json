@@ -43,7 +43,7 @@
         "moller300": 800
       }
     },
-    "dop": {
+    "service": {
       "dismantling": 2500,
       "deliver": 3400,
       "mounting": 10000,

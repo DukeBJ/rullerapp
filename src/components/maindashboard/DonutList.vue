@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Donut from '@/components/Donut.vue'
+import Donut from '@/components/maindashboard/Donut.vue'
 
 export default {
   name: 'DonutList',

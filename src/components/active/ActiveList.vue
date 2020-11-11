@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Active from '@/components/Active.vue'
+import Active from '@/components/active/Active.vue'
 
 export default {
   name: 'ActiveList',

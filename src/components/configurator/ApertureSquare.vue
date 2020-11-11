@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import SquareSizeList from '@/components/SquareSizeList.vue'
-import ApertureSize from '@/components/ApertureSize.vue'
+import SquareSizeList from '@/components/configurator/SquareSizeList.vue'
+import ApertureSize from '@/components/configurator/ApertureSize.vue'
 
 export default {
   name: 'ApertureSquare',

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Schedule from '@/components/Schedule.vue'
+import Schedule from '@/components/schedule/Schedule.vue'
 
 export default {
   name: 'ScheduleList',

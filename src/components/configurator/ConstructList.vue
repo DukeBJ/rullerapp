@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import WindowList from '@/components/WindowList.vue'
+import WindowList from '@/components/configurator/WindowList.vue'
 
 export default {
   name: "ConstructList",

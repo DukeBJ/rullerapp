@@ -61,6 +61,7 @@
 
 <script>
 export default {
+  name: "ConstructConfig",
   data() {
       return {
         profileSelected: 'smart',

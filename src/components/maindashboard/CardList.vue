@@ -11,14 +11,12 @@
 
 
 <script>
-import CardLineDiagram from '@/components/CardLineDiagram.vue'
-// import Loader from '@/components/Loader.vue'
+import CardLineDiagram from '@/components/maindashboard/CardLineDiagram.vue'
 
 export default {
   name: 'CardList',
   components: {
     CardLineDiagram,
-    // Loader
   },
   props: {
     cardInfo: {

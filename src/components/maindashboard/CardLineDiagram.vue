@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import DiagramLine from '@/components/DiagramLine.vue'
+import DiagramLine from '@/components/maindashboard/DiagramLine.vue'
 
 export default {
   name: 'CardLineDiagram',

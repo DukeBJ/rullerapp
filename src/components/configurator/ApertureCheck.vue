@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import ApertureType from '@/components/ApertureType.vue'
-import TypeBuild from '@/components/TypeBuild.vue'
+import ApertureType from '@/components/configurator/ApertureType.vue'
+import TypeBuild from '@/components/configurator/TypeBuild.vue'
 
 export default {
-  name: 'ConstructCheck',
+  name: 'ApertureCheck',
   components: {
     ApertureType,
     TypeBuild

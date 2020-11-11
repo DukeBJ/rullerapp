@@ -12,15 +12,16 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import TopActive from '@/components/TopActive.vue'
-import ApertureCheck from '@/components/ApertureCheck.vue'
-import ApertureSquare from '@/components/ApertureSquare.vue'
-import ConstructConfig from '@/components/ConstructConfig.vue'
-import ConstructList from '@/components/ConstructList.vue'
-import OrderDetails from '@/components/OrderDetails.vue'
+import ApertureCheck from '@/components/configurator/ApertureCheck.vue'
+import ApertureSquare from '@/components/configurator/ApertureSquare.vue'
+import ConstructConfig from '@/components/configurator/ConstructConfig.vue'
+import ConstructList from '@/components/configurator/ConstructList.vue'
+import OrderDetails from '@/components/configurator/OrderDetails.vue'
 
 export default {
-  name: 'CalculateConstructPage',
+  name: 'ConfiguratorPage',
   components: {
     TopActive,
     ApertureCheck,

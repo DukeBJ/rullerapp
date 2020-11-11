@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'ConstructType',
+  name: 'ApertureType',
   props: {
     // active: {
     //   type: Object,
