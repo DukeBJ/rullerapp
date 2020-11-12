@@ -4,11 +4,21 @@
     <main class="card-place">
           <ApertureCheck
             :order="order"
+            @update-build="updaetBuildType"
           />
           <ApertureSquare/>
           <ConstructConfig/>
           <ConstructList/>
           <OrderDetails/>
+          <TestInfo
+            v-for="thisorder of order"
+            :key="thisorder.id"
+            :id="thisorder.id"
+            :buildType="thisorder.buildType"
+            :constructions="thisorder.constructions"
+            :service="thisorder.service"
+            />
+              
     </main>
   </div>
 </template>
@@ -21,6 +31,7 @@ import ApertureSquare from '@/components/configurator/ApertureSquare.vue'
 import ConstructConfig from '@/components/configurator/ConstructConfig.vue'
 import ConstructList from '@/components/configurator/ConstructList.vue'
 import OrderDetails from '@/components/configurator/OrderDetails.vue'
+import TestInfo from '@/components/configurator/testInfo.vue'
 
 export default {
   name: 'ConfiguratorPage',
@@ -30,7 +41,8 @@ export default {
     ApertureSquare,
     ConstructConfig,
     ConstructList,
-    OrderDetails
+    OrderDetails,
+    TestInfo
   },
   computed: {
       ...mapState('configurator', {
@@ -42,8 +54,11 @@ export default {
   methods: {
     ...mapActions('configurator', [
         'updaetBuildType',
-        'addConstruction',
+        //'addConstruction',
     ])
   },
+  mounted() {
+            this.updaetBuildType()
+        },
 }
 </script>

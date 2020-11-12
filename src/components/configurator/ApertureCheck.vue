@@ -1,16 +1,18 @@
 <template>
   <div class="container">
     <TypeBuild
-      @update-buildtype="updaetBuildType"
+      :buildType="order.buildType"
+      :id="order.id"
+      @chosen="notifyParent"
+      v-model="order.buildType"
     />
     <ApertureType
-      @add-construction="addConstruction"
+      
     />
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
 import ApertureType from '@/components/configurator/ApertureType.vue'
 import TypeBuild from '@/components/configurator/TypeBuild.vue'
 
@@ -20,17 +22,11 @@ export default {
     ApertureType,
     TypeBuild
   },
-  computed: {
-    ...mapState('configurator', {
-        order: 'order',
-        service: 'service'
-    })
-  },
+  props: ['order'],
   methods: {
-    ...mapActions('configurator', [
-        'updaetBuildType',
-        'addConstruction',
-    ])
-  },
+            notifyParent(e) {
+                this.$emit('update-build', e)
+            }
+  }
 }
 </script>

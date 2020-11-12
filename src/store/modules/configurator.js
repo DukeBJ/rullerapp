@@ -14,7 +14,14 @@ const state = {
       buildType: "Панельный",
       constructions: [
         {
-          id: uuid, // Подумать как будет генерироваться порядковый id (или в window переименовать)
+          id: uuid+=1,
+          aperture: {
+            type: "square",
+            sizes: {
+              ha: 1234,
+              wb: 4321
+            }
+          },
           window: {
             config: "first",
             profile: "lite60",
@@ -38,24 +45,6 @@ const state = {
     }
   ]
 }
-
-// const uuidv4 = require('uuid/v4')
-// const state = {
-//     products: [
-//         {
-//             id: uuidv4(),
-//             config: {
-//                 heading: 'A fancy headline',
-//                 body: 'lorem ipsum amit set dolores. Help!',
-//                 amount: 10,
-//                 shape: 'portrait', // options: 'rect', 'diamond', 'circle', portrait' or 'landscape'
-//                 size: 'a4', // other options: 'a5'/'a6'
-//                 quality: 'normal' // other option 'extra'
-//             },
-//         }
-//     ],
-//     price: 1.50, // base price
-// }
 const actions = {
   newOrder({commit}) {
     commit('addOrderMut')
@@ -65,8 +54,8 @@ const actions = {
     commit('addConstructionMut')
     //commit('updatePriceMut')
   },
-  updaetBuildType({commit}) {
-    commit('updaetBuildTypeMut')
+  updaetBuildType({commit}, orderId) {
+    commit('updaetBuildTypeMut', orderId)
   },
   // removeProduct({commit}, index) {
   //     commit('removeProductMut', index)
@@ -90,7 +79,7 @@ const mutations = {
     constructions.push(createNewConstruction())
   },
   updaetBuildTypeMut (state) {
-    return state.order.buildType
+    state.order[0].buildType = state.order.buildType
   },
   // removeProductMut({products}, productId) {
   //     const index = products.findIndex(prod => prod.id === productId)
