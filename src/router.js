@@ -4,6 +4,7 @@ import Home from './views/HomePage.vue'
 import Schedule from './views/SchedulePage.vue'
 import ActiveP from './views/ActivePage.vue'
 import Configurator from './views/ConfiguratorPage.vue'
+import Test from './views/TestPage.vue'
 
 
 Vue.use(Router)
@@ -30,6 +31,11 @@ export default new Router ({
       path: '/configurator/',
       name: "configurator",
       component: Configurator,
+    },
+    {
+      path: '/test/',
+      name: "test",
+      component: Test,
     },
   ]
 })

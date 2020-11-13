@@ -10,22 +10,18 @@
               @click="newOrder(schedule.number)"
               class="app-btn btn__blue">Начать {{schedule.number}}</button>
           </div>
-          <ApertureCheck
+          <!-- <ApertureCheck
             :order="order"
             @update-build="updaetBuildType"
-          />
-          <ApertureSquare/>
-          <ConstructConfig/>
-          <ConstructList/>
-          <OrderDetails/>
-          <TestInfo
+          /> -->
+          <!-- <TestInfo
             v-for="thisorder of order"
             :key="thisorder.id"
             :id="thisorder.id"
             :buildType="thisorder.buildType"
             :constructions="thisorder.constructions"
             :service="thisorder.service"
-            />
+          /> -->
               
     </main>
   </div>
@@ -34,23 +30,15 @@
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 import TopActive from '@/components/TopActive.vue'
-import ApertureCheck from '@/components/configurator/ApertureCheck.vue'
-import ApertureSquare from '@/components/configurator/ApertureSquare.vue'
-import ConstructConfig from '@/components/configurator/ConstructConfig.vue'
-import ConstructList from '@/components/configurator/ConstructList.vue'
-import OrderDetails from '@/components/configurator/OrderDetails.vue'
-import TestInfo from '@/components/configurator/testInfo.vue'
+//import ApertureCheck from '@/components/configurator/ApertureCheck.vue'
+//import TestInfo from '@/components/configurator/testInfo.vue'
 
 export default {
   name: 'ConfiguratorPage',
   components: {
     TopActive,
-    ApertureCheck,
-    ApertureSquare,
-    ConstructConfig,
-    ConstructList,
-    OrderDetails,
-    TestInfo
+    //ApertureCheck,
+    //TestInfo
   },
   computed: {
     ...mapGetters('schedule', ['scheduleList']),

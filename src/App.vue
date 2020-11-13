@@ -40,7 +40,8 @@ export default {
     this.$axios
       .get('http://localhost:8080/price.json')
       .then((response) => {
-      console.log(response.data)
+      //console.log(response.data)
+      response.data
     // this.axios
     //   .get("http://localhost:8080/price.json")
     //   .then(response => {
