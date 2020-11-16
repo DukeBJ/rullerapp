@@ -6,56 +6,56 @@ const state = {
     aperture: "Размеры проёма",
     config: "Конфигурация окна"
   },
-  order: [
-    {
-      // id: 999, // Сюда нужно будет вставить нормер заказа из базы
-      // buildType: "Панельный",
-      // constructions: [
-      //   {
-      //     id: uuid+=1,
-      //     aperture: {
-      //       type: "square",
-      //       sizes: {
-      //         ha: 1234,
-      //         wb: 4321
-      //       }
-      //     },
-      //     window: {
-      //       config: "first",
-      //       profile: "lite60",
-      //       color: "white",
-      //       glassunit: "climatherm",
-      //       hendless: "type1",
-      //       mosquito: true,
-      //       childlock: true,
-      //       slope: true,
-      //       ebb: true,
-      //       sill: "std300"
-      //     }
-      //   }
-      // ],
-      // service: {
-      //   dismantling: true,
-      //   mounting: true,
-      //   deliver: true,
-      //   garbage: true
-      // }
-    }
+  orders: [
+    // {
+    //   // id: 999, // Сюда нужно будет вставить нормер заказа из базы
+    //   // buildType: "Панельный",
+    //   // constructions: [
+    //   //   {
+    //   //     id: uuid+=1,
+    //   //     aperture: {
+    //   //       type: "square",
+    //   //       sizes: {
+    //   //         ha: 1234,
+    //   //         wb: 4321
+    //   //       }
+    //   //     },
+    //   //     window: {
+    //   //       config: "first",
+    //   //       profile: "lite60",
+    //   //       color: "white",
+    //   //       glassunit: "climatherm",
+    //   //       hendless: "type1",
+    //   //       mosquito: true,
+    //   //       childlock: true,
+    //   //       slope: true,
+    //   //       ebb: true,
+    //   //       sill: "std300"
+    //   //     }
+    //   //   }
+    //   // ],
+    //   // service: {
+    //   //   dismantling: true,
+    //   //   mounting: true,
+    //   //   deliver: true,
+    //   //   garbage: true
+    //   // }
+    // }
   ]
 }
 
 const actions = {
   newOrder({commit}, orderId) {
-    commit('addOrderMut', orderId)
+    commit('ADD_ORDER', orderId)
     //commit('updateOrderMut')
   },
   addConstruction({commit}) {
     commit('addConstructionMut')
     //commit('updatePriceMut')
   },
-  updaetBuildType({commit}, orderId) {
-    commit('updaetBuildTypeMut', orderId)
-  },
+  // updateBuildType({commit}, select, orderId) {
+  //   commit('UPD_BUILDTYPE', select, orderId)
+  // },
 
 
   resetConstruction({commit}, constructionId) {
@@ -63,18 +63,43 @@ const actions = {
   }
 }
 const mutations = {
-  addOrderMut({order}, orderId) {
-    const ordID = order.find(ord => ord.id === orderId)
-    console.log(ordID)
-    if (ordID == orderId) {
-      console.log('Такой заказ уже есть')
-    } else {
-      const index = order.findIndex(ord => ord.id === orderId)
-      const newOrd = createNewOrder(orderId)
-      order.splice(index, 1, newOrd)
-      //order.push(createNewOrder(orderId))
-      console.log(`Добавляем ${orderId}`)
+  ADD_ORDER({orders}, orderId) {
+    if (orderId !== undefined) {
+      const ordID = orders.find(ord => ord.id === orderId)
+      if (ordID !== undefined) {
+        const www = JSON.stringify(ordID.id)
+        console.log(`Заказ с номером ${www} уже существует`)
+        console.log(orders)
+      } else {
+        orders.push(createNewOrder(orderId))
+        console.log(`Создаем заказ №${orderId}`)
+        console.log(orders)
       }
+      // const ordID = order.find(ord => ord.id === orderId)
+      // const www = JSON.stringify(ordID.id)
+      // console.log(`Ищем среди заказов ID${orderId} = ${www}`)
+      // if (orderId !== www) {
+      //   order.push(createNewOrder(orderId))
+      //   console.log(`Создаем заказ №${orderId}`)
+      //   console.log(order)
+      // }// else {
+      //   const index = order.findIndex(ord => ord.id === orderId)
+      //   const newOrd = createNewOrder(orderId)
+      //   order.splice(index, 1, newOrd)
+      //   console.log(`Заменяем старый заказ новым`) // А это нужно?
+      // }
+    }
+    // const ordID = order.find(ord => ord.id === orderId)
+    // console.log(ordID)
+    // if (ordID == orderId) {
+    //   console.log('Такой заказ уже есть')
+    // } else {
+    //   const index = order.findIndex(ord => ord.id === orderId)
+    //   const newOrd = createNewOrder(orderId)
+    //   order.splice(index, 1, newOrd)
+    //   //order.push(createNewOrder(orderId))
+    //   console.log(`Добавляем ${orderId}`)
+    //   }
     //const index = order.findIndex(ord => ord.id === orderId)
     //const newOrd = createNewOrder(orderId)
     //order.splice(index, 1, newOrd)
@@ -84,9 +109,13 @@ const mutations = {
   addConstructionMut({constructions}) {
     constructions.push(createNewConstruction())
   },
-  updaetBuildTypeMut (state) {
-    state.order[0].buildType = state.order.buildType
-  },
+  // UPD_BUILDTYPE ({orders}, select, orderId) {
+  //   // const index = orders.findIndex(ord => ord.id === orderId)
+  //   // orders.splice(index, 1, select)
+  //   //order.push(createNewOrder(orderId))
+  //   console.log(`Добавляем ${orderId}`)
+  //   console.log(`Добавляем ${select}`)
+  // },
 
   // updateOrderMut(state) {
   //     state.order = state.products.reduce((previous, product) => previous + productPrice(product), 0)
@@ -125,7 +154,12 @@ export default {
     id: orderId,
     buildType: "Панельный",
     constructions: [],
-    service: ''
+    service: {
+      dismantling: true,
+      mounting: true,
+      deliver: true,
+      garbage: true
+    }
   })
 
 const createNewConstruction = () => ({

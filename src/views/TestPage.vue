@@ -9,11 +9,19 @@
             <button
               @click="newOrder(schedule.number)"
               class="app-btn btn__blue">Начать {{schedule.number}}</button>
+
+            <ConfigPage
+              v-for="order in orders"
+              :key="order.id"
+              :buildType="order.buildType"
+              :order="order"
+              @update-build="updateBuildType"
+            />
+
           </div>
-          <!-- <ApertureCheck
-            :order="order"
-            @update-build="updaetBuildType"
-          /> -->
+
+          {{scheduleList}}
+          
           <!-- <TestInfo
             v-for="thisorder of order"
             :key="thisorder.id"
@@ -30,21 +38,20 @@
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 import TopActive from '@/components/TopActive.vue'
-//import ApertureCheck from '@/components/configurator/ApertureCheck.vue'
-//import TestInfo from '@/components/configurator/testInfo.vue'
+import ConfigPage from '@/components/configurator/testInfo.vue'
+
 
 export default {
   name: 'ConfiguratorPage',
   components: {
     TopActive,
-    //ApertureCheck,
-    //TestInfo
+    ConfigPage
   },
   computed: {
     ...mapGetters('schedule', ['scheduleList']),
     ...mapState('configurator', {
         title: 'title',
-        order: 'order',
+        orders: 'orders',
         service: 'service'
     }),
   },
@@ -53,17 +60,12 @@ export default {
         'loadSchedule',
     ]),
     ...mapActions('configurator', [
-        //'updaetBuildType',
+        'updaetBuildType',
         'newOrder',
     ]),
-    submit(number) {
-      console.log(number)
-    }
   },
   mounted() {
-    //this.updaetBuildType()
-    this.loadSchedule()
-    this.newOrder()
+    //this.newOrder()
   },
 }
 </script>

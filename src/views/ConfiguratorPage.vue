@@ -2,25 +2,20 @@
   <div>
     <TopActive :title="title.check" />
     <main class="card-place">
-          <div
-            v-for="schedule of scheduleList"
-            :key="schedule.number"
-            >
-            <button
-              @click="newOrder(schedule.number)"
-              class="app-btn btn__blue">Начать {{schedule.number}}</button>
-          </div>
+  {{orderId()}}
           <ApertureCheck
+            v-for="order in orders"
+            :key="order.id"
             :order="order"
-            @update-build="updaetBuildType"
+            @update-build="updateBuildType"
           />
-          <ApertureSquare/>
-          <ConstructConfig/>
-          <ConstructList/>
-          <OrderDetails/>
+          <!-- <ApertureSquare/> -->
+          <!-- <ConstructConfig/> -->
+          <!-- <ConstructList/> -->
+          <!-- <OrderDetails/> -->
           <TestInfo
-            v-for="thisorder of order"
-            :key="thisorder.id"
+            v-for="thisorder of orders"
+            :key="thisorder.id +1"
             :id="thisorder.id"
             :buildType="thisorder.buildType"
             :constructions="thisorder.constructions"
@@ -35,10 +30,10 @@
 import { mapState, mapActions, mapGetters } from 'vuex'
 import TopActive from '@/components/TopActive.vue'
 import ApertureCheck from '@/components/configurator/ApertureCheck.vue'
-import ApertureSquare from '@/components/configurator/ApertureSquare.vue'
-import ConstructConfig from '@/components/configurator/ConstructConfig.vue'
-import ConstructList from '@/components/configurator/ConstructList.vue'
-import OrderDetails from '@/components/configurator/OrderDetails.vue'
+// import ApertureSquare from '@/components/configurator/ApertureSquare.vue'
+// import ConstructConfig from '@/components/configurator/ConstructConfig.vue'
+// import ConstructList from '@/components/configurator/ConstructList.vue'
+// import OrderDetails from '@/components/configurator/OrderDetails.vue'
 import TestInfo from '@/components/configurator/testInfo.vue'
 
 export default {
@@ -46,36 +41,36 @@ export default {
   components: {
     TopActive,
     ApertureCheck,
-    ApertureSquare,
-    ConstructConfig,
-    ConstructList,
-    OrderDetails,
+    // ApertureSquare,
+    // ConstructConfig,
+    // ConstructList,
+    // OrderDetails,
     TestInfo
   },
+  
   computed: {
     ...mapGetters('schedule', ['scheduleList']),
     ...mapState('configurator', {
         title: 'title',
-        order: 'order',
+        orders: 'orders',
         service: 'service'
     }),
   },
   methods: {
-    ...mapActions('schedule', [
-        'loadSchedule',
-    ]),
     ...mapActions('configurator', [
-        //'updaetBuildType',
-        'newOrder',
+        'updateBuildType',
     ]),
-    submit(number) {
-      console.log(number)
-    }
+    orderId() {
+      return new URLSearchParams(document.location.search).get('order')
+    },
+    // buildType(orderId) {
+    //   this.updateBuildType(orderId)
+    // }
   },
   mounted() {
-    //this.updaetBuildType()
-    this.loadSchedule()
-    this.newOrder()
+    //this.updateBuildType()
+    //this.loadSchedule()
+    //this.newOrder()
   },
 }
 </script>

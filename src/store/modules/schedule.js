@@ -8,7 +8,7 @@ const actions = {
     await axios
       .get('http://localhost:8080/scheduleinfo.json')
       .then((response) => {
-        //console.log(response.data)
+        console.log(response.data)
         const schedule = response.data
         commit('SET_SCHEDULE', schedule)
       })

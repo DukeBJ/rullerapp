@@ -75,11 +75,14 @@
                 @click="modalPhoto = !modalPhoto"
               >Отправить в расчёт</button>
               
-              <button class="app-btn btn__blue">Самостоятельный расчёт</button>
+              <button
+                class="app-btn btn__blue"
+                @click="addNewOrder(number)"
+              >Самостоятельный расчёт {{number}}</button>
               
               <button
-              class="app-btn btn__red"
-              @click="modalEnd = !modalEnd"
+                class="app-btn btn__red"
+                @click="modalEnd = !modalEnd"
               >Завершить замер</button>
             </div>
 
@@ -150,6 +153,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Schedule',
   props: {
@@ -169,7 +174,16 @@ export default {
       modalEnd: false,
       modalEndNot: false
     }
-  }
+  },
+  methods: {
+    ...mapActions('configurator', [
+        'newOrder',
+    ]),
+    addNewOrder: function(number) {
+      this.newOrder(number)
+      this.$router.push({ path: '/configurator/', props: {order: number}, query: { order: number } })
+    }
+  },
 }
 </script>
 

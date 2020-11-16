@@ -24,9 +24,9 @@ export default {
   },
   props: ['order'],
   methods: {
-            notifyParent(e) {
-                this.$emit('update-build', e)
-            }
+    notifyParent(select, id) {
+        this.$emit('update-build', select, id)
+    }
   }
 }
 </script>

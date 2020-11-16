@@ -29,8 +29,8 @@ export default {
     }
   },
   methods: {
-      chosen(e) {
-          this.$emit('chosen', e)
+      chosen(select, id) {
+          this.$emit('chosen', select, id)
       },
   },
 }
