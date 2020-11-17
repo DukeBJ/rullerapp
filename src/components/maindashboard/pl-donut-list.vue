@@ -1,6 +1,6 @@
 <template>
   <div class="col-12">
-    <Donut
+    <pl-donut
       v-for="donut in donutInfo"
       v-bind:key="donut.id"
       v-bind:donut="donut"
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import Donut from '@/components/maindashboard/Donut.vue'
+import plDonut from '@/components/maindashboard/pl-donut.vue'
 
 export default {
-  name: 'DonutList',
+  name: 'pl-donut-list',
   components: {
-    Donut
+    plDonut
   },
   props: {
     donutInfo: {

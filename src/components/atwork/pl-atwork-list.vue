@@ -1,6 +1,6 @@
 <template>
   <div class="col-12">
-    <Active
+    <pl-atwork
       v-for="active in calculationPrice"
       v-bind:key="active.id"
       v-bind:active="active"
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import Active from '@/components/active/Active.vue'
+import plAtwork from '@/components/atwork/pl-atwork.vue'
 
 export default {
-  name: 'ActiveList',
+  name: 'pl-atwork-list',
   components: {
-    Active
+    plAtwork
   },
   props: {
     calculationPrice: {

@@ -1,6 +1,6 @@
 <template>
   <div class="col-12">
-    <Schedule
+    <pl-schedule
       v-for="schedule in scheduleList"
       v-bind:key="schedule.number"
       v-bind:number="schedule.number"
@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import Schedule from '@/components/schedule/Schedule.vue'
+import plSchedule from '@/components/schedule/pl-schedule.vue'
 
 export default {
-  name: 'ScheduleList',
+  name: 'pl-schedule-list',
   components: {
-    Schedule
+    plSchedule
   },
   props: 
     ['scheduleList']

@@ -10,20 +10,20 @@
     <div id="page-wrap">
       <router-view />
       <div class="indent"></div>
-    <Footer/>
+    <pl-footer/>
     </div>
   </div>
 </template>
 
 <script>
-import Footer from '@/components/Footer.vue'
+import plFooter from '@/components/pl-footer.vue'
 import { Reveal } from 'vue-burger-menu'
 //import axios from 'axios'
 
 export default {
-  name: 'App',
+  name: 'pl-measurement-app',
   components: {
-    Footer,
+    plFooter,
     Reveal,
   },
   data() {
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     isMain() {
-      return this.$route.name === 'main'
+      return this.$route.name === 'dashboard'
     }
   },
   mounted() {

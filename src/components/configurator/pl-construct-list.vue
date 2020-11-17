@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <WindowList/>
+    <pl-window-list/>
     <div class="row">
       <div class="col-12">
         <button
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import WindowList from '@/components/configurator/WindowList.vue'
+import plWindowList from '@/components/configurator/pl-window-list.vue'
 
 export default {
-  name: "ConstructList",
+  name: "pl-construct-list",
   components: {
-    WindowList
+    plWindowList
   }
 }
 </script>

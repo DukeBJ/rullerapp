@@ -1,9 +1,9 @@
 <template>
   <div>
-    <TopActive :title="title.check" />
+    <plHeaderAtwork :title="title.check" />
     <main class="card-place">
           <div
-            v-for="schedule of scheduleList"
+            v-for="schedule of SCHEDULE_LIST"
             :key="schedule.number"
             >
             <button
@@ -20,7 +20,7 @@
 
           </div>
 
-          {{scheduleList}}
+          {{SCHEDULE_LIST}}
           
           <!-- <TestInfo
             v-for="thisorder of order"
@@ -37,18 +37,18 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
-import TopActive from '@/components/TopActive.vue'
+import plHeaderAtwork from '@/components/pl-header-atwork.vue'
 import ConfigPage from '@/components/configurator/testInfo.vue'
 
 
 export default {
   name: 'ConfiguratorPage',
   components: {
-    TopActive,
+    plHeaderAtwork,
     ConfigPage
   },
   computed: {
-    ...mapGetters('schedule', ['scheduleList']),
+    ...mapGetters('schedule', ['SCHEDULE_LIST']),
     ...mapState('configurator', {
         title: 'title',
         orders: 'orders',
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     ...mapActions('schedule', [
-        'loadSchedule',
+        'GET_SCHEDULE_LIST',
     ]),
     ...mapActions('configurator', [
         'updaetBuildType',

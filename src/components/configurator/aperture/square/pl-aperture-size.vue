@@ -15,6 +15,6 @@
 
 <script>
 export default {
-  name: "ApertureSize"
+  name: "pl-aperture-size"
 }
 </script>

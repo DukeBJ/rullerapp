@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'Active',
+  name: 'pl-atwork',
   props: {
     active: {
       type: Object,

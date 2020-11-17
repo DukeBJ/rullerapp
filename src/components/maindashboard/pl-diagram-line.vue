@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'DiagramLine',
+  name: 'pl-diagram-line',
   props: {
     lineDiagram: {
       type: Object,

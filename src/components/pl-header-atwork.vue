@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12">
-          <h1 class="inner-page">Расписание замеров на{{ '\u00A0' + date + '\u00A0' }}г.</h1>
+          <h1 class="inner-page">{{ title }}</h1>
         </div>
       </div>
     </div>
@@ -13,9 +13,9 @@
 
 <script>
 export default {
-  name: 'TopSchedule',
+  name: 'pl-header-atwork',
   props: {
-    date: String,
+    title: String,
   },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="col-12">
-    <CardLineDiagram
+    <pl-card-diagram-line
       v-for="card in cardInfo"
       v-bind:key="card.id"
       v-bind:card="card"
@@ -11,12 +11,12 @@
 
 
 <script>
-import CardLineDiagram from '@/components/maindashboard/CardLineDiagram.vue'
+import plCardDiagramLine from '@/components/maindashboard/pl-card-diagram-line.vue'
 
 export default {
-  name: 'CardList',
+  name: 'pl-card-list',
   components: {
-    CardLineDiagram,
+    plCardDiagramLine,
   },
   props: {
     cardInfo: {

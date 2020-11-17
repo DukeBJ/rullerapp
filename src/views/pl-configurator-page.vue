@@ -1,10 +1,10 @@
 <template>
   <div>
-    <TopActive :title="title.check" />
+    <pl-header-atwork :title="title.check" />
     <main class="card-place">
   {{orderId()}}<br>
   {{ordern}}
-          <ApertureCheck
+          <pl-aperture-check
             v-for="order in orders"
             :key="order.id"
             :order="order"
@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
-import TopActive from '@/components/TopActive.vue'
-import ApertureCheck from '@/components/configurator/ApertureCheck.vue'
+import { mapState, mapActions } from 'vuex'
+import plHeaderAtwork from '@/components/pl-header-atwork.vue'
+import plApertureCheck from '@/components/configurator/aperture/pl-aperture-check.vue'
 // import ApertureSquare from '@/components/configurator/ApertureSquare.vue'
 // import ConstructConfig from '@/components/configurator/ConstructConfig.vue'
 // import ConstructList from '@/components/configurator/ConstructList.vue'
@@ -38,10 +38,10 @@ import ApertureCheck from '@/components/configurator/ApertureCheck.vue'
 import TestInfo from '@/components/configurator/testInfo.vue'
 
 export default {
-  name: 'ConfiguratorPage',
+  name: 'pl-configurator-page',
   components: {
-    TopActive,
-    ApertureCheck,
+    plHeaderAtwork,
+    plApertureCheck,
     // ApertureSquare,
     // ConstructConfig,
     // ConstructList,
@@ -57,7 +57,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('schedule', ['scheduleList']),
     ...mapState('configurator', {
         title: 'title',
         orders: 'orders',
@@ -77,7 +76,7 @@ export default {
   },
   mounted() {
     //this.updateBuildType()
-    //this.loadSchedule()
+    //this.GET_SCHEDULE_LIST()
     //this.newOrder()
   },
 }

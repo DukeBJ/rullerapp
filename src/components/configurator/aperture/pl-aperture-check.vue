@@ -1,26 +1,26 @@
 <template>
   <div class="container">
-    <TypeBuild
+    <pl-type-build
       :buildType="order.buildType"
       :id="order.id"
       @chosen="notifyParent"
       v-model="order.buildType"
     />
-    <ApertureType
+    <pl-aperture-type
       
     />
   </div>
 </template>
 
 <script>
-import ApertureType from '@/components/configurator/ApertureType.vue'
-import TypeBuild from '@/components/configurator/TypeBuild.vue'
+import plApertureType from '@/components/configurator/aperture/pl-aperture-type.vue'
+import plTypeBuild from '@/components/configurator/aperture/pl-type-build.vue'
 
 export default {
-  name: 'ApertureCheck',
+  name: 'pl-aperture-check',
   components: {
-    ApertureType,
-    TypeBuild
+    plApertureType,
+    plTypeBuild
   },
   props: ['order'],
   methods: {

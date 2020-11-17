@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: 'pl-header',
   props: {
     name: String,
     family: String,

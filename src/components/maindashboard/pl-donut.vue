@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'Donut',
+  name: 'pl-donut',
   props: {
     donut: {
       type: Object,

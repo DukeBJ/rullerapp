@@ -23,26 +23,26 @@
       </div>
       <div class="col-6">
         <b-form-group label="Москитная сетка">
-          <b-form-radio v-model="selected" name="mosquito" value="true">Да</b-form-radio>
-          <b-form-radio v-model="selected" name="mosquito" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="selected" name="isMosquito" value="true">Да</b-form-radio>
+          <b-form-radio v-model="selected" name="isMosquito" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Детские замки">
-          <b-form-radio v-model="selected" name="childlock" value="true">Да</b-form-radio>
-          <b-form-radio v-model="selected" name="childlock" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="selected" name="isChildlock" value="true">Да</b-form-radio>
+          <b-form-radio v-model="selected" name="isChildlock" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Откосы">
-          <b-form-radio v-model="selected" name="slope" value="true">Да</b-form-radio>
-          <b-form-radio v-model="selected" name="slope" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="selected" name="isSlope" value="true">Да</b-form-radio>
+          <b-form-radio v-model="selected" name="isSlope" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Отливы">
-          <b-form-radio v-model="selected" name="ebb" value="true">Да</b-form-radio>
-          <b-form-radio v-model="selected" name="ebb" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="selected" name="isEbb" value="true">Да</b-form-radio>
+          <b-form-radio v-model="selected" name="isEbb" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-12">
@@ -61,7 +61,7 @@
 
 <script>
 export default {
-  name: "ConstructConfig",
+  name: "pl-construct-config",
   data() {
       return {
         profileSelected: 'smart',

@@ -2,14 +2,14 @@
   <footer class="nav-footer">
     <nav class="nav-bottom">
         <div class="nav-bottom__el">
-          <router-link to="/schedule/">
+          <router-link :to="{name: 'schedule'}">
             <div class="square-button">
               <span class="date"></span>
             </div>
           </router-link>
         </div>
         <div class="nav-bottom__el">
-          <router-link to="/active/">
+          <router-link :to="{name: 'atwork'}">
             <div class="square-button">
               <span class="square"></span>
             </div>
@@ -32,6 +32,6 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'pl-footer'
 }
 </script>

@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'Compliment',
+  name: 'pl-compliment',
   props: {
     name: String,
   }

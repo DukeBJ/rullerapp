@@ -11,7 +11,7 @@
 
         <div
         class="card-body"
-        v-if="show"
+        v-if="isShow"
         >
           <div class="client-name">
             <div class="block-info">
@@ -67,12 +67,12 @@
 
             <button
             class="app-btn btn__blue"
-            v-on:click="start = !start" v-if="start === false ">Начать замер</button>
+            v-on:click="isStart = !isStart" v-if="isStart === false ">Начать замер</button>
             
             <div class="flexwrap" v-else>
               <button
                 class="app-btn btn__blue"
-                @click="modalPhoto = !modalPhoto"
+                @click="isModalPhoto = !isModalPhoto"
               >Отправить в расчёт</button>
               
               <button
@@ -82,7 +82,7 @@
               
               <button
                 class="app-btn btn__red"
-                @click="modalEnd = !modalEnd"
+                @click="isModalEnd = !isModalEnd"
               >Завершить замер</button>
             </div>
 
@@ -91,12 +91,12 @@
 
         </div>
 
-      <button class="tape" v-on:click="show = !show"></button>
+      <button class="tape" v-on:click="isShow = !isShow"></button>
       <div v-show=" done === true " class="label-left"><span>Завершен</span></div>
 
       <b-modal
       centered
-      v-model="modalPhoto"
+      v-model="isModalPhoto"
       title="Прикрепите фото вашего замера"
       >
 
@@ -115,7 +115,7 @@
       <b-modal
         centered
         no-stacking
-        v-model="modalEnd"
+        v-model="isModalEnd"
         title="Вы завершаете замер!<br>Каков результат вашего замера?"
       >
         <template #modal-footer="{ ok }">
@@ -125,7 +125,7 @@
           >Ура! Договор!</button>
           <button
             class="app-btn btn__blue"
-            @click="modalEndNot = !modalEndNot"
+            @click="isModalEndNot = !isModalEndNot"
           >Пока недоговор 😭</button>
         </template>
       </b-modal>
@@ -133,7 +133,7 @@
       <b-modal
         centered
         no-stacking
-        v-model="modalEndNot"
+        v-model="isModalEndNot"
         title="Укажите причину по которой не удалось заключить договор"
       >
 
@@ -156,7 +156,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'Schedule',
+  name: 'pl-schedule',
   props: {
     number: String,
     time: String,
@@ -168,19 +168,19 @@ export default {
   },
   data() {
     return {
-      start: false,
-      show: false,
-      modalPhoto: false,
-      modalEnd: false,
-      modalEndNot: false
+      isStart: false,
+      isShow: false,
+      isModalPhoto: false,
+      isModalEnd: false,
+      isModalEndNot: false
     }
   },
   methods: {
     ...mapActions('configurator', [
-        'newOrder',
+        'ADD_ORDER',
     ]),
     addNewOrder: function(number) {
-      this.newOrder(number)
+      this.ADD_ORDER(number)
       this.$router.push({ name: 'configurator', params: {ordern: number}, query: { order: number } })
     }
   },

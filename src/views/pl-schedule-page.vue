@@ -1,12 +1,11 @@
 <template>
   <div>
-    <TopSchedule :date="today" />
+    <pl-header-schedule :date="today" />
     <main class="card-place">
       <div class="container">
         <div class="row justify-content-center">
-          <ScheduleList
-            v-bind:scheduleList="scheduleList"
-            @new-order-start="newOrder"
+          <pl-schedule-list
+            v-bind:scheduleList="SCHEDULE_LIST"
           />
         </div>
       </div>
@@ -16,27 +15,24 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import TopSchedule from '@/components/TopSchedule.vue'
-import ScheduleList from '@/components/schedule/ScheduleList.vue'
+import plHeaderSchedule from '@/components/pl-header-schedule.vue'
+import plScheduleList from '@/components/schedule/pl-schedule-list.vue'
 
 
 export default {
-  name: 'SchedulePage',
+  name: 'pl-schedule-page',
   components: {
-    TopSchedule,
-    ScheduleList,
+    plHeaderSchedule,
+    plScheduleList,
     
   },
   methods: {
     ...mapActions('schedule', [
-        'loadSchedule',
-    ]),
-    ...mapActions('configurator', [
-        'newOrder',
+        'GET_SCHEDULE_LIST',
     ]),
   },
   computed: {
-    ...mapGetters('schedule', ['scheduleList']),
+    ...mapGetters('schedule', ['SCHEDULE_LIST']),
     today: function() {
       let dateConstr = new Date().toJSON().slice(0,10)
       let yyyy = dateConstr.slice(0,4)
@@ -47,8 +43,7 @@ export default {
     }
   },
   mounted() {
-    this.loadSchedule()
-    //this.newOrder()
+    this.GET_SCHEDULE_LIST()
   },
 }
 </script>

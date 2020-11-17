@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/HomePage.vue'
-import Schedule from './views/SchedulePage.vue'
-import ActiveP from './views/ActivePage.vue'
-import Configurator from './views/ConfiguratorPage.vue'
+import plDashboard from './views/pl-dashboard-page.vue'
+import plSchedule from './views/pl-schedule-page.vue'
+import plAtwork from './views/pl-atwork-page.vue'
+import plConfigurator from './views/pl-configurator-page.vue'
 import Test from './views/TestPage.vue'
 
 
@@ -14,23 +14,23 @@ export default new Router ({
   routes: [
     {
       path: '/',
-      name: "main",
-      component: Home
+      name: "dashboard",
+      component: plDashboard
     },
     {
       path: '/schedule/',
       name: "schedule",
-      component: Schedule,
+      component: plSchedule,
     },
     {
-      path: '/active/',
-      name: "active",
-      component: ActiveP,
+      path: '/atwork/',
+      name: "atwork",
+      component: plAtwork,
     },
     {
       path: '/configurator/',
       name: "configurator",
-      component: Configurator,
+      component: plConfigurator,
       props: true
     },
     {

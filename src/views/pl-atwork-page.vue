@@ -1,10 +1,10 @@
 <template>
   <div>
-    <TopActive title="Список замеров" />
+    <pl-header-atwork title="Список замеров" />
     <main class="card-place">
       <div class="container">
         <div class="row justify-content-center">
-          <ActiveList
+          <pl-atwork-list
             v-bind:calculationPrice="calculationPrice"
           />
         </div>
@@ -14,14 +14,14 @@
 </template>
 
 <script>
-import TopActive from '@/components/TopActive.vue'
-import ActiveList from '@/components/active/ActiveList.vue'
+import plHeaderAtwork from '@/components/pl-header-atwork.vue'
+import plAtworkList from '@/components/atwork/pl-atwork-list.vue'
 
 export default {
-  name: 'ActivePage',
+  name: 'plAtworkPage',
   components: {
-    TopActive,
-    ActiveList
+    plHeaderAtwork,
+    plAtworkList
   },
   data() {
     return {

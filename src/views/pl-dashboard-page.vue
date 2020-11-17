@@ -1,16 +1,16 @@
 <template>
   <div>
-    <Header :name="firstname" :family="lastname" :sale="sale" :bonus="bonus" :bonus_persent="bonusPersent" :sale_persent="salePersent" />
+    <pl-header :name="firstname" :family="lastname" :sale="sale" :bonus="bonus" :bonus_persent="bonusPersent" :sale_persent="salePersent" />
     <main class="card-place">
       <div class="container">
         <div class="row justify-content-center">
-          <CardList
+          <pl-card-list
             v-bind:cardInfo="cardInfo"
           />
-          <DonutList
+          <pl-donut-list
             v-bind:donutInfo="donutInfo"
           />
-          <Compliment :name="firstname" />
+          <pl-compliment :name="firstname" />
         </div>
       </div>
     </main>
@@ -18,18 +18,18 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
-import CardList from '@/components/maindashboard/CardList.vue'
-import DonutList from '@/components/maindashboard/DonutList.vue'
-import Compliment from '@/components/maindashboard/Compliment.vue'
+import plHeader from '@/components/pl-header.vue'
+import plCardList from '@/components/maindashboard/pl-card-list.vue'
+import plDonutList from '@/components/maindashboard/pl-donut-list.vue'
+import plCompliment from '@/components/maindashboard/pl-compliment.vue'
 
 export default {
-    name: 'Home',
+    name: 'pl-dashboard-page',
     components: {
-    Header,
-    CardList,
-    DonutList,
-    Compliment,
+    plHeader,
+    plCardList,
+    plDonutList,
+    plCompliment,
   },
   data() {
     return {

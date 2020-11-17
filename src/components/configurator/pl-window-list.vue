@@ -15,6 +15,6 @@
 
 <script>
 export default {
-  name: "WindowList"
+  name: "pl-window-list"
 }
 </script>

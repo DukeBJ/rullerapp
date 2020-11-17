@@ -4,7 +4,7 @@ const state = {
   schedule: []
 }
 const actions = {
-  async loadSchedule({commit}) {
+  async GET_SCHEDULE_LIST({commit}) {
     await axios
       .get('http://localhost:8080/scheduleinfo.json')
       .then((response) => {
@@ -23,7 +23,7 @@ const mutations = {
   }
 }
 const getters = {
-  scheduleList(state) {
+  SCHEDULE_LIST(state) {
     return state.schedule
   }
 }

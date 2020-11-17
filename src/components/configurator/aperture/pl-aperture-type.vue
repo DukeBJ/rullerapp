@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'ApertureType',
+  name: 'pl-aperture-type',
   props: {
     // active: {
     //   type: Object,

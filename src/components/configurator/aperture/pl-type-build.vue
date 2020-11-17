@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'TypeBuild',
+  name: 'pl-type-build',
   model: {
     prop: 'selected',
     event: 'chosen'

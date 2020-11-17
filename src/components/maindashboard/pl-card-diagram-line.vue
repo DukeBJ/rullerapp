@@ -1,7 +1,7 @@
 <template>
   <div class="card card-diagram">
     <h3 class="card-title">{{ card.title }}</h3>
-    <DiagramLine
+    <pl-diagram-line
       v-for="lineDiagram in card.lineDiagram"
       v-bind:key="lineDiagram.id"
       v-bind:lineDiagram="lineDiagram"
@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import DiagramLine from '@/components/maindashboard/DiagramLine.vue'
+import plDiagramLine from '@/components/maindashboard/pl-diagram-line.vue'
 
 export default {
-  name: 'CardLineDiagram',
+  name: 'pl-card-diagram-line',
   components: {
-    DiagramLine,
+    plDiagramLine,
   },
   props: {
     card: {
