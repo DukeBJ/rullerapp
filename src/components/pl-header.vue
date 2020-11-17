@@ -23,10 +23,10 @@ export default {
   props: {
     name: String,
     family: String,
-    sale: String,
-    bonus: String,
-    sale_persent: String,
-    bonus_persent: String
+    sale: Number,
+    bonus: Number,
+    sale_persent: Number,
+    bonus_persent: Number
   },
   computed: {
     summa: function() {

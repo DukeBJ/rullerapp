@@ -9,10 +9,10 @@
       :window="constr.window"
       :aperture="constr.aperture"
       />
-    <div>Демонтаж: {{service.dismantling}}</div>
-    <div>Монтаж: {{service.mounting}}</div>
-    <div>Доставка: {{service.deliver}}</div>
-    <div>Мусор: {{service.garbage}}</div>
+    <div>Демонтаж: {{service.isDismantling}}</div>
+    <div>Монтаж: {{service.isMounting}}</div>
+    <div>Доставка: {{service.isDeliver}}</div>
+    <div>Мусор: {{service.isGarbage}}</div>
   </div>
 </template>
 

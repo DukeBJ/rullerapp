@@ -19,11 +19,13 @@ const actions = {
 }
 const mutations = { 
   SET_SCHEDULE(state, schedule) {
+    console.log(`Устанавливаем schedule в соответствии с полученными данными`)
     state.schedule = schedule
   }
 }
 const getters = {
   SCHEDULE_LIST(state) {
+    console.log(`Получаем значения из state.schedule геттером SCHEDULE_LIST`)
     return state.schedule
   }
 }

@@ -36,22 +36,6 @@ export default {
       return this.$route.name === 'dashboard'
     }
   },
-  mounted() {
-    this.$axios
-      .get('http://localhost:8080/price.json')
-      .then((response) => {
-      //console.log(response.data)
-      response.data
-    // this.axios
-    //   .get("http://localhost:8080/price.json")
-    //   .then(response => {
-    //     console.log("response", response);
-    //   })
-    //   .catch(error => {
-    //     console.log("error", error);
-    //   });
-    })
-  }
 }
 </script>
 

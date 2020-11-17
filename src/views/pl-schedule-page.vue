@@ -38,7 +38,7 @@ export default {
       let yyyy = dateConstr.slice(0,4)
       let mm = dateConstr.slice(5,7)
       let dd = dateConstr.slice(8,10)
-      dateConstr = dd + '.' + mm + "." + yyyy
+      dateConstr = dd + '.' + mm + '.' + yyyy
       return dateConstr
     }
   },

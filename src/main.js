@@ -4,12 +4,11 @@ import router from './router'
 import store from './store'
 import BootstrapVue from 'bootstrap-vue'
 import axios from 'axios'
-import VueAxios from 'vue-axios'
 //import './registerServiceWorker'
 import './assets/scss/custom.scss'
 
 Vue.config.productionTip = false
-Vue.use(BootstrapVue, VueAxios, axios)
+Vue.use(BootstrapVue, axios)
 Vue.prototype.$axios = axios
 
 // Vue.filter('ruPrice', function (value) {
