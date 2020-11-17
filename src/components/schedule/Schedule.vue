@@ -181,7 +181,7 @@ export default {
     ]),
     addNewOrder: function(number) {
       this.newOrder(number)
-      this.$router.push({ path: '/configurator/', props: {order: number}, query: { order: number } })
+      this.$router.push({ name: 'configurator', params: {ordern: number}, query: { order: number } })
     }
   },
 }

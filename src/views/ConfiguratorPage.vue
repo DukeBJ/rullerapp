@@ -2,7 +2,8 @@
   <div>
     <TopActive :title="title.check" />
     <main class="card-place">
-  {{orderId()}}
+  {{orderId()}}<br>
+  {{ordern}}
           <ApertureCheck
             v-for="order in orders"
             :key="order.id"
@@ -47,7 +48,14 @@ export default {
     // OrderDetails,
     TestInfo
   },
-  
+  props: {
+    ordern: {
+      type: String,
+      default() {
+        return ''
+      }
+    }
+  },
   computed: {
     ...mapGetters('schedule', ['scheduleList']),
     ...mapState('configurator', {
