@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Тест</h1>
+
+  <div class="lenth">1</div>
+
+  <pre class="array">1</pre>
+
+  <script>
+    let arr = [
+      {
+        "orders": [
+          {
+            id: 1,
+            title: 'test1',
+            price: 1111
+          },
+          {
+            id: 2,
+            title: 'test2',
+            price: 1111
+          },
+          {
+            id: 3,
+            title: 'test3',
+            price: 1111
+          },
+          {
+            id: 4,
+            title: 'test4',
+            price: 1111
+          },
+          {
+            id: 5,
+            title: 'test5',
+            price: 1111
+          },
+          {
+            id: 6,
+            title: 'test6',
+            price: 1111
+          }
+        ]
+      }
+    ]
+
+    document.querySelector('.lenth').innerText = arr[0].orders.length
+    document.querySelector('.array').innerText = JSON.stringify(arr[0].orders)
+    
+  </script>
+</body>
+</html>
