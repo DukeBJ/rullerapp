@@ -1,5 +1,3 @@
-//const uuidv4 = require('uuid/v4')
-//let uuid = 0
 const state = {
   title: {
     check: "Расчет конструкций",
@@ -10,31 +8,30 @@ const state = {
 }
 
 const actions = {
+  // Создание заказа
   ADD_ORDER({commit}, orderId) {
     commit('ADD_ORDER_MUT', orderId)
-    //commit('updateOrderMut')
   },
-  addConstruction({commit}) {
-    commit('addConstructionMut')
-    //commit('updatePriceMut')
+  // Добавляем конструкцию в заказ
+  ADD_CONSTRUCTION({commit}, {orderId, constrNumber}) {
+    commit('ADD_CONSTRUCTION_MUT', {orderId, constrNumber})
   },
-  // updateBuildType({commit}, select, orderId) {
-  //   commit('UPD_BUILDTYPE', select, orderId)
-  // },
-
-
-  resetConstruction({commit}, constructionId) {
-    commit('resetConstructionMut', constructionId)
-  }
+  // Обновляем информацию о типе дома
+  UPD_BUILDTYPE({commit}, {selected, orderId}) {
+    commit('UPD_BUILDTYPE_MUT', {selected, orderId})
+  },
 }
 const mutations = {
   ADD_ORDER_MUT({orders}, orderId) {
+    // Проверяем, создан уже заказ или нет. Если да, то ище его в массиве.
     if (orderId !== undefined) {
       const ordID = orders.find(ord => ord.id === orderId)
+      // Если в массиве заказ есть, то ничего не делаем
       if (ordID !== undefined) {
         const www = JSON.stringify(ordID.id)
         console.log(`Заказ с номером ${www} уже существует`)
         console.log(orders)
+      // Если заказа нет, то добавляем
       } else {
         orders.push(createNewOrder(orderId))
         console.log(`Создаем заказ №${orderId}`)
@@ -42,25 +39,40 @@ const mutations = {
       }
     }
   },
-  addConstructionMut({constructions}) {
-    constructions.push(createNewConstruction())
+  ADD_CONSTRUCTION_MUT({orders}, {orderId, constrNumber}) {
+    const index = orders.findIndex(ord => ord.id === orderId)
+    console.log(`Я получил заказ №${orderId} и колличество конструкций в массиве ${constrNumber}`)
+    constrNumber++
+    if (constrNumber !== undefined) {
+      const constrID = orders[index].constructions.find(ord => ord.window === constrNumber)
+      if (constrID !== undefined) {
+        const www = JSON.stringify(constrID.window)
+        console.log(`Конструкция с номером ${www} уже существует`)
+        console.log(orders[index].constructions)
+      } else {
+        orders[index].constructions.push(createNewConstruction(constrNumber))
+        console.log(`Создаем конструкцию №${constrNumber}`)
+        console.log(orders[index].constructions)
+      }
+    }
   },
-  // UPD_BUILDTYPE ({orders}, select, orderId) {
-  //   // const index = orders.findIndex(ord => ord.id === orderId)
-  //   // orders.splice(index, 1, select)
-  //   //order.push(createNewOrder(orderId))
-  //   console.log(`Добавляем ${orderId}`)
-  //   console.log(`Добавляем ${select}`)
-  // },
+  UPD_BUILDTYPE_MUT ({orders}, {selected, orderId}) {
+    // Ищем где находится информация по данному заказу и заменяем на новую
+    const index = orders.findIndex(ord => ord.id === orderId)
+    orders[index].buildType = selected
+    console.log(`index ${index}`)
+    console.log(`Заказ №${orderId}`)
+    console.log(`buildType ${selected}`)
+  },
 
   // updateOrderMut(state) {
   //     state.order = state.products.reduce((previous, product) => previous + productPrice(product), 0)
   // },
-  resetConstructionMut({ constructions }, constructionId) {
-    const index = constructions.findIndex(constr => constr.id === constructionId)
-    const newConstruction = createNewConstruction()
-    constructions.splice(index, 1, newConstruction)
-  },
+  // resetConstructionMut({ constructions }, constrNumber) {
+  //   const index = constructions.findIndex(constr => constr.id === constrNumber)
+  //   const newConstruction = createNewConstruction()
+  //   constructions.splice(index, 1, newConstruction)
+  // },
 }
 
 export default {
@@ -82,18 +94,17 @@ const createNewOrder = (orderId) => ({
   }
 })
 
-const createNewConstruction = () => ({
-    id: 9,//uuid =+ 1,
-    window: {
-      config: '',
-      profile: '',
-      color: '',
-      glassunit: '',
-      hendless: '',
-      isMosquito: true,
-      isChildlock: true,
-      isSlope: true,
-      isEbb: true,
-      sill: ''
-    }
+const createNewConstruction = (constrNumber) => ({
+  window: constrNumber,
+  sizes: [],
+  config: 'first',
+  profile: 'lite60',
+  color: 'white',
+  glassunit: 'climatherm',
+  hendless: 'type1',
+  isMosquito: true,
+  isChildlock: true,
+  isSlope: true,
+  isEbb: true,
+  sill: 'std300'
 })

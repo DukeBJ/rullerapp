@@ -1,26 +1,33 @@
 <template>
   <div>
     <pl-header-atwork :title="title.check" />
-    <main class="card-place">
+    <main
+      class="card-place"
+      v-if="checkOrder()"
+    >
       <pl-aperture-check
-        v-for="order in orders"
-        :key="order.id"
-        :order="order"
-        @update-build="updateBuildType"
+        :key="checkOrder().id"
+        :order="checkOrder()"
+        @update-build="UPD_BUILDTYPE"
+        @add-construction="ADD_CONSTRUCTION"
+        @type-apertude="apertude"
       />
-      <!-- <ApertureSquare/> -->
+      <pl-aperture-square/>
       <!-- <ConstructConfig/> -->
       <!-- <ConstructList/> -->
       <!-- <OrderDetails/> -->
       <TestInfo
-        v-for="thisorder of orders"
-        :key="thisorder.id +1"
-        :id="thisorder.id"
-        :buildType="thisorder.buildType"
-        :constructions="thisorder.constructions"
-        :service="thisorder.service"
+        :key="checkOrder().id +1"
+        :id="checkOrder().id"
+        :buildType="checkOrder().buildType"
+        :constructions="checkOrder().constructions"
+        :service="checkOrder().service"
         />
               
+    </main>
+    <main v-else>
+      <h2>Заказ не создан</h2>
+      <div>Вернитесь к списку замеров и попробуйте еще раз</div>
     </main>
   </div>
 </template>
@@ -29,7 +36,7 @@
 import { mapState, mapActions } from 'vuex'
 import plHeaderAtwork from '@/components/pl-header-atwork.vue'
 import plApertureCheck from '@/components/configurator/aperture/pl-aperture-check.vue'
-// import ApertureSquare from '@/components/configurator/ApertureSquare.vue'
+import plApertureSquare from '@/components/configurator/aperture/square/pl-aperture-square.vue'
 // import ConstructConfig from '@/components/configurator/ConstructConfig.vue'
 // import ConstructList from '@/components/configurator/ConstructList.vue'
 // import OrderDetails from '@/components/configurator/OrderDetails.vue'
@@ -40,7 +47,7 @@ export default {
   components: {
     plHeaderAtwork,
     plApertureCheck,
-    // ApertureSquare,
+    plApertureSquare,
     // ConstructConfig,
     // ConstructList,
     // OrderDetails,
@@ -54,6 +61,16 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      check: {
+        square: false,
+        balkonLeft: false,
+        balkonRight: false,
+        balkonCenter: false
+      }
+    }
+  },
   computed: {
     ...mapState('configurator', {
         title: 'title',
@@ -63,19 +80,24 @@ export default {
   },
   methods: {
     ...mapActions('configurator', [
-        'updateBuildType',
+        'UPD_BUILDTYPE',
+        'ADD_CONSTRUCTION',
     ]),
     orderId() {
       return new URLSearchParams(document.location.search).get('order')
     },
-    // buildType(orderId) {
-    //   this.updateBuildType(orderId)
-    // }
-  },
-  mounted() {
-    //this.updateBuildType()
-    //this.GET_SCHEDULE_LIST()
-    //this.newOrder()
+    checkOrder() {
+      const index = this.orders.findIndex(ord => ord.id === this.ordern)
+      return this.orders[index]
+    },
+    apertude(check) {
+      console.log(check)
+      if (!check) {
+        return this.check.square
+      } else {
+        return this.check.square == check.square
+      }
+    }
   },
 }
 </script>

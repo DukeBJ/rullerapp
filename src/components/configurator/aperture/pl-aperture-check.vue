@@ -3,11 +3,17 @@
     <pl-type-build
       :buildType="order.buildType"
       :id="order.id"
-      @chosen="notifyParent"
+      @chosen="sendBuildType"
       v-model="order.buildType"
     />
     <pl-aperture-type
-      
+      :id="order.id"
+      :constrNumber="order.constructions.length"
+      @square="sendConstruction"
+      @balkonLeft="sendConstruction"
+      @balkonRight="sendConstruction"
+      @balkonCenter="sendConstruction"
+      @check="typeApertude"
     />
   </div>
 </template>
@@ -24,8 +30,14 @@ export default {
   },
   props: ['order'],
   methods: {
-    notifyParent(select, id) {
-        this.$emit('update-build', select, id)
+    sendBuildType(payload) {
+        this.$emit('update-build', payload)
+    },
+    sendConstruction(payload) {
+      this.$emit('add-construction', payload)
+    },
+    typeApertude(check) {
+      this.$emit('type-apertude', check)
     }
   }
 }

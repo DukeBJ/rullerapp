@@ -2,13 +2,14 @@
   <div>
     <div>Заказ: {{id}}</div>
     <div>Тип здания: {{buildType}}</div>
-    <TestWind
+    <!-- <TestWind
       v-for="constr of constructions"
       :key="constr.id"
       :constID="constr.id"
       :window="constr.window"
       :aperture="constr.aperture"
-      />
+      /> -->
+      {{constructions}}
     <div>Демонтаж: {{service.isDismantling}}</div>
     <div>Монтаж: {{service.isMounting}}</div>
     <div>Доставка: {{service.isDeliver}}</div>
@@ -17,15 +18,38 @@
 </template>
 
 <script>
-import TestWind from '@/components/configurator/testWind.vue'
+//import TestWind from '@/components/configurator/testWind.vue'
 
 
 export default {
   components: {
-    TestWind
+    //TestWind
   },
-  props: [
-    'id', 'buildType', 'constructions', 'service'
-  ],
+  props: {
+    id: {
+      type: String,
+      default() {
+        return ''
+      }
+    },
+    buildType: {
+      type: String,
+      default() {
+        return 'Панельный'
+      }
+    },
+    constructions: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    service: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
 }
 </script>

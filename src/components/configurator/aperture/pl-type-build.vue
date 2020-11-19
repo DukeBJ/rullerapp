@@ -5,6 +5,7 @@
       <b-form-select v-model="selected" :options="options" @change="chosen"></b-form-select>
     </div>
     {{selected}}
+    {{id}}
   </div>
 </template>
 
@@ -18,7 +19,7 @@ export default {
   props: ['buildType', 'id'],
   data() {
     return {
-      selected: 'Панельный',
+      selected: this.buildType,
       options: [
         { value: 'Панельный', text: 'Панельный' },
         { value: 'Кирпичный', text: 'Кирпичный' },
@@ -29,9 +30,15 @@ export default {
     }
   },
   methods: {
-      chosen(select, id) {
-          this.$emit('chosen', select, id)
-      },
+    chosen(selected) {
+      const orderId = this.id
+      const payload = {
+        selected,
+        orderId
+      }
+      console.log(payload)
+      this.$emit('chosen', payload)
+    },
   },
 }
 </script>

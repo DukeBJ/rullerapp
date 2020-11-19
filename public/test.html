@@ -47,12 +47,83 @@
             price: 1111
           }
         ]
+      },
+      {
+        "monky": [
+          {
+            id: 1,
+            title: 'test1',
+            price: 1111
+          },
+          {
+            id: 2,
+            title: 'test2',
+            price: 1111
+          },
+          {
+            id: 3,
+            title: 'test3',
+            price: 1111
+          },
+          {
+            id: 4,
+            title: 'test4',
+            price: 1111
+          },
+          {
+            id: 5,
+            title: 'test5',
+            price: 1111
+          },
+          {
+            id: 6,
+            title: 'test6',
+            price: 1111
+          }
+        ]
       }
     ]
 
+    let bat = { "bat": [
+          {
+            id: 100,
+            title: 'bat6',
+            price: 999
+          },
+          {
+            id: 200,
+            title: 'bat5',
+            price: 999
+          },
+          {
+            id: 300,
+            title: 'bat4',
+            price: 999
+          },
+          {
+            id: 400,
+            title: 'bat3',
+            price: 999
+          },
+          {
+            id: 500,
+            title: 'bat2',
+            price: 999
+          },
+          {
+            id: 600,
+            title: 'bat1',
+            price: 999
+          }
+        ]
+      }
+
     document.querySelector('.lenth').innerText = arr[0].orders.length
     document.querySelector('.array').innerText = JSON.stringify(arr[0].orders)
-    
+    console.log(arr)
+    let findMonky = arr.findIndex(ord => ord.hasOwnProperty('monky'))
+    let monky = arr[findMonky]
+    arr.splice(findMonky, 1, bat)
   </script>
 </body>
 </html>
