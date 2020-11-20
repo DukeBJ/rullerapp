@@ -344,3 +344,12 @@
   font-size: 18px;
   justify-content: center;
 }
+
+.type-construction {
+  height: calc(100% - 20px);
+  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  cursor: pointer;
+}

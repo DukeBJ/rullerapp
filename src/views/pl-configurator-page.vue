@@ -6,13 +6,17 @@
       v-if="checkOrder()"
     >
       <pl-aperture-check
+        v-if="check.square === false"
         :key="checkOrder().id"
         :order="checkOrder()"
         @update-build="UPD_BUILDTYPE"
         @add-construction="ADD_CONSTRUCTION"
         @type-apertude="apertude"
       />
-      <pl-aperture-square/>
+      <pl-aperture-square
+        v-if="check.square === true"
+        :constructions="checkOrder().constructions"
+      />
       <!-- <ConstructConfig/> -->
       <!-- <ConstructList/> -->
       <!-- <OrderDetails/> -->
@@ -92,10 +96,8 @@ export default {
     },
     apertude(check) {
       console.log(check)
-      if (!check) {
-        return this.check.square
-      } else {
-        return this.check.square == check.square
+      if (check.square) {
+        return this.check.square = check.square
       }
     }
   },

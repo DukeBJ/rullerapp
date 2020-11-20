@@ -1,0 +1,53 @@
+.pl-select {
+  .vs__dropdown-toggle {
+    border-radius: 10px;
+    height: auto;
+    padding: 6px 20px;
+    border: none;
+    box-shadow: 0px 2px 25px $plshadow;
+    margin-bottom: 20px;
+    .vs__selected-options {
+      padding: 0;
+      .vs__selected {
+        background-color: white;
+        font-weight: 500;
+        font-size: 14px;
+        color: #05252F;
+        line-height: 2.6;
+        margin: 0;
+        padding: 0;
+      }
+      .vs__search, .vs__search:focus {
+        padding: 0;
+        margin-top: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #05252F;
+        padding-bottom: 10px;
+      }
+    }
+  }
+  .vs__actions {
+    justify-content: center;
+    width: 30px;
+    padding: 0;
+  }
+  .vs__dropdown-menu {
+    padding: 0;
+    width: 100%;
+    box-shadow: 0px 2px 25px $plshadow;
+    border: none;
+    border-radius: 0 0 20px 20px;
+    margin-top: -6px;
+    li {
+      font-weight: 500;
+      font-size: 14px;
+      color: #05252F;
+      line-height: 2.6;
+      &.vs__dropdown-option--highlight {
+        background-color: $plskyblue;
+        color: white;
+      }
+    }
+  }
+}
