@@ -16,8 +16,14 @@
       <pl-aperture-square
         v-if="check.square === true"
         :constructions="checkOrder().constructions"
+        :orderID="checkOrder().id"
+        :order="checkOrder()"
+        @add-size="ADD_SIZE"
+        @sizes-done="sizesDone"
       />
-      <!-- <ConstructConfig/> -->
+      <pl-construct-config
+        v-if="check.config === true"
+      />
       <!-- <ConstructList/> -->
       <!-- <OrderDetails/> -->
       <TestInfo
@@ -26,8 +32,7 @@
         :buildType="checkOrder().buildType"
         :constructions="checkOrder().constructions"
         :service="checkOrder().service"
-        />
-              
+        />  
     </main>
     <main v-else>
       <h2>Заказ не создан</h2>
@@ -41,7 +46,7 @@ import { mapState, mapActions } from 'vuex'
 import plHeaderAtwork from '@/components/pl-header-atwork.vue'
 import plApertureCheck from '@/components/configurator/aperture/pl-aperture-check.vue'
 import plApertureSquare from '@/components/configurator/aperture/square/pl-aperture-square.vue'
-// import ConstructConfig from '@/components/configurator/ConstructConfig.vue'
+import plConstructConfig from '@/components/configurator/pl-construct-config.vue'
 // import ConstructList from '@/components/configurator/ConstructList.vue'
 // import OrderDetails from '@/components/configurator/OrderDetails.vue'
 import TestInfo from '@/components/configurator/testInfo.vue'
@@ -52,7 +57,7 @@ export default {
     plHeaderAtwork,
     plApertureCheck,
     plApertureSquare,
-    // ConstructConfig,
+    plConstructConfig,
     // ConstructList,
     // OrderDetails,
     TestInfo
@@ -71,7 +76,8 @@ export default {
         square: false,
         balkonLeft: false,
         balkonRight: false,
-        balkonCenter: false
+        balkonCenter: false,
+        config: true
       }
     }
   },
@@ -86,6 +92,7 @@ export default {
     ...mapActions('configurator', [
         'UPD_BUILDTYPE',
         'ADD_CONSTRUCTION',
+        'ADD_SIZE'
     ]),
     orderId() {
       return new URLSearchParams(document.location.search).get('order')
@@ -98,6 +105,14 @@ export default {
       console.log(check)
       if (check.square) {
         return this.check.square = check.square
+      }
+    },
+    sizesDone(check) {
+      console.log(check)
+      if (check.square) {
+        return this.check.square = check.square
+      } else if (check.config) {
+        return this.check.config = check.config
       }
     }
   },

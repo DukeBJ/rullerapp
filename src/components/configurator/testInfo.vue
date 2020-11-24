@@ -9,7 +9,7 @@
       :window="constr.window"
       :aperture="constr.aperture"
       /> -->
-      {{constructions}}
+    <div>{{constructions}}</div>
     <div>Демонтаж: {{service.isDismantling}}</div>
     <div>Монтаж: {{service.isMounting}}</div>
     <div>Доставка: {{service.isDeliver}}</div>

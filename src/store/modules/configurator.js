@@ -20,6 +20,10 @@ const actions = {
   UPD_BUILDTYPE({commit}, {selected, orderId}) {
     commit('UPD_BUILDTYPE_MUT', {selected, orderId})
   },
+  ADD_SIZE({commit}, {orderID, winNo, sizeIn, sizeOut, letter}) {
+    commit('ADD_SIZE_MUT', {orderID, winNo, sizeIn, sizeOut, letter})
+    commit('UPD_SIZES_MUT', {orderID, winNo})
+  }
 }
 const mutations = {
   ADD_ORDER_MUT({orders}, orderId) {
@@ -55,6 +59,22 @@ const mutations = {
         console.log(orders[index].constructions)
       }
     }
+  },
+  ADD_SIZE_MUT({orders}, {orderID, winNo, sizeIn, sizeOut, letter}) {
+    const index = orders.findIndex(ord => ord.id === orderID)
+    const constrID = orders[index].constructions.findIndex(constr => constr.window === winNo)
+    const sizeObj = orders[index].constructions[constrID].sizes
+    const checkProperty = Object.prototype.hasOwnProperty.call(sizeObj, `${letter}In`)
+    if (checkProperty === false) {
+      orders[index].constructions[constrID].sizes[`${letter}In`] = sizeIn
+      orders[index].constructions[constrID].sizes[`${letter}Out`] = sizeOut
+      console.log(`Добавлшены объекты {${letter}In: ${sizeIn}, ${letter}Out: ${sizeOut}}`)
+    } else {console.log(`Размеры {${letter}In: ${sizeIn}, ${letter}Out: ${sizeOut}} уже добавлены`)}
+  },
+  UPD_SIZES_MUT({orders}, {orderID, winNo}) {
+    const index = orders.findIndex(ord => ord.id === orderID)
+    const constrID = orders[index].constructions.findIndex(constr => constr.window === winNo)
+    console.log(orders[index].constructions[constrID].sizes)
   },
   UPD_BUILDTYPE_MUT ({orders}, {selected, orderId}) {
     // Ищем где находится информация по данному заказу и заменяем на новую
@@ -96,7 +116,7 @@ const createNewOrder = (orderId) => ({
 
 const createNewConstruction = (constrNumber) => ({
   window: constrNumber,
-  sizes: [],
+  sizes: {},
   config: 'first',
   profile: 'lite60',
   color: 'white',
@@ -108,3 +128,8 @@ const createNewConstruction = (constrNumber) => ({
   isEbb: true,
   sill: 'std300'
 })
+
+// const addSizes = (letterIn, letterOut, sizeIn, sizeOut) => ({
+//   letterIn: 
+//   letterOut: 
+// })

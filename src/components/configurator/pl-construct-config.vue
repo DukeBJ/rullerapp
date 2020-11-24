@@ -3,23 +3,72 @@
     <div class="row">
       <h4>Выберите конфигурацию</h4>
       <div class="col-12">
-        Тут слайдер
+        <pl-construct-slider
+        />
       </div>
       <div class="col-12">
         <label for="profile-system">Профильная система</label>
-        <b-form-select id="profile-system" v-model="profileSelected" :options="profile"></b-form-select>
+        <v-select
+          class="pl-select"
+          v-model="profileSelected"
+          :options="profile"
+          @input="chosen"
+          :clearable="false"
+          :searchable="false">
+          <template #open-indicator="{ attributes }">
+            <span v-bind="attributes">
+              <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.2588 5.8004c.3707-.4093 1.0031-.4406 1.4125-.07L5 8.7453V1c0-.5523.4477-1 1-1s1 .4477 1 1v7.7452l3.3287-3.0147c.4094-.3707 1.0418-.3394 1.4125.07.3707.4093.3394 1.0417-.0699 1.4124l-5 4.5283a1 1 0 01-1.3426 0l-5-4.5283c-.4093-.3707-.4406-1.0031-.0699-1.4125z" fill="#33C5F3"/></svg>
+            </span>
+          </template>
+        </v-select>
       </div>
       <div class="col-12">
         <label for="profile-color">Цвет профиля</label>
-        <b-form-select id="profile-color" v-model="colorSelected" :options="color"></b-form-select>
+        <v-select
+          class="pl-select"
+          v-model="colorSelected"
+          :options="color"
+          @input="chosen"
+          :clearable="false"
+          :searchable="false">
+          <template #open-indicator="{ attributes }">
+            <span v-bind="attributes">
+              <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.2588 5.8004c.3707-.4093 1.0031-.4406 1.4125-.07L5 8.7453V1c0-.5523.4477-1 1-1s1 .4477 1 1v7.7452l3.3287-3.0147c.4094-.3707 1.0418-.3394 1.4125.07.3707.4093.3394 1.0417-.0699 1.4124l-5 4.5283a1 1 0 01-1.3426 0l-5-4.5283c-.4093-.3707-.4406-1.0031-.0699-1.4125z" fill="#33C5F3"/></svg>
+            </span>
+          </template>
+        </v-select>
       </div>
       <div class="col-12">
         <label for="glassunit">Стеклопакет</label>
-        <b-form-select id="glassunit" v-model="glassunitSelected" :options="glassunit"></b-form-select>
+        <v-select
+          class="pl-select"
+          v-model="glassunitSelected"
+          :options="glassunit"
+          @input="chosen"
+          :clearable="false"
+          :searchable="false">
+          <template #open-indicator="{ attributes }">
+            <span v-bind="attributes">
+              <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.2588 5.8004c.3707-.4093 1.0031-.4406 1.4125-.07L5 8.7453V1c0-.5523.4477-1 1-1s1 .4477 1 1v7.7452l3.3287-3.0147c.4094-.3707 1.0418-.3394 1.4125.07.3707.4093.3394 1.0417-.0699 1.4124l-5 4.5283a1 1 0 01-1.3426 0l-5-4.5283c-.4093-.3707-.4406-1.0031-.0699-1.4125z" fill="#33C5F3"/></svg>
+            </span>
+          </template>
+        </v-select>
       </div>
       <div class="col-12">
         <label for="hendless">Ручки</label>
-        <b-form-select id="hendless" v-model="hendlessSelected" :options="hendless"></b-form-select>
+        <v-select
+          class="pl-select"
+          v-model="hendlessSelected"
+          :options="hendless"
+          @input="chosen"
+          :clearable="false"
+          :searchable="false">
+          <template #open-indicator="{ attributes }">
+            <span v-bind="attributes">
+              <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.2588 5.8004c.3707-.4093 1.0031-.4406 1.4125-.07L5 8.7453V1c0-.5523.4477-1 1-1s1 .4477 1 1v7.7452l3.3287-3.0147c.4094-.3707 1.0418-.3394 1.4125.07.3707.4093.3394 1.0417-.0699 1.4124l-5 4.5283a1 1 0 01-1.3426 0l-5-4.5283c-.4093-.3707-.4406-1.0031-.0699-1.4125z" fill="#33C5F3"/></svg>
+            </span>
+          </template>
+        </v-select>
       </div>
       <div class="col-6">
         <b-form-group label="Москитная сетка">
@@ -47,7 +96,19 @@
       </div>
       <div class="col-12">
         <label for="sill">Подоконник</label>
-        <b-form-select id="sill" v-model="sillSelected" :options="sill"></b-form-select>
+        <v-select
+          class="pl-select"
+          v-model="sillSelected"
+          :options="sill"
+          @input="chosen"
+          :clearable="false"
+          :searchable="false">
+          <template #open-indicator="{ attributes }">
+            <span v-bind="attributes">
+              <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.2588 5.8004c.3707-.4093 1.0031-.4406 1.4125-.07L5 8.7453V1c0-.5523.4477-1 1-1s1 .4477 1 1v7.7452l3.3287-3.0147c.4094-.3707 1.0418-.3394 1.4125.07.3707.4093.3394 1.0417-.0699 1.4124l-5 4.5283a1 1 0 01-1.3426 0l-5-4.5283c-.4093-.3707-.4406-1.0031-.0699-1.4125z" fill="#33C5F3"/></svg>
+            </span>
+          </template>
+        </v-select>
       </div>
       <div class="col-12">
         <button
@@ -60,44 +121,51 @@
 </template>
 
 <script>
+import plConstructSlider from '@/components/configurator/pl-construct-slider.vue'
+import vSelect from 'vue-select'
+
 export default {
   name: "pl-construct-config",
+  components: {
+    plConstructSlider,
+    vSelect
+  },
   data() {
       return {
-        profileSelected: 'smart',
+        profileSelected: 'Melke Smart',
         profile: [
-          { value: 'smart', text: 'Melke Smart' },
-          { value: 'evolution', text: 'Melke Evolution' },
-          { value: 'art', text: 'Melke Art' },
-          { value: 'lite60', text: 'Melke Lite`60' },
-          { value: 'lite70', text: 'Melke Lite`70' },
+          'Melke Smart',
+          'Melke Evolution',
+          'Melke Art',
+          'Melke Lite`60',
+          'Melke Lite`70',
         ],
-        colorSelected: 'white',
+        colorSelected: 'Белый',
         color: [
-          { value: 'white', text: 'Белый' },
-          { value: 'mass', text: 'Цветная масса' },
-          { value: 'laminat', text: 'Ламинация' },
+          'Белый',
+          'Цветная масса',
+          'Ламинация',
         ],
-        glassunitSelected: 'climatherm',
+        glassunitSelected: 'Climatherm',
         glassunit: [
-          { value: 'climatherm', text: 'Climatherm' },
-          { value: 'climathermb', text: 'Climatherm Balance' },
-          { value: 'climatherms', text: 'Climatherm Solar' },
-          { value: 'climathermsc', text: 'Climatherm Solar Color' },
+          'Climatherm',
+          'Climatherm Balance',
+          'Climatherm Solar',
+          'Climatherm Solar Color',
         ],
-        hendlessSelected: 'type1',
+        hendlessSelected: 'Тип1',
         hendless: [
-          { value: 'type1', text: 'Тип1' },
-          { value: 'type2', text: 'Тип2' },
-          { value: 'type3', text: 'Тип3' },
-          { value: 'type4', text: 'Тип4' },
+          'Тип1',
+          'Тип2',
+          'Тип3',
+          'Тип4',
         ],
-        sillSelected: 'std300',
+        sillSelected: 'Стандартный 300',
         sill: [
-          { value: 'std300', text: 'Стандартный 300' },
-          { value: 'kryst300', text: 'Кристалит 300' },
-          { value: 'estera300', text: 'Эстера 300' },
-          { value: 'moller300', text: 'Моллер 300' },
+          'Стандартный 300',
+          'Кристалит 300',
+          'Эстера 300',
+          'Моллер 300',
         ],
       }
     }
