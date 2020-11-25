@@ -77,7 +77,7 @@ export default {
         balkonLeft: false,
         balkonRight: false,
         balkonCenter: false,
-        config: true
+        config: false
       }
     }
   },

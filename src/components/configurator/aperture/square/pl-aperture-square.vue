@@ -6,6 +6,7 @@
       :orderID="orderID"
       :winNo="constructions.length"
       :order="order"
+      :catchSize="sendSize"
     />
     <pl-aperture-height
       v-if="whatHeight !== ''"
@@ -52,7 +53,7 @@ export default {
       height: '',
       width: '',
       whatHeight: '',
-      whatWidth: ''
+      whatWidth: '',
     }
   },
   computed: {
@@ -72,6 +73,9 @@ export default {
     sendSize(payload) {
       this.$emit('add-size', payload)
     },
+    // sendSize(payload) {
+    //   this.$emit('add-size', payload)
+    // },
     checkSizes() {
       const getSize = this.getSizesObj
       let aIn = Object.prototype.hasOwnProperty.call(getSize, 'aIn')

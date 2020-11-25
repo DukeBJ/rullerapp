@@ -2,17 +2,17 @@
   <div class="container">
     <div class="row">
       <h4>Выберите конфигурацию</h4>
-      <div class="col-12">
+      <div class="w-100">
         <pl-construct-slider
         />
       </div>
       <div class="col-12">
-        <label for="profile-system">Профильная система</label>
+        <div class="label">Профильная система</div>
         <v-select
           class="pl-select"
           v-model="profileSelected"
           :options="profile"
-          @input="chosen"
+          @input="chosenProfile"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -23,12 +23,12 @@
         </v-select>
       </div>
       <div class="col-12">
-        <label for="profile-color">Цвет профиля</label>
+        <div class="label">Цвет профиля</div>
         <v-select
           class="pl-select"
           v-model="colorSelected"
           :options="color"
-          @input="chosen"
+          @input="chosenColor"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -39,12 +39,12 @@
         </v-select>
       </div>
       <div class="col-12">
-        <label for="glassunit">Стеклопакет</label>
+        <div class="label">Стеклопакет</div>
         <v-select
           class="pl-select"
           v-model="glassunitSelected"
           :options="glassunit"
-          @input="chosen"
+          @input="chosenGlassunit"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -55,12 +55,12 @@
         </v-select>
       </div>
       <div class="col-12">
-        <label for="hendless">Ручки</label>
+        <div class="label">Ручки</div>
         <v-select
           class="pl-select"
           v-model="hendlessSelected"
           :options="hendless"
-          @input="chosen"
+          @input="chosenHendless"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -72,35 +72,35 @@
       </div>
       <div class="col-6">
         <b-form-group label="Москитная сетка">
-          <b-form-radio v-model="selected" name="isMosquito" value="true">Да</b-form-radio>
-          <b-form-radio v-model="selected" name="isMosquito" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="mosquitoSelected" name="isMosquito" value="true">Да</b-form-radio>
+          <b-form-radio v-model="mosquitoSelected" name="isMosquito" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Детские замки">
-          <b-form-radio v-model="selected" name="isChildlock" value="true">Да</b-form-radio>
-          <b-form-radio v-model="selected" name="isChildlock" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="childlockSelected" name="isChildlock" value="true">Да</b-form-radio>
+          <b-form-radio v-model="childlockSelected" name="isChildlock" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Откосы">
-          <b-form-radio v-model="selected" name="isSlope" value="true">Да</b-form-radio>
-          <b-form-radio v-model="selected" name="isSlope" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="slopeSelected" name="isSlope" value="true">Да</b-form-radio>
+          <b-form-radio v-model="slopeSelected" name="isSlope" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Отливы">
-          <b-form-radio v-model="selected" name="isEbb" value="true">Да</b-form-radio>
-          <b-form-radio v-model="selected" name="isEbb" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="ebbSelected" name="isEbb" value="true">Да</b-form-radio>
+          <b-form-radio v-model="ebbSelected" name="isEbb" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-12">
-        <label for="sill">Подоконник</label>
+        <div class="label">Подоконник</div>
         <v-select
           class="pl-select"
           v-model="sillSelected"
           :options="sill"
-          @input="chosen"
+          @input="chosenSill"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -113,7 +113,6 @@
       <div class="col-12">
         <button
           class="app-btn btn__blue"
-          
           >Сохранить конфигурацию окна</button>
       </div>
     </div>
@@ -167,7 +166,63 @@ export default {
           'Эстера 300',
           'Моллер 300',
         ],
+        mosquitoSelected: true,
+        childlockSelected: true,
+        slopeSelected: true,
+        ebbSelected: true
       }
-    }
+    },
+    methods: {
+    chosenProfile() {
+      const orderId = this.id
+      // const selected = this.selected
+      const payload = {
+        // selected,
+        orderId
+      }
+      console.log(payload)
+      this.$emit('chosenProfile', payload)
+    },
+    chosenColor() {
+      const orderId = this.id
+      // const selected = this.selected
+      const payload = {
+        // selected,
+        orderId
+      }
+      console.log(payload)
+      this.$emit('chosenColor', payload)
+    },
+    chosenGlassunit() {
+      const orderId = this.id
+      // const selected = this.selected
+      const payload = {
+        // selected,
+        orderId
+      }
+      console.log(payload)
+      this.$emit('chosenGlassunit', payload)
+    },
+    chosenHendless() {
+      const orderId = this.id
+      // const selected = this.selected
+      const payload = {
+        // selected,
+        orderId
+      }
+      console.log(payload)
+      this.$emit('chosenHendless', payload)
+    },
+    chosenSill() {
+      const orderId = this.id
+      // const selected = this.selected
+      const payload = {
+        // selected,
+        orderId
+      }
+      console.log(payload)
+      this.$emit('chosenSill', payload)
+    },
+  },
 }
 </script>

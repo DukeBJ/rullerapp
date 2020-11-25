@@ -4,15 +4,6 @@
     <h4>Заказ № {{orderID}} | конструкция № {{winNo}}</h4>
     <div class="col-12">
       <div class="apeture balkon-left">
-        <!-- <div role="button" @click="height"  class="size-type height a1">a</div>
-        <div role="button" @click="height"  class="size-type height a2">a</div>
-        <div role="button" @click="height"  class="size-type height b1">b</div>
-        <div role="button" @click="height"  class="size-type height b2">b</div>
-        <div role="button" @click="width"  class="size-type width c1">c</div>
-        <div role="button" @click="width"  class="size-type width c2">c</div>
-        <div role="button" @click="width"  class="size-type width d1">d</div>
-        <div role="button" @click="width"  class="size-type width d2">d</div> -->
-
         <div role="button" @click="height" :class="[isSizeDoneA() ? 'size-done' : '']" class="size-type height a1">a</div>
         <div role="button" @click="height" :class="[isSizeDoneA() ? 'size-done' : '']" class="size-type height a2">a</div>
         <div role="button" @click="height" :class="[isSizeDoneB() ? 'size-done' : '']" class="size-type height b1">b</div>
@@ -37,7 +28,14 @@ export default {
   props: ['orderID', 'winNo', 'order'],
   data() {
     return {
-      
+      sizeaIn: '',
+      sizebIn: '',
+      sizecIn: '',
+      sizedIn: '',
+      sizeaOut: '',
+      sizebOut: '',
+      sizecOut: '',
+      sizedOut: '',
     }
 
   },

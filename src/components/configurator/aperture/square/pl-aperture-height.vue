@@ -5,14 +5,14 @@
         <h4>Улица ({{addHeight}})</h4>
         <div>
           <label for="sizeOut">Высота</label>
-          <input v-model="sizeOut" id="sizeOut" type="number">
+          <input id="sizeOut" type="number">
         </div>
       </div>
       <div class="aperture-width">
         <h4>Помещение ({{addHeight}})</h4>
         <div>
           <label for="sizeIn">Высота</label>
-          <input v-model="sizeIn" id="sizeIn" type="number">
+          <input id="sizeIn" type="number">
         </div>
       </div>
       <button class="app-btn btn__blue btn__min-width" @click="sendSize">Ок высота</button>
@@ -28,21 +28,24 @@ export default {
     return {
       sizeIn: '',
       sizeOut: '',
+      heightSend: true
     }
   },
   methods: {
     sendSize() {
-      const orderID = this.orderID
-      const winNo = this.winNo
+      // const orderID = this.orderID
+      // const winNo = this.winNo
       const sizeIn = this.sizeIn
       const sizeOut = this.sizeOut
       const letter = this.addHeight
+      const heightSend = this.heightSend
       const payload = {
-        orderID,
-        winNo,
+        // orderID,
+        // winNo,
         sizeIn,
         sizeOut,
-        letter
+        letter,
+        heightSend
       }
       this.$emit('send-size', payload)
       console.log(`Ширина внутри ${this.sizeIn} и с наружи ${this.sizeOut}`)
