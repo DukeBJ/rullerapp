@@ -9,7 +9,6 @@
         </div>
       </div>
       <div class="aperture-width">
-        
         <h4>Помещение ({{addWidth}})</h4>
         <div>
           <label for="sizeIn">Ширина</label>
@@ -23,7 +22,7 @@
 
 <script>
 export default {
-  name: "pl-aperture-size",
+  name: "pl-aperture-width",
   props: ['orderID', 'winNo', 'addWidth'],
   data() {
     return {
@@ -38,12 +37,14 @@ export default {
       const sizeIn = this.sizeIn
       const sizeOut = this.sizeOut
       const letter = this.addWidth
+      const isWidth = false
       const payload = {
         orderID,
         winNo,
         sizeIn,
         sizeOut,
-        letter
+        letter,
+        isWidth
       }
       this.$emit('send-size', payload)
       console.log(`Ширина внутри ${this.sizeIn} и с наружи ${this.sizeOut}`)

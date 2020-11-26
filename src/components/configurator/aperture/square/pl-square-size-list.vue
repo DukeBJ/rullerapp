@@ -4,14 +4,61 @@
     <h4>Заказ № {{orderID}} | конструкция № {{winNo}}</h4>
     <div class="col-12">
       <div class="apeture balkon-left">
-        <div role="button" @click="height" :class="[isSizeDoneA() ? 'size-done' : '']" class="size-type height a1">a</div>
-        <div role="button" @click="height" :class="[isSizeDoneA() ? 'size-done' : '']" class="size-type height a2">a</div>
-        <div role="button" @click="height" :class="[isSizeDoneB() ? 'size-done' : '']" class="size-type height b1">b</div>
-        <div role="button" @click="height" :class="[isSizeDoneB() ? 'size-done' : '']" class="size-type height b2">b</div>
-        <div role="button" @click="width" :class="[isSizeDoneC() ? 'size-done' : '']" class="size-type width c1">c</div>
-        <div role="button" @click="width" :class="[isSizeDoneC() ? 'size-done' : '']" class="size-type width c2">c</div>
-        <div role="button" @click="width" :class="[isSizeDoneD() ? 'size-done' : '']" class="size-type width d1">d</div>
-        <div role="button" @click="width" :class="[isSizeDoneD() ? 'size-done' : '']" class="size-type width d2">d</div>
+        <button
+          @click="height"
+          :disabled="isSizeDone('a')"
+          :class="isSizeDone('a') ? 'size-done': ''"
+          class="size-type height a1">
+        a
+        </button>
+        <button
+          @click="height"
+          :disabled="isSizeDone('a')"
+          :class="isSizeDone('a') ? 'size-done': ''"
+          class="size-type height a2">
+        a
+        </button>
+        <button
+          @click="height"
+          :disabled="isSizeDone('b')"
+          :class="isSizeDone('b') ? 'size-done': ''"
+          class="size-type height b1">
+        b
+        </button>
+        <button
+          @click="height"
+          :disabled="isSizeDone('b')"
+          :class="isSizeDone('b') ? 'size-done': ''"
+          class="size-type height b2">
+        b
+        </button>
+        <button
+          @click="width"
+          :disabled="isSizeDone('c')"
+          :class="isSizeDone('c') ? 'size-done': ''"
+          class="size-type width c1">
+        c
+        </button>
+        <button
+          @click="width"
+          :disabled="isSizeDone('c')"
+          :class="isSizeDone('c') ? 'size-done': ''"
+          class="size-type width c2">
+        c
+        </button>
+        <button
+          @click="width"
+          :disabled="isSizeDone('d')"
+          :class="isSizeDone('d') ? 'size-done': ''"
+          class="size-type width d1">
+        d
+        </button>
+        <button
+          @click="width"
+          :disabled="isSizeDone('d')"
+          :class="isSizeDone('d') ? 'size-done': ''"
+          class="size-type width d2">
+        d</button>
         <div class="figure">
           <svg width="224" height="298" viewBox="0 0 224 298" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M100.592 179.074H219.111V4.85181H4.88867V293.148H100.592V179.074ZM104.592 295.148C104.592 296.253 103.697 297.148 102.592 297.148H2.88867C1.7841 297.148 0.888672 296.253 0.888672 295.148V2.8518C0.888672 1.74723 1.7841 0.851807 2.88867 0.851807H221.111C222.215 0.851807 223.111 1.74724 223.111 2.85181V181.074C223.111 182.179 222.215 183.074 221.111 183.074H104.592V295.148Z" fill="#05252F"/>
@@ -28,72 +75,52 @@ export default {
   props: ['orderID', 'winNo', 'order'],
   data() {
     return {
-      sizeaIn: '',
-      sizebIn: '',
-      sizecIn: '',
-      sizedIn: '',
-      sizeaOut: '',
-      sizebOut: '',
-      sizecOut: '',
-      sizedOut: '',
+
     }
 
   },
   computed: {
+    
+  },
+  methods: {
     getSizesObj: function() {
       const index = this.order.constructions.findIndex(constr => constr.window === this.winNo)
       const getSize = this.order.constructions[index].sizes
       return getSize
-    }
-  },
-  methods: {
-    isSizeDoneA: function() {
-      let getSize = this.getSizesObj
-      return Object.prototype.hasOwnProperty.call(getSize, 'aIn')
     },
-    isSizeDoneB: function() {
-      const index = this.order.constructions.findIndex(constr => constr.window === this.winNo)
-      const getSize = this.order.constructions[index].sizes
-      let eee = Object.prototype.hasOwnProperty.call(getSize, 'bIn')
-      return eee
-    },
-    isSizeDoneC: function() {
-      const index = this.order.constructions.findIndex(constr => constr.window === this.winNo)
-      const getSize = this.order.constructions[index].sizes
-      let eee = Object.prototype.hasOwnProperty.call(getSize, 'cIn')
-      return eee
-    },
-    isSizeDoneD: function() {
-      const index = this.order.constructions.findIndex(constr => constr.window === this.winNo)
-      const getSize = this.order.constructions[index].sizes
-      let eee = Object.prototype.hasOwnProperty.call(getSize, 'dIn')
-      return eee
-    },
-    isSizeDoneE: function() {
-      const index = this.order.constructions.findIndex(constr => constr.window === this.winNo)
-      const getSize = this.order.constructions[index].sizes
-      let eee = Object.prototype.hasOwnProperty.call(getSize, 'eIn')
-      return eee
+    isSizeDone(letter) {
+      let getSize = this.getSizesObj()
+      return Object.prototype.hasOwnProperty.call(getSize, letter)
     },
     height(e) {
-      const target = e.target.innerText
-      if (target=== 'a' && this.isSizeDoneA() === false) {
-      console.log(`Нажал высоту ${target}`)
-      this.$emit('add-height', target)
-      } else if (target=== 'b' && this.isSizeDoneB() === false) {
-      console.log(`Нажал высоту ${target}`)
-      this.$emit('add-height', target)
-      } else  {console.log(`Вы уже добавили ${target}`)}
+      const letter = e.target.innerText
+      const isHeight = true
+      const payload = {
+        letter,
+        isHeight
+      }
+      if (letter === 'a' && this.isSizeDone('a') === false) {
+      console.log(`Нажал высоту ${letter}`)
+      this.$emit('add-height', payload)
+      } else if (letter === 'b' && this.isSizeDone('b') === false) {
+      console.log(`Нажал высоту ${letter}`)
+      this.$emit('add-height', payload)
+      } else  {console.log(`Вы уже добавили ${letter}`)}
     },
     width(e) {
-      const target = e.target.innerText
-      if (target=== 'c' && this.isSizeDoneC() === false) {
-      console.log(`Нажал ширину ${target}`)
-      this.$emit('add-width', target)
-      } else if (target=== 'd' && this.isSizeDoneD() === false) {
-      console.log(`Нажал ширину ${target}`)
-      this.$emit('add-width', target)
-      } else  {console.log(`Вы уже добавили ${target}`)}
+      const letter = e.target.innerText
+      const isWidth = true
+      const payload = {
+        letter,
+        isWidth
+      }
+      if (letter === 'c' && this.isSizeDone('c') === false) {
+      console.log(`Нажал ширину ${letter}`)
+      this.$emit('add-width', payload)
+      } else if (letter === 'd' && this.isSizeDone('d') === false) {
+      console.log(`Нажал ширину ${letter}`)
+      this.$emit('add-width', payload)
+      } else  {console.log(`Вы уже добавили ${letter}`)}
     },
   }
 }
@@ -131,6 +158,7 @@ export default {
       font-weight: 500;
       font-size: 12px;
       z-index: 10;
+      border: unset;
       &.a1 {
         left: 47px;
         top: 0px;
@@ -164,9 +192,23 @@ export default {
         top: 234px;
       }
     }
+    &:disabled {
+      background-color: #FFA800;
+      cursor: not-allowed;
+    }
     .size-done {
       background-color: #FFA800;
       cursor: not-allowed;
     }
+  }
+
+  button {
+    text-transform: none;
+    overflow: visible;
+    -webkit-appearance: button;
+    font-family: inherit;
+    font-size: 100%; 
+    margin: 0;
+    
   }
 </style>

@@ -1,15 +1,24 @@
 <template>
-  <div>
+  <div :style="'margin-top: 50px'">
     <div>Заказ: {{id}}</div>
     <div>Тип здания: {{buildType}}</div>
-    <!-- <TestWind
+    <TestWind
       v-for="constr of constructions"
-      :key="constr.id"
-      :constID="constr.id"
+      :key="constr.window"
       :window="constr.window"
-      :aperture="constr.aperture"
-      /> -->
-    <div>{{constructions}}</div>
+      :config="constr.config"
+      :profile="constr.profile"
+      :color="constr.color"
+      :glassunit="constr.glassunit"
+      :hendless="constr.hendless"
+      :isMosquito="constr.isMosquito"
+      :isChildlock="constr.isChildlock"
+      :isSlope="constr.isSlope"
+      :isEbb="constr.isEbb"
+      :sill="constr.sill"
+      :sizes="constr.sizes"
+      />
+    <!-- <div>{{constructions}}</div> -->
     <div>Демонтаж: {{service.isDismantling}}</div>
     <div>Монтаж: {{service.isMounting}}</div>
     <div>Доставка: {{service.isDeliver}}</div>
@@ -18,12 +27,12 @@
 </template>
 
 <script>
-//import TestWind from '@/components/configurator/testWind.vue'
+import TestWind from '@/components/configurator/testWind.vue'
 
 
 export default {
   components: {
-    //TestWind
+    TestWind
   },
   props: {
     id: {
@@ -51,5 +60,8 @@ export default {
       }
     }
   },
+  // watch: {
+  //   constructions()
+  // }
 }
 </script>

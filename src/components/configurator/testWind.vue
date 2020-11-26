@@ -1,23 +1,23 @@
 <template>
-  <div>
-    <div>Проем: {{aperture.type}}</div>
+  <div :style="'border-bottom: 1px solid black;border-top: 1px solid black'">
+    <!-- <div>Проем: {{aperture.type}}</div> -->
     <TestAper
-      v-for="(size, name) of aperture.sizes"
-      :key="name"
-      :size="size"
+      v-for="(value, name, index) of sizes"
+      :key="index"
+      :size="value"
       :name="name"
       />
-    <div>Окно: {{constID}}</div>
-    <div>Конфигурация: {{window.config}}</div>
-    <div>Цвет: {{window.color}}</div>
-    <div>Профиль: {{window.profile}}</div>
-    <div>Стеклопакет: {{window.glassunit}}</div>
-    <div>Ручки: {{window.hendless}}</div>
-    <div>Москитная сетка: {{window.mosquito}}</div>
-    <div>ЗАмки: {{window.childlock}}</div>
-    <div>Отлив: {{window.slope}}</div>
-    <div>Слив: {{window.ebb}}</div>
-    <div>Подоконник: {{window.sill}}</div>
+    <div>Окно №{{window}}</div>
+    <div>Конфигурация: {{config}}</div>
+    <div>Цвет: {{color}}</div>
+    <div>Профиль: {{profile}}</div>
+    <div>Стеклопакет: {{glassunit}}</div>
+    <div>Ручки: {{hendless}}</div>
+    <div>Москитная сетка: {{isMosquito}}</div>
+    <div>ЗАмки: {{isChildlock}}</div>
+    <div>Отлив: {{isSlope}}</div>
+    <div>Слив: {{isEbb}}</div>
+    <div>Подоконник: {{sill}}</div>
   </div>
 </template>
 
@@ -29,7 +29,23 @@ export default {
     TestAper
   },
   props: [
-    'constID', 'window', 'aperture'
+    'window', 'config', 'profile', 'color', 'glassunit', 'hendless', 'isMosquito', 'isChildlock', 'isSlope', 'isEbb', 'sill', 'sizes'
   ],
+  // data() {
+  //   return {
+  //     notreactSizes: {}
+  //   }
+  // },
+  // computed: {
+  //   oldSize: function() {
+  //     return this.notreactSizes + this.sizes
+  //   }
+  // },
+  // methods: {
+  //   sizeUpd() {
+  //     this.$set(this.notreactSizes, this.sizes, '')
+  //   }
+    
+  // }
 }
 </script>

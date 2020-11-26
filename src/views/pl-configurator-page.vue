@@ -6,7 +6,7 @@
       v-if="checkOrder()"
     >
       <pl-aperture-check
-        v-if="check.square === false"
+        v-if="!check.square"
         :key="checkOrder().id"
         :order="checkOrder()"
         @update-build="UPD_BUILDTYPE"
@@ -14,7 +14,7 @@
         @type-apertude="apertude"
       />
       <pl-aperture-square
-        v-if="check.square === true"
+        v-if="check.square"
         :constructions="checkOrder().constructions"
         :orderID="checkOrder().id"
         :order="checkOrder()"
@@ -22,7 +22,7 @@
         @sizes-done="sizesDone"
       />
       <pl-construct-config
-        v-if="check.config === true"
+        v-if="check.config"
       />
       <!-- <ConstructList/> -->
       <!-- <OrderDetails/> -->

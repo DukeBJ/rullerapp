@@ -1,54 +1,37 @@
 <template>
   <div>
-    <plHeaderAtwork :title="title.check" />
+    <plHeaderAtwork title="загл" />
     <main class="card-place">
-          <div
-            v-for="schedule of SCHEDULE_LIST"
-            :key="schedule.number"
-            >
-            <button
-              @click="newOrder(schedule.number)"
-              class="app-btn btn__blue">Начать {{schedule.number}}</button>
-
-            <ConfigPage
-              v-for="order in orders"
-              :key="order.id"
-              :buildType="order.buildType"
-              :order="order"
-              @update-build="updateBuildType"
-            />
-
-          </div>
-
-          {{SCHEDULE_LIST}}
-          
-          <!-- <TestInfo
-            v-for="thisorder of order"
-            :key="thisorder.id"
-            :id="thisorder.id"
-            :buildType="thisorder.buildType"
-            :constructions="thisorder.constructions"
-            :service="thisorder.service"
-          /> -->
-              
+      <h1>Тестирование передачи данных между компонентами</h1>
+      <test-first
+        :sizes="sizes"
+        @send-sizes="catchSizes"
+      />
     </main>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import plHeaderAtwork from '@/components/pl-header-atwork.vue'
-import ConfigPage from '@/components/configurator/testInfo.vue'
+import testFirst from '@/components/configurator/test-first.vue'
 
 
 export default {
   name: 'ConfiguratorPage',
   components: {
     plHeaderAtwork,
-    ConfigPage
+    testFirst
+  },
+  data() {
+    return {
+      sizes: {
+        // a: {x: 100, y: 200},
+        // b: {x: 300, y: 100},
+      },
+    }
   },
   computed: {
-    ...mapGetters('schedule', ['SCHEDULE_LIST']),
     ...mapState('configurator', {
         title: 'title',
         orders: 'orders',
@@ -56,16 +39,31 @@ export default {
     }),
   },
   methods: {
-    ...mapActions('schedule', [
-        'GET_SCHEDULE_LIST',
-    ]),
     ...mapActions('configurator', [
-        'updaetBuildType',
-        'newOrder',
+        'UPD_BUILDTYPE',
+        'ADD_CONSTRUCTION',
+        'ADD_SIZE'
     ]),
+    catchSizes(payload) {
+      const sendNum = payload.sendNum
+      const sizeX = payload.sizeX
+      const sizeY = payload.sizeY
+      console.log(`Поймал в родителе значения из child-two:`)
+      console.log(`${sendNum} = ${sizeX}×${sizeY}`)
+      this.sizes[sendNum] = {'x': sizeX, 'y': sizeY}
+    }
   },
   mounted() {
     //this.newOrder()
   },
 }
 </script>
+
+<style lang="scss" scoped>
+  h1 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+  }
+</style>

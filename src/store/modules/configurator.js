@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const state = {
   title: {
     check: "Расчет конструкций",
@@ -22,7 +24,7 @@ const actions = {
   },
   ADD_SIZE({commit}, {orderID, winNo, sizeIn, sizeOut, letter}) {
     commit('ADD_SIZE_MUT', {orderID, winNo, sizeIn, sizeOut, letter})
-    commit('UPD_SIZES_MUT', {orderID, winNo})
+    //commit('UPD_SIZES_MUT', {orderID, winNo})
   }
 }
 const mutations = {
@@ -44,16 +46,20 @@ const mutations = {
     }
   },
   ADD_CONSTRUCTION_MUT({orders}, {orderId, constrNumber}) {
+    // Ищем в какой заказ добавляем конструкцию 
     const index = orders.findIndex(ord => ord.id === orderId)
     console.log(`Я получил заказ №${orderId} и колличество конструкций в массиве ${constrNumber}`)
     constrNumber++
     if (constrNumber !== undefined) {
+      // Если значение получено, то ищем номер конструкции
       const constrID = orders[index].constructions.find(ord => ord.window === constrNumber)
       if (constrID !== undefined) {
+        // Проверяем, есть ли такая конструкция в массиве
         const www = JSON.stringify(constrID.window)
         console.log(`Конструкция с номером ${www} уже существует`)
         console.log(orders[index].constructions)
       } else {
+        // Если нет, то добавляем
         orders[index].constructions.push(createNewConstruction(constrNumber))
         console.log(`Создаем конструкцию №${constrNumber}`)
         console.log(orders[index].constructions)
@@ -61,20 +67,25 @@ const mutations = {
     }
   },
   ADD_SIZE_MUT({orders}, {orderID, winNo, sizeIn, sizeOut, letter}) {
+    // Ищем конструкцию в которую будем добавлять размеры
     const index = orders.findIndex(ord => ord.id === orderID)
     const constrID = orders[index].constructions.findIndex(constr => constr.window === winNo)
     const sizeObj = orders[index].constructions[constrID].sizes
-    const checkProperty = Object.prototype.hasOwnProperty.call(sizeObj, `${letter}In`)
+    // Проверяем есть ли такое значение в объекте
+    const checkProperty = Object.prototype.hasOwnProperty.call(sizeObj, letter)
     if (checkProperty === false) {
-      orders[index].constructions[constrID].sizes[`${letter}In`] = sizeIn
-      orders[index].constructions[constrID].sizes[`${letter}Out`] = sizeOut
-      console.log(`Добавлшены объекты {${letter}In: ${sizeIn}, ${letter}Out: ${sizeOut}}`)
-    } else {console.log(`Размеры {${letter}In: ${sizeIn}, ${letter}Out: ${sizeOut}} уже добавлены`)}
+      console.log(`Добавлены объекты {${letter}: {in: ${sizeIn}, out: ${sizeOut}}}`)
+      Vue.set(sizeObj, letter, {'in': sizeIn, 'out': sizeOut})
+      //sizeObj[letter] = {'in': sizeIn, 'out': sizeOut}
+    } else {console.log(`Размеры {${letter}{in: ${sizeIn}, out: ${sizeOut}}} уже добавлены`)}
   },
+  // Не помню что за херь, но пока она просто выводит все объекты sizes
+  // Вероятно ее просто нужно будет удалить потом
   UPD_SIZES_MUT({orders}, {orderID, winNo}) {
     const index = orders.findIndex(ord => ord.id === orderID)
     const constrID = orders[index].constructions.findIndex(constr => constr.window === winNo)
     console.log(orders[index].constructions[constrID].sizes)
+    orders[index].constructions[constrID] == orders[index].constructions[constrID]
   },
   UPD_BUILDTYPE_MUT ({orders}, {selected, orderId}) {
     // Ищем где находится информация по данному заказу и заменяем на новую
@@ -128,8 +139,3 @@ const createNewConstruction = (constrNumber) => ({
   isEbb: true,
   sill: 'std300'
 })
-
-// const addSizes = (letterIn, letterOut, sizeIn, sizeOut) => ({
-//   letterIn: 
-//   letterOut: 
-// })

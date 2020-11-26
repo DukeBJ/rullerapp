@@ -1,101 +1,105 @@
-//const uuidv4 = require('uuid/v4')
-//let uuid = 0
 const state = {
   title: {
     check: "Расчет конструкций",
     aperture: "Размеры проёма",
     config: "Конфигурация окна"
   },
-  order: [
-    // {
-    //   // id: 999, // Сюда нужно будет вставить нормер заказа из базы
-    //   // buildType: "Панельный",
-    //   // constructions: [
-    //   //   {
-    //   //     id: uuid+=1,
-    //   //     aperture: {
-    //   //       type: "square",
-    //   //       sizes: {
-    //   //         ha: 1234,
-    //   //         wb: 4321
-    //   //       }
-    //   //     },
-    //   //     window: {
-    //   //       config: "first",
-    //   //       profile: "lite60",
-    //   //       color: "white",
-    //   //       glassunit: "climatherm",
-    //   //       hendless: "type1",
-    //   //       mosquito: true,
-    //   //       childlock: true,
-    //   //       slope: true,
-    //   //       ebb: true,
-    //   //       sill: "std300"
-    //   //     }
-    //   //   }
-    //   // ],
-    //   // service: {
-    //   //   dismantling: true,
-    //   //   mounting: true,
-    //   //   deliver: true,
-    //   //   garbage: true
-    //   // }
-    // }
-  ]
+  orders: []
 }
 
 const actions = {
-  newOrder({commit}, orderId) {
-    commit('addOrderMut', orderId)
-    //commit('updateOrderMut')
+  // Создание заказа
+  ADD_ORDER({commit}, orderId) {
+    commit('ADD_ORDER_MUT', orderId)
   },
-  addConstruction({commit}) {
-    commit('addConstructionMut')
-    //commit('updatePriceMut')
+  // Добавляем конструкцию в заказ
+  ADD_CONSTRUCTION({commit}, {orderId, constrNumber}) {
+    commit('ADD_CONSTRUCTION_MUT', {orderId, constrNumber})
   },
-  updaetBuildType({commit}, orderId) {
-    commit('updaetBuildTypeMut', orderId)
+  // Обновляем информацию о типе дома
+  UPD_BUILDTYPE({commit}, {selected, orderId}) {
+    commit('UPD_BUILDTYPE_MUT', {selected, orderId})
   },
-
-
-  resetConstruction({commit}, constructionId) {
-    commit('resetConstructionMut', constructionId)
+  ADD_SIZE({commit}, {orderID, winNo, sizeIn, sizeOut, letter}) {
+    commit('ADD_SIZE_MUT', {orderID, winNo, sizeIn, sizeOut, letter})
+    commit('UPD_SIZES_MUT', {orderID, winNo})
   }
 }
 const mutations = {
-  addOrderMut({order}, orderId) {
-    const ordID = order.find(ord => ord.id === orderId)
-    console.log(ordID.id)
-    if (ordID.id == orderId) {
-      console.log('Такой заказ уже есть')
-    } else {
-      const index = order.findIndex(ord => ord.id === orderId)
-      const newOrd = createNewOrder(orderId)
-      order.splice(index, 0, newOrd)
-      //order.push(createNewOrder(orderId))
-      console.log(`Добавляем ${orderId}`)
+  ADD_ORDER_MUT({orders}, orderId) {
+    // Проверяем, создан уже заказ или нет. Если да, то ище его в массиве.
+    if (orderId !== undefined) {
+      const ordID = orders.find(ord => ord.id === orderId)
+      // Если в массиве заказ есть, то ничего не делаем
+      if (ordID !== undefined) {
+        const www = JSON.stringify(ordID.id)
+        console.log(`Заказ с номером ${www} уже существует`)
+        console.log(orders)
+      // Если заказа нет, то добавляем
+      } else {
+        orders.push(createNewOrder(orderId))
+        console.log(`Создаем заказ №${orderId}`)
+        console.log(orders)
       }
-    //const index = order.findIndex(ord => ord.id === orderId)
-    //const newOrd = createNewOrder(orderId)
-    //order.splice(index, 1, newOrd)
-    //order.push(createNewOrder(orderId))
-    //console.log(order)
+    }
   },
-  addConstructionMut({constructions}) {
-    constructions.push(createNewConstruction())
+  ADD_CONSTRUCTION_MUT({orders}, {orderId, constrNumber}) {
+    // Ищем в какой заказ добавляем конструкцию 
+    const index = orders.findIndex(ord => ord.id === orderId)
+    console.log(`Я получил заказ №${orderId} и колличество конструкций в массиве ${constrNumber}`)
+    constrNumber++
+    if (constrNumber !== undefined) {
+      // Если значение получено, то ищем номер конструкции
+      const constrID = orders[index].constructions.find(ord => ord.window === constrNumber)
+      if (constrID !== undefined) {
+        // Проверяем, есть ли такая конструкция в массиве
+        const www = JSON.stringify(constrID.window)
+        console.log(`Конструкция с номером ${www} уже существует`)
+        console.log(orders[index].constructions)
+      } else {
+        // Если нет, то добавляем
+        orders[index].constructions.push(createNewConstruction(constrNumber))
+        console.log(`Создаем конструкцию №${constrNumber}`)
+        console.log(orders[index].constructions)
+      }
+    }
   },
-  updaetBuildTypeMut (state) {
-    state.order[0].buildType = state.order.buildType
+  ADD_SIZE_MUT({orders}, {orderID, winNo, sizeIn, sizeOut, letter}) {
+    // Ищем конструкцию в которую будем добавлять размеры
+    const index = orders.findIndex(ord => ord.id === orderID)
+    const constrID = orders[index].constructions.findIndex(constr => constr.window === winNo)
+    const sizeObj = orders[index].constructions[constrID].sizes
+    // Проверяем есть ли такое значение в объекте
+    const checkProperty = Object.prototype.hasOwnProperty.call(sizeObj, letter)
+    if (checkProperty === false) {
+      sizeObj[letter] = {'in': sizeIn, 'out': sizeOut}
+      console.log(`Добавлены объекты {${letter}: {in: ${sizeIn}, out: ${sizeOut}}}`)
+    } else {console.log(`Размеры {${letter}{in: ${sizeIn}, out: ${sizeOut}}} уже добавлены`)}
+  },
+  // Не помню что за херь, но пока она просто выводит все объекты sizes
+  // Вероятно ее просто нужно будет удалить потом
+  UPD_SIZES_MUT({orders}, {orderID, winNo}) {
+    const index = orders.findIndex(ord => ord.id === orderID)
+    const constrID = orders[index].constructions.findIndex(constr => constr.window === winNo)
+    console.log(orders[index].constructions[constrID].sizes)
+  },
+  UPD_BUILDTYPE_MUT ({orders}, {selected, orderId}) {
+    // Ищем где находится информация по данному заказу и заменяем на новую
+    const index = orders.findIndex(ord => ord.id === orderId)
+    orders[index].buildType = selected
+    console.log(`index ${index}`)
+    console.log(`Заказ №${orderId}`)
+    console.log(`buildType ${selected}`)
   },
 
   // updateOrderMut(state) {
   //     state.order = state.products.reduce((previous, product) => previous + productPrice(product), 0)
   // },
-  resetConstructionMut({ constructions }, constructionId) {
-    const index = constructions.findIndex(constr => constr.id === constructionId)
-    const newConstruction = createNewConstruction()
-    constructions.splice(index, 1, newConstruction)
-  },
+  // resetConstructionMut({ constructions }, constrNumber) {
+  //   const index = constructions.findIndex(constr => constr.id === constrNumber)
+  //   const newConstruction = createNewConstruction()
+  //   constructions.splice(index, 1, newConstruction)
+  // },
 }
 
 export default {
@@ -109,21 +113,30 @@ const createNewOrder = (orderId) => ({
   id: orderId,
   buildType: "Панельный",
   constructions: [],
-  service: ''
-})
-
-const createNewConstruction = () => ({
-  id: 9,//uuid =+ 1,
-  window: {
-    config: '',
-    profile: '',
-    color: '',
-    glassunit: '',
-    hendless: '',
-    mosquito: true,
-    childlock: true,
-    slope: true,
-    ebb: true,
-    sill: ''
+  service: {
+    isDismantling: true,
+    isMounting: true,
+    isDeliver: true,
+    isGarbage: true
   }
 })
+
+const createNewConstruction = (constrNumber) => ({
+  window: constrNumber,
+  sizes: {},
+  config: 'first',
+  profile: 'lite60',
+  color: 'white',
+  glassunit: 'climatherm',
+  hendless: 'type1',
+  isMosquito: true,
+  isChildlock: true,
+  isSlope: true,
+  isEbb: true,
+  sill: 'std300'
+})
+
+// const addSizes = (letterIn, letterOut, sizeIn, sizeOut) => ({
+//   letterIn: 
+//   letterOut: 
+// })
