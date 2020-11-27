@@ -67,6 +67,11 @@ export default {
       return getSize
     }
   },
+  watch: {
+    getSizesObj() {
+      return this.checkSizes()
+    }
+  },
   methods: {
     addHeight(payload) {
       this.whatHeight = payload.letter
@@ -79,27 +84,29 @@ export default {
       this.isSizeList = false
     },
     sendSize(payload) {
-      if (payload.isHeight === false) this.isHeight = false
-      else if (payload.isWidth === false) this.isWidth = false
+      if (payload.close) {
+        this.isHeight = false
+        this.isWidth = false
+      }
       this.isSizeList = true
       this.$emit('add-size', payload)
     },
     checkSizes() {
       const getSize = this.getSizesObj
       let a = Object.prototype.hasOwnProperty.call(getSize, 'a')
+      console.log(`a = ${a}`)
       let b = Object.prototype.hasOwnProperty.call(getSize, 'b')
+      console.log(`b = ${b}`)
       let c = Object.prototype.hasOwnProperty.call(getSize, 'c')
+      console.log(`c = ${c}`)
       let d = Object.prototype.hasOwnProperty.call(getSize, 'd')
-      if (a === true && b === true && c === true && d === true) return true
+      console.log(`d = ${d}`)
+      console.log(getSize)
+      if (a === true && b === true && c === true && d === true) return this.isSizesDone = true
     },
-    // watch: {
-    //   checkSizes() {
-
-    //   }
-    // },
     sizesDone() {
-      const check = {square: false, config: true}
-      this.$emit('sizes-done', check)
+      const sizesDone = true
+      this.$emit('sizes-done', sizesDone)
     }
   }
 }

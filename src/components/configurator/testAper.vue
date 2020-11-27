@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div><strong>Размеры {{name}}:</strong> внутри - {{size.in}}, снаружи - {{size.out}}</div>
+    <div><strong>Размеры {{name}}:</strong> {{size}}</div>
   </div>
 </template>
 

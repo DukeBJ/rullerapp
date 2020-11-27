@@ -37,7 +37,7 @@ export default {
       this.$emit('add-construction', payload)
     },
     typeApertude(check) {
-      this.$emit('type-apertude', check)
+      this.$emit('type-aperture', check)
     }
   }
 }

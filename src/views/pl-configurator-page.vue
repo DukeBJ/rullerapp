@@ -6,12 +6,12 @@
       v-if="checkOrder()"
     >
       <pl-aperture-check
-        v-if="!check.square"
+        v-if="check.aperture"
         :key="checkOrder().id"
         :order="checkOrder()"
         @update-build="UPD_BUILDTYPE"
         @add-construction="ADD_CONSTRUCTION"
-        @type-apertude="apertude"
+        @type-aperture="aperture"
       />
       <pl-aperture-square
         v-if="check.square"
@@ -23,6 +23,9 @@
       />
       <pl-construct-config
         v-if="check.config"
+        :orderID="checkOrder().id"
+        :winNo="checkOrder().constructions.length"
+        @send-config="sendConfig"
       />
       <!-- <ConstructList/> -->
       <!-- <OrderDetails/> -->
@@ -73,11 +76,12 @@ export default {
   data() {
     return {
       check: {
+        aperture: true,
         square: false,
         balkonLeft: false,
         balkonRight: false,
         balkonCenter: false,
-        config: false
+        config: true
       }
     }
   },
@@ -92,7 +96,8 @@ export default {
     ...mapActions('configurator', [
         'UPD_BUILDTYPE',
         'ADD_CONSTRUCTION',
-        'ADD_SIZE'
+        'ADD_SIZE',
+        'ADD_CONFIG'
     ]),
     orderId() {
       return new URLSearchParams(document.location.search).get('order')
@@ -101,19 +106,21 @@ export default {
       const index = this.orders.findIndex(ord => ord.id === this.ordern)
       return this.orders[index]
     },
-    apertude(check) {
+    aperture(check) {
       console.log(check)
       if (check.square) {
-        return this.check.square = check.square
+        this.check.square = check.square
+        this.check.aperture = false
       }
     },
-    sizesDone(check) {
-      console.log(check)
-      if (check.square) {
-        return this.check.square = check.square
-      } else if (check.config) {
-        return this.check.config = check.config
-      }
+    sizesDone() {
+      console.log(`Размеры переданы`)
+      this.check.square = false
+      this.check.config = true
+    },
+    sendConfig(payload) {
+      console.log(payload)
+      this.check.config = false
     }
   },
 }

@@ -4,6 +4,7 @@
       <h4>Выберите конфигурацию</h4>
       <div class="w-100">
         <pl-construct-slider
+          @config-check="configChek"
         />
       </div>
       <div class="col-12">
@@ -13,6 +14,8 @@
           v-model="profileSelected"
           :options="profile"
           @input="chosenProfile"
+          :reduce="name => name.code"
+          label="name"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -29,6 +32,8 @@
           v-model="colorSelected"
           :options="color"
           @input="chosenColor"
+          :reduce="name => name.code"
+          label="name"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -45,6 +50,8 @@
           v-model="glassunitSelected"
           :options="glassunit"
           @input="chosenGlassunit"
+          :reduce="name => name.code"
+          label="name"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -61,6 +68,8 @@
           v-model="hendlessSelected"
           :options="hendless"
           @input="chosenHendless"
+          :reduce="name => name.code"
+          label="name"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -101,6 +110,8 @@
           v-model="sillSelected"
           :options="sill"
           @input="chosenSill"
+          :reduce="name => name.code"
+          label="name"
           :clearable="false"
           :searchable="false">
           <template #open-indicator="{ attributes }">
@@ -111,8 +122,21 @@
         </v-select>
       </div>
       <div class="col-12">
+        <div>Конфигурация: {{config}}</div>
+        <div>Профиль: {{profileSelected}}</div>
+        <div>цвет: {{colorSelected}}</div>
+        <div>Стеклопакет: {{glassunitSelected}}</div>
+        <div>Ручка: {{hendlessSelected}}</div>
+        <div>Сетка: {{mosquitoSelected}}</div>
+        <div>Замки: {{childlockSelected}}</div>
+        <div>Отводы: {{slopeSelected}}</div>
+        <div>Сливы: {{ebbSelected}}</div>
+        <div>Подоконники: {{sillSelected}}</div>
+      </div>
+      <div class="col-12">
         <button
           class="app-btn btn__blue"
+          @click="sendConfig"
           >Сохранить конфигурацию окна</button>
       </div>
     </div>
@@ -129,42 +153,45 @@ export default {
     plConstructSlider,
     vSelect
   },
+  props: ['orderID', 'winNo'],
   data() {
       return {
-        profileSelected: 'Melke Smart',
+        config: '',
+        profileSelected: 'smart',
         profile: [
-          'Melke Smart',
-          'Melke Evolution',
-          'Melke Art',
-          'Melke Lite`60',
-          'Melke Lite`70',
+          {code: 'smart', name:'Melke Smart'},
+          {code: 'evolution', name:'Melke Evolution'},
+          {code: 'art', name:'Melke Art'},
+          {code: 'lite60', name:'Melke Lite`60'},
+          {code: 'lite70', name:'Melke Lite`70'},
+          {code: 'rehau_b', name:'Rehau'},
         ],
-        colorSelected: 'Белый',
+        colorSelected: 'white',
         color: [
-          'Белый',
-          'Цветная масса',
-          'Ламинация',
+          {code: 'white', name:'Белый'},
+          {code: 'mass', name:'Цветная масса'},
+          {code: 'laminat', name:'Ламинация'},
         ],
-        glassunitSelected: 'Climatherm',
+        glassunitSelected: 'climatherm',
         glassunit: [
-          'Climatherm',
-          'Climatherm Balance',
-          'Climatherm Solar',
-          'Climatherm Solar Color',
+          {code: 'climatherm', name:'Climatherm'},
+          {code: 'climathermb', name:'Climatherm Balance'},
+          {code: 'climatherms', name:'Climatherm Solar'},
+          {code: 'climathermsc', name:'Climatherm Solar Color'},
         ],
-        hendlessSelected: 'Тип1',
+        hendlessSelected: 'type1',
         hendless: [
-          'Тип1',
-          'Тип2',
-          'Тип3',
-          'Тип4',
+          {code: 'type1', name:'Тип1'},
+          {code: 'type2', name:'Тип2'},
+          {code: 'type3', name:'Тип3'},
+          {code: 'type4', name:'Тип4'},
         ],
-        sillSelected: 'Стандартный 300',
+        sillSelected: 'std300',
         sill: [
-          'Стандартный 300',
-          'Кристалит 300',
-          'Эстера 300',
-          'Моллер 300',
+          {code: 'std300', name:'Стандартный 300'},
+          {code: 'kryst300', name:'Кристалит 300'},
+          {code: 'estera300', name:'Эстера 300'},
+          {code: 'moller300', name:'Моллер 300'},
         ],
         mosquitoSelected: true,
         childlockSelected: true,
@@ -223,6 +250,34 @@ export default {
       console.log(payload)
       this.$emit('chosenSill', payload)
     },
+    configChek(cfg) {
+      this.config = cfg
+    },
+    sendConfig() {
+      const config = this.config
+      const profile = this.profileSelected
+      const color = this.colorSelected
+      const glassunit = this.glassunitSelected
+      const hendless = this.hendlessSelected
+      const mosquito = this.mosquitoSelected
+      const childlock = this.childlockSelected
+      const slope = this.slopeSelected
+      const ebb = this.ebbSelected
+      const sill = this.sillSelected
+      const payload = {
+        config,
+        profile,
+        color,
+        glassunit,
+        hendless,
+        mosquito,
+        childlock,
+        slope,
+        ebb,
+        sill
+      }
+      this.$emit('send-config', payload)
+    }
   },
 }
 </script>

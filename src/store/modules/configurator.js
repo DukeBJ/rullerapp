@@ -22,9 +22,11 @@ const actions = {
   UPD_BUILDTYPE({commit}, {selected, orderId}) {
     commit('UPD_BUILDTYPE_MUT', {selected, orderId})
   },
-  ADD_SIZE({commit}, {orderID, winNo, sizeIn, sizeOut, letter}) {
-    commit('ADD_SIZE_MUT', {orderID, winNo, sizeIn, sizeOut, letter})
-    //commit('UPD_SIZES_MUT', {orderID, winNo})
+  ADD_SIZE({commit}, {orderID, winNo, constrSize, letter}) {
+    commit('ADD_SIZE_MUT', {orderID, winNo, constrSize, letter})
+  },
+  ADD_CONFIG({commit}, {config, profile, color, glassunit, hendless, mosquito, childlock, slope, ebb, sill}) {
+    commit('ADD_CONFIG_MUT', {config, profile, color, glassunit, hendless, mosquito, childlock, slope, ebb, sill})
   }
 }
 const mutations = {
@@ -66,7 +68,7 @@ const mutations = {
       }
     }
   },
-  ADD_SIZE_MUT({orders}, {orderID, winNo, sizeIn, sizeOut, letter}) {
+  ADD_SIZE_MUT({orders}, {orderID, winNo, constrSize, letter}) {
     // Ищем конструкцию в которую будем добавлять размеры
     const index = orders.findIndex(ord => ord.id === orderID)
     const constrID = orders[index].constructions.findIndex(constr => constr.window === winNo)
@@ -74,10 +76,10 @@ const mutations = {
     // Проверяем есть ли такое значение в объекте
     const checkProperty = Object.prototype.hasOwnProperty.call(sizeObj, letter)
     if (checkProperty === false) {
-      console.log(`Добавлены объекты {${letter}: {in: ${sizeIn}, out: ${sizeOut}}}`)
-      Vue.set(sizeObj, letter, {'in': sizeIn, 'out': sizeOut})
+      console.log(`Добавлены объекты ${letter}: ${constrSize}`)
+      Vue.set(sizeObj, letter, constrSize)
       //sizeObj[letter] = {'in': sizeIn, 'out': sizeOut}
-    } else {console.log(`Размеры {${letter}{in: ${sizeIn}, out: ${sizeOut}}} уже добавлены`)}
+    } else {console.log(`Размеры ${letter}: ${constrSize} уже добавлены`)}
   },
   // Не помню что за херь, но пока она просто выводит все объекты sizes
   // Вероятно ее просто нужно будет удалить потом
@@ -95,7 +97,9 @@ const mutations = {
     console.log(`Заказ №${orderId}`)
     console.log(`buildType ${selected}`)
   },
+  ADD_CONFIG_MUT({order}, {config, profile, color, glassunit, hendless, mosquito, childlock, slope, ebb, sill}) {
 
+  }
   // updateOrderMut(state) {
   //     state.order = state.products.reduce((previous, product) => previous + productPrice(product), 0)
   // },
@@ -139,7 +143,3 @@ const createNewConstruction = (constrNumber) => ({
   isEbb: true,
   sill: 'std300'
 })
-
-// const checkSize = () => ({
-
-// })

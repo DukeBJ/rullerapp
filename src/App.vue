@@ -3,9 +3,9 @@
     <div class="main-logo" v-if="isMain"><img src="./assets/img/logo.svg"></div>
     <div class="backlink" v-else><a @click="$router.go(-1)"></a></div>
     <Reveal>
-      <a id="home" href="#">
+      <router-link :to="{name: 'dashboard'}">
         <span>Home</span>
-      </a>
+      </router-link>
     </Reveal>
     <div id="page-wrap">
       <router-view />
