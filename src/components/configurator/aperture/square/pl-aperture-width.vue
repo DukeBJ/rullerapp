@@ -28,9 +28,30 @@ export default {
     return {
       sizeIn: '',
       sizeOut: '',
+      checkSize: '',
+      warning40: false,
+      warning120: false
     }
   },
   methods: {
+    checkWidth() {
+      const sizeOut = this.sizeOut
+      const goodSize = sizeOut + 50
+      let checkSize = goodSize - sizeOut
+      if (checkSize >= 40 && checkSize <= 120) {
+        console.log(`Ширина изделия ${checkSize}`)
+        return checkSize
+      } else if (checkSize < 40) {
+        console.log(`Разница менее 40, нужен перерасчет`)
+        return this.warning40 = true
+      } else if (checkSize > 120) {
+        console.log(`Разница более 120, нужен перерасчет. Или заказать пенопласт =)`)
+        return this.warning120 = true
+      }
+      // if (this.addWidth === 'c') {
+        
+      // }
+    },
     sendSize() {
       const orderID = this.orderID
       const winNo = this.winNo

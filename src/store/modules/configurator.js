@@ -139,3 +139,7 @@ const createNewConstruction = (constrNumber) => ({
   isEbb: true,
   sill: 'std300'
 })
+
+// const checkSize = () => ({
+
+// })
