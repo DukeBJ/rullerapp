@@ -57,7 +57,7 @@
     methods: {
       handleSlideClick(dataset) {
         console.log(dataset.name)
-        this.$emit('config-check', dataset.name)
+        this.$emit('type-check', dataset.name)
       },
     }
   }
@@ -71,9 +71,9 @@
 
 .card {
   background-color: white;
-  transition: all 0.5s ease-in-out;
+  transition: all .5s ease-in-out;
   img {
-    transition: all 0.5s ease-in-out;
+    transition: filter .7s ease-in-out;
     filter: invert(0);
     mix-blend-mode: normal;
   }
@@ -85,9 +85,10 @@
 
 .VueCarousel-slide-active {
   .card {
+    transition: all .5s ease-in-out;
     background-color: #33C5F3;
     img {
-    transition: all 0.5s ease-in-out;
+    transition: filter .7s ease-in-out;
     filter: invert(1);
     mix-blend-mode: color-dodge;
   }

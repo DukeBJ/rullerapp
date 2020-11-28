@@ -21,4 +21,27 @@ module.exports = {
         name: 'assets/[name].[hash:8].[ext]',
       });
   },
+  pwa: {
+    name: 'Замерщик. Пластика Окон',
+    themeColor: '#33C5F3',
+    msTileColor: '#ffffff',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'black',
+
+    // настройки манифеста
+    manifestOptions: {
+      orientation: 'portrait',
+      display: 'fullscreen',
+      background_color: '#ffffff',
+      start_url: '.'
+    },
+
+    // // настройка workbox-плагина
+    // workboxPluginMode: 'InjectManifest',
+    // workboxOptions: {
+    //   // swSrc необходимо в режиме InjectManifest
+    //   swSrc: 'dev/sw.js',
+    //   // ...другие настройки Workbox...
+    // }
+  }
 };

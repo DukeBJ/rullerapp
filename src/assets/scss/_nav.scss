@@ -1,7 +1,7 @@
 .app-btn {
   font-weight: 500;
-  padding: 22px 30px 24px;
-  line-height: 0;
+  padding: 11px 30px 10px;
+  line-height: 1.4;
   border-radius: 10px;
   font-size: 18px;
   outline: none;
@@ -77,6 +77,12 @@
     &.info {
       background-image: url('../../assets/img/icons/info.svg');
     }
+  }
+}
+
+footer {
+  .square-button {
+    box-shadow: 0px 2px 25px rgba(5, 37, 47, 0.12);
   }
 }
 

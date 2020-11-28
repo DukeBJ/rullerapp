@@ -4,7 +4,7 @@
       <h4>Выберите конфигурацию</h4>
       <div class="w-100">
         <pl-construct-slider
-          @config-check="configChek"
+          @type-check="typeChek"
         />
       </div>
       <div class="col-12">
@@ -13,7 +13,6 @@
           class="pl-select"
           v-model="profileSelected"
           :options="profile"
-          @input="chosenProfile"
           :reduce="name => name.code"
           label="name"
           :clearable="false"
@@ -31,7 +30,6 @@
           class="pl-select"
           v-model="colorSelected"
           :options="color"
-          @input="chosenColor"
           :reduce="name => name.code"
           label="name"
           :clearable="false"
@@ -49,7 +47,6 @@
           class="pl-select"
           v-model="glassunitSelected"
           :options="glassunit"
-          @input="chosenGlassunit"
           :reduce="name => name.code"
           label="name"
           :clearable="false"
@@ -67,7 +64,6 @@
           class="pl-select"
           v-model="hendlessSelected"
           :options="hendless"
-          @input="chosenHendless"
           :reduce="name => name.code"
           label="name"
           :clearable="false"
@@ -109,7 +105,6 @@
           class="pl-select"
           v-model="sillSelected"
           :options="sill"
-          @input="chosenSill"
           :reduce="name => name.code"
           label="name"
           :clearable="false"
@@ -122,7 +117,7 @@
         </v-select>
       </div>
       <div class="col-12">
-        <div>Конфигурация: {{config}}</div>
+        <div>Конфигурация: {{type}}</div>
         <div>Профиль: {{profileSelected}}</div>
         <div>цвет: {{colorSelected}}</div>
         <div>Стеклопакет: {{glassunitSelected}}</div>
@@ -156,7 +151,7 @@ export default {
   props: ['orderID', 'winNo'],
   data() {
       return {
-        config: '',
+        type: 'first',
         profileSelected: 'smart',
         profile: [
           {code: 'smart', name:'Melke Smart'},
@@ -196,87 +191,84 @@ export default {
         mosquitoSelected: true,
         childlockSelected: true,
         slopeSelected: true,
-        ebbSelected: true
+        ebbSelected: true,
       }
     },
     methods: {
-    chosenProfile() {
-      const orderId = this.id
-      // const selected = this.selected
-      const payload = {
-        // selected,
-        orderId
-      }
-      console.log(payload)
-      this.$emit('chosenProfile', payload)
-    },
-    chosenColor() {
-      const orderId = this.id
-      // const selected = this.selected
-      const payload = {
-        // selected,
-        orderId
-      }
-      console.log(payload)
-      this.$emit('chosenColor', payload)
-    },
-    chosenGlassunit() {
-      const orderId = this.id
-      // const selected = this.selected
-      const payload = {
-        // selected,
-        orderId
-      }
-      console.log(payload)
-      this.$emit('chosenGlassunit', payload)
-    },
-    chosenHendless() {
-      const orderId = this.id
-      // const selected = this.selected
-      const payload = {
-        // selected,
-        orderId
-      }
-      console.log(payload)
-      this.$emit('chosenHendless', payload)
-    },
-    chosenSill() {
-      const orderId = this.id
-      // const selected = this.selected
-      const payload = {
-        // selected,
-        orderId
-      }
-      console.log(payload)
-      this.$emit('chosenSill', payload)
-    },
-    configChek(cfg) {
-      this.config = cfg
+    // chosenProfile() {
+    //   const orderId = this.id
+    //   // const selected = this.selected
+    //   const payload = {
+    //     // selected,
+    //     orderId
+    //   }
+    //   console.log(payload)
+    //   this.$emit('chosenProfile', payload)
+    // },
+    // chosenColor() {
+    //   const orderId = this.id
+    //   // const selected = this.selected
+    //   const payload = {
+    //     // selected,
+    //     orderId
+    //   }
+    //   console.log(payload)
+    //   this.$emit('chosenColor', payload)
+    // },
+    // chosenGlassunit() {
+    //   const orderId = this.id
+    //   // const selected = this.selected
+    //   const payload = {
+    //     // selected,
+    //     orderId
+    //   }
+    //   console.log(payload)
+    //   this.$emit('chosenGlassunit', payload)
+    // },
+    // chosenHendless() {
+    //   const orderId = this.id
+    //   // const selected = this.selected
+    //   const payload = {
+    //     // selected,
+    //     orderId
+    //   }
+    //   console.log(payload)
+    //   this.$emit('chosenHendless', payload)
+    // },
+    // chosenSill() {
+    //   const orderId = this.id
+    //   // const selected = this.selected
+    //   const payload = {
+    //     // selected,
+    //     orderId
+    //   }
+    //   console.log(payload)
+    //   this.$emit('chosenSill', payload)
+    // },
+    typeChek(cfg) {
+      this.type = cfg
     },
     sendConfig() {
-      const config = this.config
-      const profile = this.profileSelected
-      const color = this.colorSelected
-      const glassunit = this.glassunitSelected
-      const hendless = this.hendlessSelected
-      const mosquito = this.mosquitoSelected
-      const childlock = this.childlockSelected
-      const slope = this.slopeSelected
-      const ebb = this.ebbSelected
-      const sill = this.sillSelected
+      const config = new Object()
+      config.type = this.type
+      config.profile = this.profileSelected
+      config.color = this.colorSelected
+      config.glassunit = this.glassunitSelected
+      config.hendless = this.hendlessSelected
+      config.mosquito = this.mosquitoSelected
+      config.childlock = this.childlockSelected
+      config.slope = this.slopeSelected
+      config.ebb = this.ebbSelected
+      config.sill = this.sillSelected
+      const orderID = this.orderID
+      const winNo = this.winNo
       const payload = {
-        config,
-        profile,
-        color,
-        glassunit,
-        hendless,
-        mosquito,
-        childlock,
-        slope,
-        ebb,
-        sill
+        orderID,
+        winNo,
+        config
       }
       this.$emit('send-config', payload)
+      this.$emit('config-done', 'done')
     }
   },
 }

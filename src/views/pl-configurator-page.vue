@@ -25,7 +25,8 @@
         v-if="check.config"
         :orderID="checkOrder().id"
         :winNo="checkOrder().constructions.length"
-        @send-config="sendConfig"
+        @send-config="ADD_CONFIG"
+        @config-done="configDone"
       />
       <!-- <ConstructList/> -->
       <!-- <OrderDetails/> -->
@@ -81,7 +82,7 @@ export default {
         balkonLeft: false,
         balkonRight: false,
         balkonCenter: false,
-        config: true
+        config: false
       }
     }
   },
@@ -118,8 +119,11 @@ export default {
       this.check.square = false
       this.check.config = true
     },
-    sendConfig(payload) {
-      console.log(payload)
+    // sendConfig(payload) {
+    //   console.log(payload)
+    // },
+    configDone() {
+      console.log(`Сонфигурация закончена!`)
       this.check.config = false
     }
   },

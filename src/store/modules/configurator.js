@@ -25,8 +25,8 @@ const actions = {
   ADD_SIZE({commit}, {orderID, winNo, constrSize, letter}) {
     commit('ADD_SIZE_MUT', {orderID, winNo, constrSize, letter})
   },
-  ADD_CONFIG({commit}, {config, profile, color, glassunit, hendless, mosquito, childlock, slope, ebb, sill}) {
-    commit('ADD_CONFIG_MUT', {config, profile, color, glassunit, hendless, mosquito, childlock, slope, ebb, sill})
+  ADD_CONFIG({commit}, {orderID, winNo, config}) {
+    commit('ADD_CONFIG_MUT', {orderID, winNo, config})
   }
 }
 const mutations = {
@@ -97,9 +97,16 @@ const mutations = {
     console.log(`Заказ №${orderId}`)
     console.log(`buildType ${selected}`)
   },
-  ADD_CONFIG_MUT({order}, {config, profile, color, glassunit, hendless, mosquito, childlock, slope, ebb, sill}) {
-
-  }
+  ADD_CONFIG_MUT({orders}, {orderID, winNo, config}) {
+    // Ищем конструкцию в которую будем добавлять размеры
+    const index = orders.findIndex(ord => ord.id === orderID)
+    const constrID = orders[index].constructions.findIndex(constr => constr.window === winNo)
+    const configObj = orders[index].constructions[constrID].config
+    // Добавляем конфигурацию окна
+    console.log(`Добавлены объекты в config: ${JSON.stringify(config)}`)
+    Vue.set(Object.assign(configObj, config))
+    console.log(orders[index])
+  },
   // updateOrderMut(state) {
   //     state.order = state.products.reduce((previous, product) => previous + productPrice(product), 0)
   // },
@@ -132,14 +139,20 @@ const createNewOrder = (orderId) => ({
 const createNewConstruction = (constrNumber) => ({
   window: constrNumber,
   sizes: {},
-  config: 'first',
-  profile: 'lite60',
-  color: 'white',
-  glassunit: 'climatherm',
-  hendless: 'type1',
-  isMosquito: true,
-  isChildlock: true,
-  isSlope: true,
-  isEbb: true,
-  sill: 'std300'
+  config: {}
 })
+
+// const createNewConstruction = (constrNumber) => ({
+//   window: constrNumber,
+//   sizes: {},
+//   config: 'first',
+//   profile: 'lite60',
+//   color: 'white',
+//   glassunit: 'climatherm',
+//   hendless: 'type1',
+//   isMosquito: true,
+//   isChildlock: true,
+//   isSlope: true,
+//   isEbb: true,
+//   sill: 'std300'
+// })
