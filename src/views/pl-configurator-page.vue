@@ -28,15 +28,24 @@
         @send-config="ADD_CONFIG"
         @config-done="configDone"
       />
-      <!-- <ConstructList/> -->
-      <!-- <OrderDetails/> -->
-      <TestInfo
+      <pl-construct-list
+        v-if="check.windows"
+        :constructions="checkOrder().constructions"
+        @add-window="addWindow"
+        @last-step="lastStep"
+      />
+      <pl-order-service
+        v-if="check.last"
+        :orderID="checkOrder().id"
+        @send-order="ADD_SERVICES"
+      />
+      <!-- <TestInfo
         :key="checkOrder().id +1"
         :id="checkOrder().id"
         :buildType="checkOrder().buildType"
         :constructions="checkOrder().constructions"
         :service="checkOrder().service"
-        />  
+        />   -->
     </main>
     <main v-else>
       <h2>Заказ не создан</h2>
@@ -51,9 +60,9 @@ import plHeaderAtwork from '@/components/pl-header-atwork.vue'
 import plApertureCheck from '@/components/configurator/aperture/pl-aperture-check.vue'
 import plApertureSquare from '@/components/configurator/aperture/square/pl-aperture-square.vue'
 import plConstructConfig from '@/components/configurator/pl-construct-config.vue'
-// import ConstructList from '@/components/configurator/ConstructList.vue'
-// import OrderDetails from '@/components/configurator/OrderDetails.vue'
-import TestInfo from '@/components/configurator/testInfo.vue'
+import plConstructList from '@/components/configurator/pl-construct-list.vue'
+import plOrderService from '@/components/configurator/pl-order-service.vue'
+// import TestInfo from '@/components/configurator/testInfo.vue'
 
 export default {
   name: 'pl-configurator-page',
@@ -62,9 +71,9 @@ export default {
     plApertureCheck,
     plApertureSquare,
     plConstructConfig,
-    // ConstructList,
-    // OrderDetails,
-    TestInfo
+    plConstructList,
+    plOrderService,
+    // TestInfo
   },
   props: {
     ordern: {
@@ -82,7 +91,9 @@ export default {
         balkonLeft: false,
         balkonRight: false,
         balkonCenter: false,
-        config: false
+        config: false,
+        windows: false,
+        last: false
       }
     }
   },
@@ -98,7 +109,8 @@ export default {
         'UPD_BUILDTYPE',
         'ADD_CONSTRUCTION',
         'ADD_SIZE',
-        'ADD_CONFIG'
+        'ADD_CONFIG',
+        'ADD_SERVICES'
     ]),
     orderId() {
       return new URLSearchParams(document.location.search).get('order')
@@ -125,6 +137,15 @@ export default {
     configDone() {
       console.log(`Сонфигурация закончена!`)
       this.check.config = false
+      this.check.windows = true
+    },
+    addWindow() {
+      this.check.windows = false
+      this.check.aperture = true
+    },
+    lastStep() {
+      this.check.windows = false
+      this.check.last = true
     }
   },
 }

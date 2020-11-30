@@ -27,6 +27,10 @@ const actions = {
   },
   ADD_CONFIG({commit}, {orderID, winNo, config}) {
     commit('ADD_CONFIG_MUT', {orderID, winNo, config})
+  },
+  ADD_SERVICES({commit}, {orderID, service}) {
+    commit('ADD_SERVICES_MUT', {orderID, service})
+    commit('SEND_ORDER', orderID)
   }
 }
 const mutations = {
@@ -107,14 +111,46 @@ const mutations = {
     Vue.set(Object.assign(configObj, config))
     console.log(orders[index])
   },
-  // updateOrderMut(state) {
-  //     state.order = state.products.reduce((previous, product) => previous + productPrice(product), 0)
-  // },
-  // resetConstructionMut({ constructions }, constrNumber) {
-  //   const index = constructions.findIndex(constr => constr.id === constrNumber)
-  //   const newConstruction = createNewConstruction()
-  //   constructions.splice(index, 1, newConstruction)
-  // },
+  ADD_SERVICES_MUT({orders}, {orderID, service}) {
+    const index = orders.findIndex(ord => ord.id === orderID)
+    const oldServise = orders[index].service
+    Object.assign(oldServise, service)
+    console.log(service)
+    console.log(`Заказ добавлен`)
+    console.log(orders[index])
+  },
+  SEND_ORDER({orders}, orderID) {
+    // проверка, есть ли в localStorage заказ с orderID
+    const index = orders.findIndex(ord => ord.id === orderID)
+    const newOrder = orders[index]
+    console.log("Начинаем проверку")
+    console.log(`Новый заказ ${JSON.stringify(newOrder)}`)
+    console.log(`localStorage.orders = ${localStorage.orders}`)
+    if(localStorage.orders === undefined) {
+      console.log(`если undefined то добавляем новый`)
+      localStorage.orders = JSON.stringify(orders)
+      console.log(localStorage.orders)
+    } else {
+      console.log(`Если не undefined`)
+      const parseLS = JSON.parse(localStorage.orders)
+      const pIndex = parseLS.findIndex(ord => ord.id === orderID)
+      console.log(`То ищем в`)
+      console.log(parseLS)
+      console.log(`pIndex =  ${pIndex}`)
+      if (parseLS[pIndex] === undefined) {
+        console.log(`Если заказа ${orderID} нет`)
+        parseLS.push(newOrder)
+        localStorage.orders = JSON.stringify(parseLS)
+        console.log(`Добавляем`)
+      } else {
+        console.log(`Если заказ ${orderID} уже есть`)
+        parseLS.splice(pIndex, 1, newOrder)
+        localStorage.orders = JSON.stringify(parseLS)
+        console.log(`Заменяем его`)
+      }
+    }
+    console.log(JSON.parse(localStorage.orders))
+  }
 }
 
 export default {
@@ -129,17 +165,18 @@ const createNewOrder = (orderId) => ({
   buildType: "Панельный",
   constructions: [],
   service: {
-    isDismantling: true,
-    isMounting: true,
-    isDeliver: true,
-    isGarbage: true
+    // isDismantling: true,
+    // isMounting: true,
+    // isDeliver: true,
+    // isGarbage: true
   }
 })
 
 const createNewConstruction = (constrNumber) => ({
   window: constrNumber,
   sizes: {},
-  config: {}
+  config: {},
+  aperture: 'square'
 })
 
 // const createNewConstruction = (constrNumber) => ({

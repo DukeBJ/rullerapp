@@ -117,18 +117,6 @@
         </v-select>
       </div>
       <div class="col-12">
-        <div>Конфигурация: {{type}}</div>
-        <div>Профиль: {{profileSelected}}</div>
-        <div>цвет: {{colorSelected}}</div>
-        <div>Стеклопакет: {{glassunitSelected}}</div>
-        <div>Ручка: {{hendlessSelected}}</div>
-        <div>Сетка: {{mosquitoSelected}}</div>
-        <div>Замки: {{childlockSelected}}</div>
-        <div>Отводы: {{slopeSelected}}</div>
-        <div>Сливы: {{ebbSelected}}</div>
-        <div>Подоконники: {{sillSelected}}</div>
-      </div>
-      <div class="col-12">
         <button
           class="app-btn btn__blue"
           @click="sendConfig"
@@ -195,56 +183,6 @@ export default {
       }
     },
     methods: {
-    // chosenProfile() {
-    //   const orderId = this.id
-    //   // const selected = this.selected
-    //   const payload = {
-    //     // selected,
-    //     orderId
-    //   }
-    //   console.log(payload)
-    //   this.$emit('chosenProfile', payload)
-    // },
-    // chosenColor() {
-    //   const orderId = this.id
-    //   // const selected = this.selected
-    //   const payload = {
-    //     // selected,
-    //     orderId
-    //   }
-    //   console.log(payload)
-    //   this.$emit('chosenColor', payload)
-    // },
-    // chosenGlassunit() {
-    //   const orderId = this.id
-    //   // const selected = this.selected
-    //   const payload = {
-    //     // selected,
-    //     orderId
-    //   }
-    //   console.log(payload)
-    //   this.$emit('chosenGlassunit', payload)
-    // },
-    // chosenHendless() {
-    //   const orderId = this.id
-    //   // const selected = this.selected
-    //   const payload = {
-    //     // selected,
-    //     orderId
-    //   }
-    //   console.log(payload)
-    //   this.$emit('chosenHendless', payload)
-    // },
-    // chosenSill() {
-    //   const orderId = this.id
-    //   // const selected = this.selected
-    //   const payload = {
-    //     // selected,
-    //     orderId
-    //   }
-    //   console.log(payload)
-    //   this.$emit('chosenSill', payload)
-    // },
     typeChek(cfg) {
       this.type = cfg
     },
