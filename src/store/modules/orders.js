@@ -1,11 +1,8 @@
-// import Vue from 'vue'
 import axios from 'axios'
 
 const state = {
-  orders: [],
   prises: []
 }
-
 const actions = {
   async GET_PRICE_LIST({commit}) {
     await axios
@@ -20,7 +17,6 @@ const actions = {
       })
   }
 }
-
 const mutations = { 
   SET_PRICE(state, prises) {
     console.log(`Устанавливаем prices в соответствии с полученными данными`)
