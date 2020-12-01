@@ -18,8 +18,9 @@
           :key="win.window"
           :winNo="win.window"
           :config="win.config"
-          :price="priceList"
+          :price="OrderPrice"
           @edit-window="editWindow"
+          @send-sum="orderSum"
         />
         <button
           class="app-btn btn__blue btn__min-width"
@@ -33,6 +34,7 @@
       <pl-order-window-edit
         v-if="isWindowEdit"
       />
+      {{sumWindows}}
     </main>
     <!-- <main v-else>
       <h2>Заказ не создан</h2>
@@ -46,11 +48,6 @@
   import plOrderWindowList from '@/components/atwork/order/pl-order-window-list.vue'
   import plHeaderAtwork from '@/components/pl-header-atwork.vue'
   import plOrderWindowEdit from '../components/atwork/order/pl-order-window-list.vue'
-// import plApertureSquare from '@/components/configurator/aperture/square/pl-aperture-square.vue'
-// import plConstructConfig from '@/components/configurator/pl-construct-config.vue'
-// import plConstructList from '@/components/configurator/pl-construct-list.vue'
-// import plOrderService from '@/components/configurator/pl-order-service.vue'
-
 
 export default {
   name: 'pl-configurator-page',
@@ -58,12 +55,6 @@ export default {
     plOrderWindowList,
     plHeaderAtwork,
     plOrderWindowEdit,
-    // plApertureCheck,
-    // plApertureSquare,
-    // plConstructConfig,
-    // plConstructList,
-    // plOrderService,
-    // TestInfo
   },
   props: {
     ordern: {
@@ -76,8 +67,7 @@ export default {
   data() {
     return {
       sumOrder: '',
-      priceList: {},
-      // thisOrder: '',
+      sumWindows: [],
       isWindowList: true,
       isWindowEdit: false
     }
@@ -97,36 +87,39 @@ export default {
       console.log(localDate[index])
       return localDate[index]
     },
+    getOrder() {
+      const ord = new URLSearchParams(document.location.search).get('order')
+      return ord
+    },
+    OrderPrice() {
+      const orderID = this.getOrder
+      const index = this.PRICE_LIST.findIndex(ord => ord.id === orderID)
+      console.log(`Заказ ${orderID}`)
+      console.log(`Прайс ${this.PRICE_LIST[index]}`)
+      return this.PRICE_LIST[index]
+    },
   },
   watch: {
-    calcOrderSum() {
-      return this.calcOrderSum()
-    }
+    
   },
   methods: {
     ...mapActions('orders', [
         'GET_PRICE_LIST',
     ]),
-    ...mapActions('configurator', [
-        'UPD_BUILDTYPE',
-        'ADD_CONSTRUCTION',
-        'ADD_SIZE',
-        'ADD_CONFIG',
-        'ADD_SERVICES'
-    ]),
+    // ...mapActions('configurator', [
+    //     'UPD_BUILDTYPE',
+    //     'ADD_CONSTRUCTION',
+    //     'ADD_SIZE',
+    //     'ADD_CONFIG',
+    //     'ADD_SERVICES'
+    // ]),
     orderTitle() {
       const ord = new URLSearchParams(document.location.search).get('order')
-      console.log(ord)
       return 'Заказ №' + ord
     },
     checkOrder() {
       const index = this.orders.findIndex(ord => ord.id === this.ordern)
       return this.orders[index]
-    },
-    calcOrderSum() {
-      const order = new URLSearchParams(document.location.search).get('order')
-      const index = this.PRICE_LIST.findIndex(ord => ord.id === order)
-      this.priceList = this.PRICE_LIST[index]
     },
     editWindow(e) {
       console.log(e)
@@ -136,11 +129,13 @@ export default {
     },
     measureEnd() {
       
+    },
+    orderSum(sum) {
+      this.sumWindows = sum
     }
   },
   mounted() {
     this.GET_PRICE_LIST()
-    this.calcOrderSum()
   },
 }
 </script>
