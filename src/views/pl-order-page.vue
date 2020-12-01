@@ -31,9 +31,9 @@
           @click="measureEnd"
         >Оформить заказ</button>
       </div>
-      <pl-order-window-edit
+      <!-- <pl-order-window-edit
         v-if="isWindowEdit"
-      />
+      /> -->
       {{sumWindows}}
     </main>
     <!-- <main v-else>
@@ -47,14 +47,14 @@
   import { mapState, mapActions, mapGetters } from 'vuex'
   import plOrderWindowList from '@/components/atwork/order/pl-order-window-list.vue'
   import plHeaderAtwork from '@/components/pl-header-atwork.vue'
-  import plOrderWindowEdit from '../components/atwork/order/pl-order-window-list.vue'
+  // import plOrderWindowEdit from '../components/atwork/order/pl-order-window-list.vue'
 
 export default {
   name: 'pl-configurator-page',
   components: {
     plOrderWindowList,
     plHeaderAtwork,
-    plOrderWindowEdit,
+    // plOrderWindowEdit,
   },
   props: {
     ordern: {
