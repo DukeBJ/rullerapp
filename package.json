@@ -6,7 +6,8 @@
   "scripts": {
     "postinstall": "npm install express",
     "build": "vue-cli-service build",
-
+    "serve": "vue-cli-service serve",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.21.0",
