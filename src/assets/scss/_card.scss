@@ -8,7 +8,7 @@
   .card-body,
   .card-header {
     padding: 0;
-    background-color: white;
+    background-color: transparent;
   }
 }
 
@@ -196,7 +196,7 @@
     display: flex;
     width: 100%;
     border: 0;
-    background-color: white;
+    background-color: unset;
     .client {
       font-weight: bold;
       font-size: 18px;
@@ -285,7 +285,7 @@
     flex-wrap: nowrap;
     width: 100%;
     border: 0;
-    background-color: white;
+    background-color: unset;
     height: 100%;
     .price {
       width: 60%;
@@ -360,7 +360,7 @@
     border: 0;
     display: flex;
     justify-content: space-between;
-    background-color: white;
+    background-color: unset;
     .title {
       font-weight: bold;
       font-size: 18px;

@@ -78,7 +78,7 @@
               <button
                 class="app-btn btn__blue"
                 @click="addNewOrder(number)"
-              >Самостоятельный расчёт {{number}}</button>
+              >Самостоятельный расчёт</button>
               
               <button
                 class="app-btn btn__red"

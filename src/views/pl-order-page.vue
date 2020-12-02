@@ -59,7 +59,7 @@ export default {
     plOrderWindowEdit,
   },
   props: {
-    ordern: {
+    orderID: {
       type: String,
       default() {
         return ''
@@ -89,11 +89,10 @@ export default {
     //     'ADD_SERVICES'
     // ]),
     orderTitle() {
-      const ord = new URLSearchParams(document.location.search).get('order')
-      return 'Заказ №' + ord
+      return 'Заказ №' + this.orderID
     },
     checkOrder() {
-      const index = this.orders.findIndex(ord => ord.id === this.ordern)
+      const index = this.orders.findIndex(ord => ord.id === this.orderID)
       return this.orders[index]
     },
     editWindow(e) {
@@ -260,15 +259,13 @@ export default {
     getWindow() {
       const localDate = JSON.parse(localStorage.orders)
       console.log(localDate)
-      const order = this.getOrder
-      const index = localDate.findIndex(ord => ord.id === order)
+      const index = localDate.findIndex(ord => ord.id === this.orderID)
       console.log(localDate[index])
       return localDate[index]
     },
     OrderPrice() {
-      const orderID = new URLSearchParams(document.location.search).get('order')
-      const index = this.PRICE_LIST.findIndex(ord => ord.id === orderID)
-      console.log(`Заказ ${orderID}`)
+      const index = this.PRICE_LIST.findIndex(ord => ord.id === this.orderID)
+      console.log(`Заказ ${this.orderID}`)
       console.log(`Прайс ${this.PRICE_LIST[index]}`)
       return this.PRICE_LIST[index]
     },
