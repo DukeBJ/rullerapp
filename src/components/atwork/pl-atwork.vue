@@ -1,7 +1,11 @@
 <template>
-    <div class="card card-active">
+    <div
+      class="card card-active"
+      :class="{ disabled: !active.done }"
+      @click="gotoOrder"
+    >
       <div class="card-header">
-        <div class="price" v-bind:class="{ opacity20: !active.done }">{{ active.price | ruPrice }}</div>
+        <div class="price" :class="{ opacity20: !active.done }">{{ active.price | priceFormat }}</div>
         <div class="custumer-info">
           <div class="client">
             №{{ active.number }}
@@ -23,6 +27,7 @@
 </template>
 
 <script>
+import priceFormat from '@/components/filters/priceFormat'
 export default {
   name: 'pl-atwork',
   props: {
@@ -32,9 +37,21 @@ export default {
     }
   },
   filters: {
-    ruPrice(value) {
-      return Intl.NumberFormat("ru").format(value) + '\u00A0₽'
+    priceFormat
+  },
+  methods: {
+    gotoOrder() {
+      this.$router.push({ name: 'order', params: {id: this.active.number} })
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .card {
+    cursor: pointer;
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+</style>

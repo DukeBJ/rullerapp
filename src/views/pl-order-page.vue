@@ -4,7 +4,7 @@
     <!-- v-if="checkOrder()" -->
     <main
       class="card-place"
-      v-if="orderID !== '' && orderID !== undefined"
+      v-if="orderID !== undefined && localStorage.orders.includes(orderID)"
     >
       <div class="container">
 
@@ -55,14 +55,6 @@ export default {
     plOrderWindowEdit,
     plOrderTopinfo
   },
-  // props: {
-  //   orderID: {
-  //     type: String,
-  //     default() {
-  //       return null
-  //     }
-  //   }
-  // },
   data() {
     return {
       orderID: this.$route.params.id,
@@ -85,13 +77,7 @@ export default {
     ...mapActions('orders', [
         'GET_PRICE_LIST',
     ]),
-    // ...mapActions('configurator', [
-    //     'UPD_BUILDTYPE',
-    //     'ADD_CONSTRUCTION',
-    //     'ADD_SIZE',
-    //     'ADD_CONFIG',
-    //     'ADD_SERVICES'
-    // ]),
+
     orderTitle() {
       return 'Заказ №' + this.orderID
     },
@@ -266,10 +252,6 @@ export default {
         service: 'service'
     }),
     ...mapGetters('orders', ['PRICE_LIST']),
-    getOrder() {
-      const ord = new URLSearchParams(document.location.search).get('order')
-      return ord
-    },
     getWindow() {
       const localDate = JSON.parse(localStorage.orders)
       console.log(localDate)
