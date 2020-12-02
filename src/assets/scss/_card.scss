@@ -374,10 +374,18 @@
   font-size: 24px;
   line-height: 30px;
   justify-content: space-between;
+  margin-bottom: 30px;
   .sum,
   .price {
     padding-left: 15px;
     padding-right: 15px;
-    margin-bottom: 30px;
+  }
+  .size-info {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }

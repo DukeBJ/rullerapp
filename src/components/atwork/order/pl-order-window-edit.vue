@@ -111,25 +111,25 @@
         </v-select>
       </div>
       <div class="col-6">
-        <b-form-group :label="dismant">
+        <b-form-group :label="label.dismant">
           <b-form-radio v-model="isDismantlingSelected" name="isDismantling" value="true">Да</b-form-radio>
           <b-form-radio v-model="isDismantlingSelected" name="isDismantling" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
-        <b-form-group :label="deliver">
+        <b-form-group :label="label.deliver">
           <b-form-radio v-model="isDeliverSelected" name="isDeliver" value="true">Да</b-form-radio>
           <b-form-radio v-model="isDeliverSelected" name="isDeliver" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
-        <b-form-group :label="mounting">
+        <b-form-group :label="label.mounting">
           <b-form-radio v-model="isMountingSelected" name="isMounting" value="true">Да</b-form-radio>
           <b-form-radio v-model="isMountingSelected" name="isMounting" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
-        <b-form-group :label="garbage">
+        <b-form-group :label="label.garbage">
           <b-form-radio v-model="isGarbageSelected" name="isGarbage" value="true">Да</b-form-radio>
           <b-form-radio v-model="isGarbageSelected" name="isGarbage" value="false">Нет</b-form-radio>
         </b-form-group>
@@ -156,14 +156,14 @@ export default {
   data() {
       return {
         label: {
-          mosquito: `Москитная сетка (${this.price.config.mosquito})`,
-          childlock: `Москитная сетка (${this.price.config.childlock})`,
-          slope: `Москитная сетка (${this.price.config.slope})`,
-          ebb: `Москитная сетка (${this.price.config.ebb})`,
-          garbage: `Москитная сетка (${this.price.service.garbage})`,
-          mounting: `Москитная сетка (${this.price.service.mosquito})`,
-          deliver: `Москитная сетка (${this.price.service.mosquito})`,
-          dismant: `Москитная сетка (${this.price.service.mosquito})`,
+          mosquito: `Москитная сетка (${this.price.config.mosquito}\u00A0₽)`,
+          childlock: `Детские замки (${this.price.config.childlock}\u00A0₽)`,
+          slope: `Откос (${this.price.config.slope}\u00A0₽)`,
+          ebb: `Отлив (${this.price.config.ebb}\u00A0₽)`,
+          garbage: `Вывоз мусора (${this.price.service.garbage}\u00A0₽)`,
+          mounting: `Монтаж (${this.price.service.mounting}\u00A0₽)`,
+          deliver: `Доставка (${this.price.service.deliver}\u00A0₽)`,
+          dismant: `Демонтаж (${this.price.service.dismantling}\u00A0₽)`,
         },
         type: 'first',
         profileSelected: this.config.profile,

@@ -4,52 +4,48 @@
     <!-- v-if="checkOrder()" -->
     <main
       class="card-place"
-      
+      v-if="orderID !== '' && orderID !== undefined"
     >
-      <div
-        v-if="isWindowList"
-        class="container">
-        <div class="row window-sum">
-          <div class="sum">Итого:</div>
-          <div class="price">{{orderSum() | priceFormat}}</div>
-        </div>
-        <pl-order-window-list
-          v-for="win in getWindow.constructions"
-          :key="win.window"
-          :winNo="win.window"
-          :price="windowPrice(win.window)"
-          @edit-window="editWindow"
-          />
-        <button
-          class="app-btn btn__blue btn__min-width"
-          @click="orderDone"
-        >Оформить заказ</button>
-        <button
-          class="app-btn btn__blue btn__min-width"
-          @click="measureEnd"
-        >Оформить заказ</button>
-      </div>
-      <pl-order-window-edit
-        v-if="isWindowEdit"
-        :winNo="1"
-        :price="this.OrderPrice.constructions[0]"
-        :config="getWindow.constructions[0].config"
-        :service="getWindow.service"
+      <div class="container">
+
+        <pl-order-topinfo
+          :winNo="editWinNo"
+          :price="windowPrice(editWinNo)"
+          :orderSum="orderSum()"
+          :winEdit="winEdit"
+          :sizes="getSizes(editWinNo)"
         />
+
+        <pl-order-window-list
+          v-if="isWindowList"
+          :constructions="getWindow.constructions"
+          :priceList="orderPrice.constructions[0].config"
+          @edit-window="editWindow"
+        />
+
+        <pl-order-window-edit
+          v-if="isWindowEdit"
+          :winNo="editWinNo"
+          :price="this.orderPrice.constructions[0]"
+          :config="getWindow.constructions[editWinNo-1].config"
+          :service="getWindow.service"
+        />
+      </div>
     </main>
-    <!-- <main v-else>
-      <h2>Заказ не создан</h2>
+    <main v-else>
+      <h2>Заказ не передан в работу</h2>
       <div>Вернитесь к списку замеров и попробуйте еще раз</div>
-    </main> -->
+    </main>
   </div>
 </template>
 
 <script>
   import { mapState, mapActions, mapGetters } from 'vuex'
-  import priceFormat from '@/components/filters/priceFormat'
   import plOrderWindowList from '@/components/atwork/order/pl-order-window-list.vue'
   import plHeaderAtwork from '@/components/pl-header-atwork.vue'
   import plOrderWindowEdit from '@/components/atwork/order/pl-order-window-edit.vue'
+  import plOrderTopinfo from '@/components/atwork/order/pl-order-topinfo.vue'
+  
 
 export default {
   name: 'pl-configurator-page',
@@ -57,26 +53,34 @@ export default {
     plOrderWindowList,
     plHeaderAtwork,
     plOrderWindowEdit,
+    plOrderTopinfo
   },
-  props: {
-    orderID: {
-      type: String,
-      default() {
-        return ''
-      }
-    }
-  },
+  // props: {
+  //   orderID: {
+  //     type: String,
+  //     default() {
+  //       return null
+  //     }
+  //   }
+  // },
   data() {
     return {
+      orderID: this.$route.params.id,
       sumOrder: '',
       sumWindows: [],
       isWindowList: true,
-      isWindowEdit: true
+      isWindowEdit: false,
+      editWinNo: null,
+      winEdit: false
     }
   },
-  filters: {
-    priceFormat
-  },
+  // created() {
+  //   const orderID = this.$route.params.id
+  //   if(orderID) {
+  //     this.orderID = orderID
+  //   }
+  // },
+
   methods: {
     ...mapActions('orders', [
         'GET_PRICE_LIST',
@@ -97,7 +101,10 @@ export default {
     },
     editWindow(e) {
       console.log(e)
-      return e
+      this.editWinNo = e
+      this.isWindowList = false
+      this.isWindowEdit = true
+      this.winEdit = true
     },
     orderDone() {
       
@@ -106,8 +113,9 @@ export default {
       
     },
     windowPrice(a) {
+      if(a!==null) {
       // Потом вместо [0] нужно будет подставлять (winNo - 1)
-      const price = this.OrderPrice.constructions[0].config
+      const price = this.orderPrice.constructions[0].config
       const window = this.getWindow.constructions
       const index = a-1
       const config = window[index].config
@@ -196,10 +204,11 @@ export default {
       totoalPrice.push(priceEbb)
       let sum = totoalPrice.reduce(reducer)
       return sum
+      }
     },
     orderSum() {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      const servPrice = this.OrderPrice.constructions[0].service
+      const servPrice = this.orderPrice.constructions[0].service
       const window = this.getWindow.constructions
       const service = this.getWindow.service
       let windowsPrice = new Array()
@@ -243,6 +252,11 @@ export default {
       const orderPrice = windowsPrice.concat(orderService)
 
       return orderPrice.reduce(reducer)
+    },
+    getSizes(a) {
+      if(a!==null) {
+        return this.getWindow.constructions[a-1].sizes
+      }
     }
   },
   computed: {
@@ -263,7 +277,7 @@ export default {
       console.log(localDate[index])
       return localDate[index]
     },
-    OrderPrice() {
+    orderPrice() {
       const index = this.PRICE_LIST.findIndex(ord => ord.id === this.orderID)
       console.log(`Заказ ${this.orderID}`)
       console.log(`Прайс ${this.PRICE_LIST[index]}`)

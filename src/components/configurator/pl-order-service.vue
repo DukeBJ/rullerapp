@@ -65,7 +65,7 @@ export default {
         service
       }
       this.$emit('send-order', payload)
-      this.$router.push({ name: 'order', params: {orderID: orderID} })
+      this.$router.push({ name: 'order', params: {id: orderID} })
 
     }
   }

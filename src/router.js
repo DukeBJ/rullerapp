@@ -29,7 +29,7 @@ export default new Router ({
       component: plAtwork,
     },
     {
-      path: '/atwork/:orderID/',
+      path: '/atwork/:id/',
       name: "order",
       component: plOrder,
     },

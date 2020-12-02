@@ -49,6 +49,7 @@ export default {
 }
 #page-wrap {
   position: relative;
+  height: 100vh;
   &::before {
     content: "";
     position: absolute;
