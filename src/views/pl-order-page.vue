@@ -32,7 +32,7 @@
       <pl-order-window-edit
         v-if="isWindowEdit"
         :winNo="1"
-        :price="this.OrderPrice.constructions[0].config"
+        :price="this.OrderPrice.constructions[0]"
         :config="getWindow.constructions[0].config"
         :service="getWindow.service"
         />

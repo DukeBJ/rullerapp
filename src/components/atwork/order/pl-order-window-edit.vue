@@ -111,25 +111,25 @@
         </v-select>
       </div>
       <div class="col-6">
-        <b-form-group label="Демонтаж">
+        <b-form-group :label="dismant">
           <b-form-radio v-model="isDismantlingSelected" name="isDismantling" value="true">Да</b-form-radio>
           <b-form-radio v-model="isDismantlingSelected" name="isDismantling" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
-        <b-form-group label="Доставка">
+        <b-form-group :label="deliver">
           <b-form-radio v-model="isDeliverSelected" name="isDeliver" value="true">Да</b-form-radio>
           <b-form-radio v-model="isDeliverSelected" name="isDeliver" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
-        <b-form-group label="Монтаж">
+        <b-form-group :label="mounting">
           <b-form-radio v-model="isMountingSelected" name="isMounting" value="true">Да</b-form-radio>
           <b-form-radio v-model="isMountingSelected" name="isMounting" value="false">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
-        <b-form-group label="Вывоз мусора">
+        <b-form-group :label="garbage">
           <b-form-radio v-model="isGarbageSelected" name="isGarbage" value="true">Да</b-form-radio>
           <b-form-radio v-model="isGarbageSelected" name="isGarbage" value="false">Нет</b-form-radio>
         </b-form-group>
@@ -156,60 +156,60 @@ export default {
   data() {
       return {
         label: {
-          mosquito: `Москитная сетка (${this.price.mosquito})`,
-          childlock: `Москитная сетка (${this.price.childlock})`,
-          slope: `Москитная сетка (${this.price.slope})`,
-          ebb: `Москитная сетка (${this.price.ebb})`,
-          Garbage: `Москитная сетка (${this.price.mosquito})`,
-          Mounting: `Москитная сетка (${this.price.mosquito})`,
-          Deliver: `Москитная сетка (${this.price.mosquito})`,
-          Dismant: `Москитная сетка (${this.price.mosquito})`,
+          mosquito: `Москитная сетка (${this.price.config.mosquito})`,
+          childlock: `Москитная сетка (${this.price.config.childlock})`,
+          slope: `Москитная сетка (${this.price.config.slope})`,
+          ebb: `Москитная сетка (${this.price.config.ebb})`,
+          garbage: `Москитная сетка (${this.price.service.garbage})`,
+          mounting: `Москитная сетка (${this.price.service.mosquito})`,
+          deliver: `Москитная сетка (${this.price.service.mosquito})`,
+          dismant: `Москитная сетка (${this.price.service.mosquito})`,
         },
         type: 'first',
         profileSelected: this.config.profile,
         profile: [
-          {code: 'smart', name:`Melke Smart — ${this.price.profile.smart} ₽`},
-          {code: 'evolution', name:`Melke Evolution — ${this.price.profile.evolution} ₽`},
-          {code: 'art', name:`Melke Art — ${this.price.profile.art} ₽`},
-          {code: 'lite60', name:`Melke Lite\`60 — ${this.price.profile.lite60} ₽`},
-          {code: 'lite70', name:`Melke Lite\`70 — ${this.price.profile.lite70} ₽`},
-          {code: 'rehau_b', name:`Rehau — ${this.price.profile.rehau} ₽`},
+          {code: 'smart', name:`Melke Smart — ${this.price.config.profile.smart} ₽`},
+          {code: 'evolution', name:`Melke Evolution — ${this.price.config.profile.evolution} ₽`},
+          {code: 'art', name:`Melke Art — ${this.price.config.profile.art} ₽`},
+          {code: 'lite60', name:`Melke Lite\`60 — ${this.price.config.profile.lite60} ₽`},
+          {code: 'lite70', name:`Melke Lite\`70 — ${this.price.config.profile.lite70} ₽`},
+          {code: 'rehau_b', name:`Rehau — ${this.price.config.profile.rehau} ₽`},
         ],
         colorSelected: this.config.color,
         color: [
-          {code: 'white', name:`Белый — ${this.price.color.white} ₽`},
-          {code: 'mass', name:`Цветная масса — ${this.price.color.white} ₽`},
-          {code: 'laminat', name:`Ламинация — ${this.price.color.white} ₽`},
+          {code: 'white', name:`Белый — ${this.price.config.color.white} ₽`},
+          {code: 'mass', name:`Цветная масса — ${this.price.config.color.white} ₽`},
+          {code: 'laminat', name:`Ламинация — ${this.price.config.color.white} ₽`},
         ],
         glassunitSelected: this.config.glassunit,
         glassunit: [
-          {code: 'climatherm', name:`Climatherm — ${this.price.glassunit.climatherm} ₽`},
-          {code: 'climathermb', name:`Climatherm Balance — ${this.price.glassunit.climathermb} ₽`},
-          {code: 'climatherms', name:`Climatherm Solar — ${this.price.glassunit.climatherms} ₽`},
-          {code: 'climathermsc', name:`Climatherm Solar Color — ${this.price.glassunit.climathermsc} ₽`},
+          {code: 'climatherm', name:`Climatherm — ${this.price.config.glassunit.climatherm} ₽`},
+          {code: 'climathermb', name:`Climatherm Balance — ${this.price.config.glassunit.climathermb} ₽`},
+          {code: 'climatherms', name:`Climatherm Solar — ${this.price.config.glassunit.climatherms} ₽`},
+          {code: 'climathermsc', name:`Climatherm Solar Color — ${this.price.config.glassunit.climathermsc} ₽`},
         ],
         hendlessSelected: this.config.hendless,
         hendless: [
-          {code: 'type1', name:`Тип1 — ${this.price.hendless.type1} ₽`},
-          {code: 'type2', name:`Тип2 — ${this.price.hendless.type2} ₽`},
-          {code: 'type3', name:`Тип3 — ${this.price.hendless.type3} ₽`},
-          {code: 'type4', name:`Тип4 — ${this.price.hendless.type4} ₽`},
+          {code: 'type1', name:`Тип1 — ${this.price.config.hendless.type1} ₽`},
+          {code: 'type2', name:`Тип2 — ${this.price.config.hendless.type2} ₽`},
+          {code: 'type3', name:`Тип3 — ${this.price.config.hendless.type3} ₽`},
+          {code: 'type4', name:`Тип4 — ${this.price.config.hendless.type4} ₽`},
         ],
         sillSelected: this.config.sill,
         sill: [
-          {code: 'std300', name:`Стандартный 300 — ${this.price.sill.std300} ₽`},
-          {code: 'kryst300', name:`Кристалит 300 — ${this.price.sill.kryst300} ₽`},
-          {code: 'estera300', name:`Эстера 300 — ${this.price.sill.estera300} ₽`},
-          {code: 'moller300', name:`Моллер 300 — ${this.price.sill.moller300} ₽`},
+          {code: 'std300', name:`Стандартный 300 — ${this.price.config.sill.std300} ₽`},
+          {code: 'kryst300', name:`Кристалит 300 — ${this.price.config.sill.kryst300} ₽`},
+          {code: 'estera300', name:`Эстера 300 — ${this.price.config.sill.estera300} ₽`},
+          {code: 'moller300', name:`Моллер 300 — ${this.price.config.sill.moller300} ₽`},
         ],
         mosquitoSelected: this.config.mosquito,
         childlockSelected: this.config.childlock,
         slopeSelected: this.config.slope,
         ebbSelected: this.config.ebb,
-        isGarbageSelected: true,
-        isMountingSelected: true,
-        isDeliverSelected: true,
-        isDismantlingSelected: true
+        isGarbageSelected: this.service.isGarbage,
+        isMountingSelected: this.service.isMounting,
+        isDeliverSelected: this.service.isDeliver,
+        isDismantlingSelected: this.service.isDismantling
       }
     },
   filters: {
