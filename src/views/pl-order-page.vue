@@ -1,13 +1,11 @@
 <template>
   <div>
     <pl-header-atwork :title="orderTitle()" />
-    <!-- v-if="checkOrder()" -->
     <main
       class="card-place"
-      v-if="orderID !== undefined && localStorage.orders.includes(orderID)"
+      v-if="orderID !== null && thisOrder === true"
     >
       <div class="container">
-
         <pl-order-topinfo
           :winNo="editWinNo"
           :price="windowPrice(editWinNo)"
@@ -18,7 +16,7 @@
 
         <pl-order-window-list
           v-if="isWindowList"
-          :constructions="getWindow.constructions"
+          :constructions="GET_ORDER.constructions"
           :priceList="orderPrice.constructions[0].config"
           @edit-window="editWindow"
         />
@@ -27,8 +25,8 @@
           v-if="isWindowEdit"
           :winNo="editWinNo"
           :price="this.orderPrice.constructions[0]"
-          :config="getWindow.constructions[editWinNo-1].config"
-          :service="getWindow.service"
+          :config="GET_ORDER.constructions[editWinNo-1].config"
+          :service="GET_ORDER.service"
         />
       </div>
     </main>
@@ -63,28 +61,22 @@ export default {
       isWindowList: true,
       isWindowEdit: false,
       editWinNo: null,
-      winEdit: false
+      winEdit: false,
     }
   },
-  // created() {
-  //   const orderID = this.$route.params.id
-  //   if(orderID) {
-  //     this.orderID = orderID
-  //   }
-  // },
 
   methods: {
     ...mapActions('orders', [
         'GET_PRICE_LIST',
+        'GET_LOCAL_ORDERS'
     ]),
-
     orderTitle() {
       return 'Заказ №' + this.orderID
     },
-    checkOrder() {
-      const index = this.orders.findIndex(ord => ord.id === this.orderID)
-      return this.orders[index]
-    },
+    // checkOrder() {
+    //   const index = this.orders.findIndex(ord => ord.id === this.orderID)
+    //   return this.orders[index]
+    // },
     editWindow(e) {
       console.log(e)
       this.editWinNo = e
@@ -102,7 +94,7 @@ export default {
       if(a!==null) {
       // Потом вместо [0] нужно будет подставлять (winNo - 1)
       const price = this.orderPrice.constructions[0].config
-      const window = this.getWindow.constructions
+      const window = this.GET_ORDER.constructions
       const index = a-1
       const config = window[index].config
 
@@ -195,8 +187,8 @@ export default {
     orderSum() {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       const servPrice = this.orderPrice.constructions[0].service
-      const window = this.getWindow.constructions
-      const service = this.getWindow.service
+      const window = this.GET_ORDER.constructions
+      const service = this.GET_ORDER.service
       let windowsPrice = new Array()
       let orderService = new Array()
       for (let i = 0; i < window.length; i++) {
@@ -241,7 +233,7 @@ export default {
     },
     getSizes(a) {
       if(a!==null) {
-        return this.getWindow.constructions[a-1].sizes
+        return this.GET_ORDER.constructions[a-1].sizes
       }
     }
   },
@@ -251,13 +243,12 @@ export default {
         orders: 'orders',
         service: 'service'
     }),
-    ...mapGetters('orders', ['PRICE_LIST']),
-    getWindow() {
-      const localDate = JSON.parse(localStorage.orders)
-      console.log(localDate)
-      const index = localDate.findIndex(ord => ord.id === this.orderID)
-      console.log(localDate[index])
-      return localDate[index]
+    ...mapGetters('orders',[
+        'PRICE_LIST',
+        'GET_ORDER'
+      ]),
+    thisOrder() {
+      return localStorage.orders.includes(this.orderID)
     },
     orderPrice() {
       const index = this.PRICE_LIST.findIndex(ord => ord.id === this.orderID)
@@ -271,6 +262,7 @@ export default {
   },
   mounted() {
     this.GET_PRICE_LIST()
+    this.GET_LOCAL_ORDERS(this.orderID)
   },
 }
 </script>

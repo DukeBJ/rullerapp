@@ -9,7 +9,7 @@
       {
         "name": "Вильгельмина Христорождественская",
         "phone": 79993331122,
-        "adress": "Москва, ул. Барклая, д.6, стр.26, кв.140 и тут ещё проверка на то если будет длинный адрес",
+        "adress": "Москва, ул. Барклая, д.6, стр.26, кв.140",
         "firstPrice": 165052,
         "manager": "Лариса Петрова",
         "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -26,7 +26,7 @@
       {
         "name": "Лина Христорождественская",
         "phone": 79993331122,
-        "adress": "Москва, ул. Барклая, д.6, стр.26, кв.140 и тут ещё проверка на то если будет длинный адрес",
+        "adress": "Домодедово, улица Правды, д.5, кв.34",
         "firstPrice": 265052,
         "manager": "Лариса Петрова",
         "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -43,7 +43,7 @@
       {
         "name": "Нина Христорождественская",
         "phone": 79993331122,
-        "adress": "Москва, ул. Барклая, д.6, стр.26, кв.140 и тут ещё проверка на то если будет длинный адрес",
+        "adress": "Люберцы, Смирновская улица, 8, кв.6",
         "firstPrice": 365052,
         "manager": "Лариса Петрова",
         "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -60,7 +60,7 @@
       {
         "name": "Анна Христорождественская",
         "phone": 79993331122,
-        "adress": "Москва, ул. Барклая, д.6, стр.26, кв.140 и тут ещё проверка на то если будет длинный адрес",
+        "adress": "Москва, улица Академика Комарова, д.12, кв.45",
         "firstPrice": 465052,
         "manager": "Лариса Петрова",
         "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -77,7 +77,7 @@
       {
         "name": "Светлана Христорождественская",
         "phone": 79993331122,
-        "adress": "Москва, ул. Барклая, д.6, стр.26, кв.140 и тут ещё проверка на то если будет длинный адрес",
+        "adress": "Москва, Талдомская улица, 2Б, кв.83",
         "firstPrice": 565052,
         "manager": "Лариса Петрова",
         "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -94,7 +94,7 @@
       {
         "name": "Марина Христорождественская",
         "phone": 79993331122,
-        "adress": "Москва, ул. Барклая, д.6, стр.26, кв.140 и тут ещё проверка на то если будет длинный адрес",
+        "adress": "Балашиха, шоссе Энтузиастов, д.23, кв.65",
         "firstPrice": 665052,
         "manager": "Лариса Петрова",
         "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."

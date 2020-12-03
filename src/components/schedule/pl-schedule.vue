@@ -19,9 +19,11 @@
               <div>{{ customer.name }}</div>
             </div>
             <nav>
-              <div class="square-button">
-                <span class="msg"></span>
-              </div>
+              <a :href="`tel:+${customer.phone}`">
+                <div class="square-button">
+                  <span class="phone"></span>
+                </div>
+              </a>
             </nav>
           </div>
           <div class="client-adress">
@@ -29,20 +31,24 @@
               <div>{{ customer.adress }}</div>
             </div>
             <nav>
-              <div class="square-button">
-                <span class="msg"></span>
-              </div>
+              <a href="#">
+                <div class="square-button">
+                  <span class="map"></span>
+                </div>
+              </a>
             </nav>
           </div>
           <div class="before-price">
             <div class="block-info">
               <h4>Предварительный расчёт</h4>
-              <div>{{ customer.firstPrice }}</div>
+              <div>{{ customer.firstPrice | priceFormat }}</div>
             </div>
             <nav>
-              <div class="square-button">
-                <span class="msg"></span>
-              </div>
+              <a href="#">
+                <div class="square-button">
+                  <span class="search"></span>
+                </div>
+              </a>
             </nav>
           </div>
           <div class="manager">
@@ -154,6 +160,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import priceFormat from '@/components/filters/priceFormat'
 
 export default {
   name: 'pl-schedule',
@@ -174,6 +181,9 @@ export default {
       isModalEnd: false,
       isModalEndNot: false
     }
+  },
+  filters: {
+    priceFormat
   },
   methods: {
     ...mapActions('configurator', [
