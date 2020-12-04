@@ -12,13 +12,13 @@
     </div>
     <div class="col-12">
       <button
-          class="app-btn btn__blue btn__min-width"
-          @click="orderDone"
-        >Оформить заказ</button>
-        <button
-          class="app-btn btn__red btn__min-width"
-          @click="measureEnd"
-        >Завершить замер</button>
+        class="app-btn btn__blue btn__min-width"
+        @click="orderDone"
+      >Оформить заказ</button>
+      <button
+        class="app-btn btn__red btn__min-width"
+        @click="measureEnd"
+      >Завершить замер</button>
     </div>
   </div>
 </template>
