@@ -31,7 +31,9 @@ export default {
     ]),
   },
   computed: {
-    ...mapGetters('schedule', ['SCHEDULE_LIST']),
+    ...mapGetters('schedule', [
+      'SCHEDULE_LIST',
+      ]),
     today: function() {
       let dateConstr = new Date().toJSON().slice(0,10)
       let yyyy = dateConstr.slice(0,4)

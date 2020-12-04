@@ -31,7 +31,7 @@
               <div>{{ customer.adress }}</div>
             </div>
             <nav>
-              <a href="#">
+              <a :href="map(number)" target="_blank" rel="nofollow noopener">
                 <div class="square-button">
                   <span class="map"></span>
                 </div>
@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import priceFormat from '@/components/filters/priceFormat'
 
 export default {
@@ -185,15 +185,37 @@ export default {
   filters: {
     priceFormat
   },
+  computed: {
+    ...mapGetters('schedule', [
+      'YANDEX_POINT'
+    ]),
+  },
   methods: {
     ...mapActions('configurator', [
         'ADD_ORDER',
     ]),
+    ...mapActions('schedule', [
+        'GET_YANDEX_POINT'
+    ]),
     addNewOrder: function(number) {
       this.ADD_ORDER(number)
       this.$router.push({ name: 'configurator', params: {ordern: number}, query: { order: number } })
+    },
+    map(number) {
+      const index = this.YANDEX_POINT.findIndex(ord => ord.id === number)
+      const point = this.YANDEX_POINT[index].pos
+      return `https://yandex.ru/maps/?rtext=${point}&rtt=auto`
     }
   },
+  mounted() {
+    const id = this.number
+    const adress = this.customer.adress
+    const payload= {
+      id,
+      adress
+    }
+    this.GET_YANDEX_POINT(payload)
+  }
 }
 </script>
 

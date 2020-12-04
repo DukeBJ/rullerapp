@@ -12,6 +12,9 @@ https://yandex.ru/dev/yandex-apps-launch/maps/doc/concepts/yandexmaps-web.html
 https://geocode-maps.yandex.ru/1.x/?apikey=7c5150d5-721b-4493-b1a0-4c6c98e8e544&geocode=королев+проспект+королева+д+7&format=json
                                       ^-api-ключ яндекса                          ^- адрес конввертированный в запрос   ^- формат в котором получаем выдачу
 
+Подробнее:
+https://yandex.ru/dev/maps/geocoder/doc/desc/concepts/input_params.html/
+
 Нам нужно получить:
 response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
 
@@ -20,3 +23,5 @@ response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.slice(0,9)
 
 Долгота
 response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.slice(10)
+
+.split(' ')
