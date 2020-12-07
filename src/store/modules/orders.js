@@ -23,6 +23,9 @@ const actions = {
     const localOrd = ord[index]
     console.log(localOrd)
     commit('SET_ORDERS', localOrd)
+  },
+  UPD_WINDOW_CONFIG({commit}, {winNo, config, service}) {
+    commit('SET_UPD_CONFIG', {winNo, config, service})
   }
 }
 const mutations = { 
@@ -33,6 +36,12 @@ const mutations = {
   SET_ORDERS(state, localOrd) {
     console.log(`Данные из localStorage добавляются в state.localOrd`)
     state.localOrd = localOrd
+  },
+  SET_UPD_CONFIG({localOrd}, {winNo, config, service}) {
+    localOrd.service = {...service}
+    const constr = localOrd.constructions[winNo-1]
+    constr.config = {...config}
+    console.log(localOrd)
   }
 }
 const getters = {

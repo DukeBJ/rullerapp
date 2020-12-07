@@ -137,7 +137,7 @@
       <div class="col-12">
         <button
           class="app-btn btn__blue"
-          
+          @click='editWindow'
           >Сохранить конфигурацию окна</button>
       </div>
     </div>
@@ -145,6 +145,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import priceFormat from '@/components/filters/priceFormat'
 import vSelect from 'vue-select'
 export default {
@@ -152,7 +153,7 @@ export default {
   components: {
     vSelect
   },
-  props: ['winNo', 'price', 'config', 'service'],
+  props: ['winNo', 'price', 'config', 'service', 'orderID'],
   data() {
       return {
         label: {
@@ -173,7 +174,7 @@ export default {
           {code: 'art', name:`Melke Art — ${this.price.config.profile.art} ₽`},
           {code: 'lite60', name:`Melke Lite\`60 — ${this.price.config.profile.lite60} ₽`},
           {code: 'lite70', name:`Melke Lite\`70 — ${this.price.config.profile.lite70} ₽`},
-          {code: 'rehau_b', name:`Rehau — ${this.price.config.profile.rehau} ₽`},
+          {code: 'rehau_b', name:`Rehau — ${this.price.config.profile.rehau_b} ₽`},
         ],
         colorSelected: this.config.color,
         color: [
@@ -216,14 +217,55 @@ export default {
     priceFormat
   },
   computed: {
-    // prof() {
-    //   this.profileSelected = config
-    //   return 0
-    // }
+    ...mapGetters('orders', [
+        'GET_ORDER'
+    ]),
   },
   methods: {
+    ...mapActions('orders', [
+        'UPD_WINDOW_CONFIG'
+    ]),
     editWindow() {
-      // this.$emit('edit-window', this.winNo)
+      //const orderID = this.orderID
+      const winNo = this.winNo
+      const profile = this.profileSelected
+      const color = this.colorSelected
+      const glassunit = this.glassunitSelected
+      const hendless = this.hendlessSelected
+      const sill = this.sillSelected
+      const mosquito = this.mosquitoSelected
+      const childlock = this.childlockSelected
+      const slope = this.slopeSelected
+      const ebb = this.ebbSelected
+      const isGarbage = this.isGarbageSelected
+      const isMounting = this.isMountingSelected
+      const isDeliver = this.isDeliverSelected
+      const isDismantling = this.isDismantlingSelected
+      const config = {
+        profile,
+        color,
+        glassunit,
+        hendless,
+        sill,
+        mosquito,
+        childlock,
+        slope,
+        ebb
+      }
+      const service = {
+        isGarbage,
+        isMounting,
+        isDeliver,
+        isDismantling
+      }
+      const payload = {
+        //orderID,
+        winNo,
+        config,
+        service
+      }
+      this.$emit('edit-window', {isWindowEdit: false})
+      this.UPD_WINDOW_CONFIG(payload)
     }
   }
 }

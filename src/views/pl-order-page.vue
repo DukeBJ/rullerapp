@@ -19,6 +19,7 @@
           :constructions="GET_ORDER.constructions"
           :priceList="orderPrice.constructions[0].config"
           @edit-window="editWindow"
+          @order-done="orderDone"
         />
 
         <pl-order-window-edit
@@ -27,6 +28,15 @@
           :price="this.orderPrice.constructions[0]"
           :config="GET_ORDER.constructions[editWinNo-1].config"
           :service="GET_ORDER.service"
+          :orderID="orderID"
+          @edit-window="editEnd"
+        />
+
+        <pl-order-confirm
+          v-if="isEnd"
+          :constr="GET_ORDER.constructions"
+          :service="GET_ORDER.service"
+          :orderID="orderID"
         />
       </div>
     </main>
@@ -43,7 +53,7 @@
   import plHeaderAtwork from '@/components/pl-header-atwork.vue'
   import plOrderWindowEdit from '@/components/atwork/order/pl-order-window-edit.vue'
   import plOrderTopinfo from '@/components/atwork/order/pl-order-topinfo.vue'
-  
+  import plOrderConfirm from '@/components/atwork/order/pl-order-confirm.vue'
 
 export default {
   name: 'pl-configurator-page',
@@ -51,7 +61,8 @@ export default {
     plOrderWindowList,
     plHeaderAtwork,
     plOrderWindowEdit,
-    plOrderTopinfo
+    plOrderTopinfo,
+    plOrderConfirm
   },
   data() {
     return {
@@ -62,6 +73,7 @@ export default {
       isWindowEdit: false,
       editWinNo: null,
       winEdit: false,
+      isEnd: false
     }
   },
 
@@ -84,11 +96,14 @@ export default {
       this.isWindowEdit = true
       this.winEdit = true
     },
-    orderDone() {
-      
+    editEnd(e) {
+      this.isWindowList = !e.isWindowEdit
+      this.isWindowEdit = e.isWindowEdit
+      this.winEdit = e.isWindowEdit
     },
-    measureEnd() {
-      
+    orderDone(e) {
+      this.isWindowList = !e.isEnd
+      this.isEnd = e.isEnd
     },
     windowPrice(a) {
       if(a!==null) {
@@ -235,7 +250,8 @@ export default {
       if(a!==null) {
         return this.GET_ORDER.constructions[a-1].sizes
       }
-    }
+    },
+    
   },
   computed: {
     ...mapState('configurator', {

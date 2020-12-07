@@ -65,24 +65,44 @@ export default {
     },
     balkonLeft() {
       console.log(`Выбран балконный блок с дверью слева`)
+      let check = {square: true}
+      const orderId = this.id
+      const constrNumber = this.constrNumber
+      const payload = {
+        orderId,
+        constrNumber
+      }
+      console.log(payload)
+      this.$emit('square', payload)
+      this.$emit('check', check)
     },
     balkonRight() {
       console.log(`Выбран балконный блок с дверью справа`)
+      let check = {square: true}
+      const orderId = this.id
+      const constrNumber = this.constrNumber
+      const payload = {
+        orderId,
+        constrNumber
+      }
+      console.log(payload)
+      this.$emit('square', payload)
+      this.$emit('check', check)
     },
     balkonCenter() {
       console.log(`Выбран балконный блок с дверью посередине`)
+      let check = {square: true}
+      const orderId = this.id
+      const constrNumber = this.constrNumber
+      const payload = {
+        orderId,
+        constrNumber
+      }
+      console.log(payload)
+      this.$emit('square', payload)
+      this.$emit('check', check)
     },
   }
 }
-
-// chosen(selected) {
-//       const orderId = this.id
-//       const payload = {
-//         selected,
-//         orderId
-//       }
-//       console.log(payload)
-//       this.$emit('chosen', payload)
-//     },
 </script>
 

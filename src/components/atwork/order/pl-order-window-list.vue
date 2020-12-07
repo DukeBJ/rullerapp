@@ -17,9 +17,28 @@
       >Оформить заказ</button>
       <button
         class="app-btn btn__red btn__min-width"
-        @click="measureEnd"
+        @click="isModalEndNot = !isModalEndNot"
       >Завершить замер</button>
     </div>
+    <b-modal
+        centered
+        no-stacking
+        v-model="isModalEndNot"
+        title="Укажите причину по которой не удалось заключить договор"
+      >
+
+        <form action="">
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <br>
+          <input type="checkbox" name="" id="">
+        </form>
+        <template #modal-footer="{ ok }">
+          <button
+            class="app-btn btn__blue"
+            @click="ok()"
+          >Отправить</button>
+        </template>
+      </b-modal>
   </div>
 </template>
 
@@ -34,6 +53,7 @@ export default {
   props: ['priceList', 'constructions'],
   data() {
     return {
+      isModalEndNot: false
     }
   },
   computed: {
@@ -43,7 +63,7 @@ export default {
       this.$emit('edit-window', a)
     },
     orderDone() {
-
+      this.$emit('order-done', {isEnd: true})
     },
     measureEnd() {
 

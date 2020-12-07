@@ -31,5 +31,8 @@ export default {
   filters: {
     priceFormat
   },
+  watch: {
+
+  }
 }
 </script>
