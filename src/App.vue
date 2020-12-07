@@ -67,7 +67,7 @@ export default {
       height: 30px;
       right: 15px!important;
       left: auto!important;
-      top: 20px;
+      top: 20px!important;
       cursor: pointer;
       background-image: url('./assets/img/icons/burger.svg');
       background-position: center;
