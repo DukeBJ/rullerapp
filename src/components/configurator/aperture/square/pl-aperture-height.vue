@@ -88,12 +88,12 @@ export default {
           close
         }
         this.$emit('send-size', payload)
-        console.log(`Ширина изделия ${constrSize}`)
+        console.log(`Высота изделия ${constrSize}`)
       } else if (checkSize < 70) {
-        console.log(`Разница менее 40, нужен перерасчет`)
+        console.log(`Разница менее 70, нужен перерасчет`)
         return this.isWarning40 = true
       } else if (checkSize > 130) {
-        console.log(`Разница более 120, нужен перерасчет. Или заказать пенопласт =)`)
+        console.log(`Разница более 130, нужен перерасчет. Или заказать пенопласт =)`)
         return this.isWarning120 = true
       }
     },
