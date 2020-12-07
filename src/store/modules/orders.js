@@ -7,7 +7,7 @@ const state = {
 const actions = {
   async GET_PRICE_LIST({commit}) {
     await axios
-      .get('http://localhost:8080/price.json')
+      .get('/price.json')
       .then((response) => {
         console.log(response.data)
         const prises = response.data

@@ -7,7 +7,7 @@ const state = {
 const actions = {
   async GET_SCHEDULE_LIST({commit}) {
     await axios
-      .get('http://localhost:8080/scheduleinfo.json')
+      .get('/scheduleinfo.json')
       .then((response) => {
         console.log(response.data)
         const schedule = response.data
