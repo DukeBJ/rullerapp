@@ -11,7 +11,7 @@ import Test from './views/TestPage.vue'
 Vue.use(Router)
 
 export default new Router ({
-  base: '/app/',
+  // base: '/app/',
   mode: 'history',
   routes: [
     {
