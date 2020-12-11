@@ -77,26 +77,26 @@
       </div>
       <div class="col-6">
         <b-form-group label="Москитная сетка">
-          <b-form-radio v-model="mosquitoSelected" name="isMosquito" value="true">Да</b-form-radio>
-          <b-form-radio v-model="mosquitoSelected" name="isMosquito" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="mosquitoSelected" name="isMosquito" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="mosquitoSelected" name="isMosquito" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Детские замки">
-          <b-form-radio v-model="childlockSelected" name="isChildlock" value="true">Да</b-form-radio>
-          <b-form-radio v-model="childlockSelected" name="isChildlock" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="childlockSelected" name="isChildlock" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="childlockSelected" name="isChildlock" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Откосы">
-          <b-form-radio v-model="slopeSelected" name="isSlope" value="true">Да</b-form-radio>
-          <b-form-radio v-model="slopeSelected" name="isSlope" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="slopeSelected" name="isSlope" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="slopeSelected" name="isSlope" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group label="Отливы">
-          <b-form-radio v-model="ebbSelected" name="isEbb" value="true">Да</b-form-radio>
-          <b-form-radio v-model="ebbSelected" name="isEbb" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="ebbSelected" name="isEbb" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="ebbSelected" name="isEbb" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-12">

@@ -71,26 +71,26 @@
       </div>
       <div class="col-6">
         <b-form-group :label="label.mosquito">
-          <b-form-radio v-model="mosquitoSelected" name="isMosquito" value="true">Да</b-form-radio>
-          <b-form-radio v-model="mosquitoSelected" name="isMosquito" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="mosquitoSelected" name="isMosquito" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="mosquitoSelected" name="isMosquito" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group :label="label.childlock">
-          <b-form-radio v-model="childlockSelected" name="isChildlock" value="true">Да</b-form-radio>
-          <b-form-radio v-model="childlockSelected" name="isChildlock" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="childlockSelected" name="isChildlock" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="childlockSelected" name="isChildlock" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group :label="label.slope">
-          <b-form-radio v-model="slopeSelected" name="isSlope" value="true">Да</b-form-radio>
-          <b-form-radio v-model="slopeSelected" name="isSlope" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="slopeSelected" name="isSlope" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="slopeSelected" name="isSlope" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group :label="label.ebb">
-          <b-form-radio v-model="ebbSelected" name="isEbb" value="true">Да</b-form-radio>
-          <b-form-radio v-model="ebbSelected" name="isEbb" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="ebbSelected" name="isEbb" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="ebbSelected" name="isEbb" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-12">
@@ -112,26 +112,26 @@
       </div>
       <div class="col-6">
         <b-form-group :label="label.dismant">
-          <b-form-radio v-model="isDismantlingSelected" name="isDismantling" value="true">Да</b-form-radio>
-          <b-form-radio v-model="isDismantlingSelected" name="isDismantling" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="isDismantlingSelected" name="isDismantling" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="isDismantlingSelected" name="isDismantling" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group :label="label.deliver">
-          <b-form-radio v-model="isDeliverSelected" name="isDeliver" value="true">Да</b-form-radio>
-          <b-form-radio v-model="isDeliverSelected" name="isDeliver" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="isDeliverSelected" name="isDeliver" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="isDeliverSelected" name="isDeliver" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group :label="label.mounting">
-          <b-form-radio v-model="isMountingSelected" name="isMounting" value="true">Да</b-form-radio>
-          <b-form-radio v-model="isMountingSelected" name="isMounting" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="isMountingSelected" name="isMounting" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="isMountingSelected" name="isMounting" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-6">
         <b-form-group :label="label.garbage">
-          <b-form-radio v-model="isGarbageSelected" name="isGarbage" value="true">Да</b-form-radio>
-          <b-form-radio v-model="isGarbageSelected" name="isGarbage" value="false">Нет</b-form-radio>
+          <b-form-radio v-model="isGarbageSelected" name="isGarbage" :value="Boolean(1)">Да</b-form-radio>
+          <b-form-radio v-model="isGarbageSelected" name="isGarbage" :value="Boolean(0)">Нет</b-form-radio>
         </b-form-group>
       </div>
       <div class="col-12">
