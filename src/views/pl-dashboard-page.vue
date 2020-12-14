@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pl-header :name="firstname" :family="lastname" :sale="sale" :bonus="bonus" :bonus_persent="bonusPersent" :sale_persent="salePersent" />
+    <!-- <pl-header :name="firstname" :family="lastname" :sale="sale" :bonus="bonus" :bonus_persent="bonusPersent" :sale_persent="salePersent" /> -->
     <main class="card-place">
       <div class="container">
         <div class="row justify-content-center">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import plHeader from '@/components/pl-header.vue'
+// import plHeader from '@/components/pl-header.vue'
 import plCardList from '@/components/maindashboard/pl-card-list.vue'
 import plDonutList from '@/components/maindashboard/pl-donut-list.vue'
 import plCompliment from '@/components/maindashboard/pl-compliment.vue'
@@ -26,7 +26,7 @@ import plCompliment from '@/components/maindashboard/pl-compliment.vue'
 export default {
     name: 'pl-dashboard-page',
     components: {
-    plHeader,
+    // plHeader,
     plCardList,
     plDonutList,
     plCompliment,

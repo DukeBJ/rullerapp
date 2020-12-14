@@ -1,22 +1,36 @@
 <template>
   <div id="app">
-    <div class="main-logo" v-if="isMain"><img src="./assets/img/logo.svg"></div>
-    <div class="backlink" v-else><a @click="$router.go(-1)"></a></div>
-    <Reveal>
+    <transition name="fade" mode="out-in">
+      <div class="main-logo" v-if="isMain" key="logo"><img :src="plLogo"></div>
+      <div class="backlink" v-else key="backlink"><a @click="$router.go(-1)"></a></div>
+    </transition>
+    <Reveal :closeOnNavigation="true">
       <router-link :to="{name: 'dashboard'}">
-        <span>Home</span>
+        <span>Статистика</span>
+      </router-link>
+      <router-link :to="{name: 'schedule'}">
+        <span><nobr>Расписание замеров</nobr></span>
+      </router-link>
+      <router-link :to="{name: 'atwork'}">
+        <span><nobr>Список замеров</nobr></span>
       </router-link>
     </Reveal>
     <div id="page-wrap">
-      <router-view />
+      <pl-header :name="firstname" :family="lastname" :sale="sale" :bonus="bonus" :bonus_persent="bonusPersent" :sale_persent="salePersent" />
+      <!-- <transition name="pageswipe" mode="out-in"> -->
+      <transition>
+        <router-view class="page-view" />
+      </transition>
       <div class="indent"></div>
-    <pl-footer/>
+      <pl-footer/>
     </div>
   </div>
 </template>
 
 <script>
+import plHeader from '@/components/pl-header.vue'
 import plFooter from '@/components/pl-footer.vue'
+import plLogo from '@/assets/img/logo.svg'
 import { Reveal } from 'vue-burger-menu'
 //import axios from 'axios'
 
@@ -25,10 +39,12 @@ export default {
   components: {
     plFooter,
     Reveal,
+    plHeader
   },
   data() {
     return {
-      info: null
+      info: null,
+      plLogo
     }
   },
   computed: {
@@ -36,6 +52,9 @@ export default {
       return this.$route.name === 'dashboard'
     }
   },
+  // watch: {
+  //   $router(to, from)
+  // }
 }
 </script>
 
@@ -50,6 +69,7 @@ export default {
 #page-wrap {
   position: relative;
   height: 100vh;
+  overflow: hidden;
   &::before {
     content: "";
     position: absolute;
@@ -80,12 +100,12 @@ export default {
       //background-color: #373a47;
       display: none;
     }
-    .line-style {
-      // position: absolute;
-      // height: 20%;
-      // left: 0;
-      // right: 0;
-    }
+    // .line-style {
+    //   // position: absolute;
+    //   // height: 20%;
+    //   // left: 0;
+    //   // right: 0;
+    // }
     .cross-style {
       position: absolute;
       top: 12px;
@@ -138,4 +158,83 @@ export default {
       font-weight: 700;
       color: white;
     }
+
+    .pageswipe-enter, .pageswipe-leave-to {
+      animation: 0.3s slideInLeft;
+    }
+    .pageswipe-enter-active, .pageswipe-leave-active {
+      transition: all 0.3s ease-in-out;
+    }
+    .pageswipe-leave, .pageswipe-enter-to {
+      animation: 0.3s slideInRight;
+    }
+
+    .fade-enter, .fade-leave-to {
+      opacity: 0;
+    }
+    .fade-enter-active, .fade-leave-active {
+      transition: all 0.3s ease;
+    }
+
+    // @keyframes page-slide {
+    //   0% {
+    //     opacity: 0;
+    //     }
+    //   100% {
+    //     opacity: 1;
+    //   }
+    // }
+
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+// .slideInLeft {
+//   animation-name: slideInLeft;
+// }
+
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// .slideInRight {
+//   animation-name: slideInRight;
+// }
+// .fade-enter-active, .fade-leave-active {
+//   transition: opacity .75s ease;
+// }
+// .fade-enter, .fade-leave-active {
+//   opacity: 0;
+// }
+// .child-view {
+//   position: absolute;
+//   transition: all .75s cubic-bezier(.55,0,.1,1);
+// }
+// .slide-left-enter, .slide-right-leave-active {
+//   opacity: 0;
+//   -webkit-transform: translate(30px, 0);
+//   transform: translate(30px, 0);
+// }
+// .slide-left-leave-active, .slide-right-enter {
+//   opacity: 0;
+//   -webkit-transform: translate(-30px, 0);
+//   transform: translate(-30px, 0);
+// }
 </style>
