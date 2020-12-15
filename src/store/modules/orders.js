@@ -37,6 +37,7 @@ const mutations = {
     console.log(`Данные из localStorage добавляются в state.localOrd`)
     state.localOrd = localOrd
   },
+  // Обновляем конфигурацию окна в заказе с ценами
   SET_UPD_CONFIG({localOrd}, {winNo, config, service}) {
     localOrd.service = {...service}
     const constr = localOrd.constructions[winNo-1]
