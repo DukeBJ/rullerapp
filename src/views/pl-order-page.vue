@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pl-header-atwork :title="orderTitle()" />
     <main
       class="card-place"
       v-if="orderID !== null && thisOrder === true"
@@ -50,7 +49,6 @@
 <script>
   import { mapState, mapActions, mapGetters } from 'vuex'
   import plOrderWindowList from '@/components/atwork/order/pl-order-window-list.vue'
-  import plHeaderAtwork from '@/components/pl-header-atwork.vue'
   import plOrderWindowEdit from '@/components/atwork/order/pl-order-window-edit.vue'
   import plOrderTopinfo from '@/components/atwork/order/pl-order-topinfo.vue'
   import plOrderConfirm from '@/components/atwork/order/pl-order-confirm.vue'
@@ -59,7 +57,6 @@ export default {
   name: 'pl-configurator-page',
   components: {
     plOrderWindowList,
-    plHeaderAtwork,
     plOrderWindowEdit,
     plOrderTopinfo,
     plOrderConfirm
@@ -82,9 +79,9 @@ export default {
         'GET_PRICE_LIST',
         'GET_LOCAL_ORDERS'
     ]),
-    orderTitle() {
-      return 'Заказ №' + this.orderID
-    },
+    // orderTitle() {
+    //   return 'Заказ №' + this.orderID
+    // },
     // checkOrder() {
     //   const index = this.orders.findIndex(ord => ord.id === this.orderID)
     //   return this.orders[index]

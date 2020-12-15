@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pl-header-schedule :date="today" />
     <main class="card-place">
       <div class="container">
         <div class="row justify-content-center">
@@ -15,13 +14,11 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import plHeaderSchedule from '@/components/pl-header-schedule.vue'
 import plScheduleList from '@/components/schedule/pl-schedule-list.vue'
 
 export default {
   name: 'pl-schedule-page',
   components: {
-    plHeaderSchedule,
     plScheduleList,
     
   },

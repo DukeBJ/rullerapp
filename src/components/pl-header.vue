@@ -1,16 +1,17 @@
 <template>
   <header class="app-header">
+    <transition name="fade" mode="out-in">
+      <div class="main-logo" v-if="isMain" key="logo"><img :src="plLogo"></div>
+      <div class="backlink" v-else key="backlink"><a @click="$router.go(-1)"></a></div>
+    </transition>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-12">
-          <div class="avatar"><img src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg" alt=""></div>
-          <h2 class="name">{{ name }} {{ family }}</h2>
-          <div class="monthly-stat">
-            <div class="salary">Заработал с{{'\u00A0'}}начала месяца на{{ '\u00A0' }}сегодня<span>{{ summa | priceFormat}}</span></div>
-            <div class="sale">{{ sale | priceFormat }} ({{ sale_persent }}%) — продажи</div>
-            <div class="bonus">{{ bonus | priceFormat }} ({{ bonus_persent }}%) — бонус</div>
-          </div>
-        </div>
+        <pl-header-dashboard
+          v-if="isMain"
+        />
+        <pl-header-text
+          v-else
+        />
       </div>
     </div>
 
@@ -18,28 +19,34 @@
 </template>
 
 <script>
-import priceFormat from '@/components/filters/priceFormat';
+import plHeaderDashboard from '@/components/pl-header-dashboard.vue'
+import plHeaderText from '@/components/pl-header-text.vue'
+import plLogo from '@/assets/img/logo.svg'
 
 export default {
   name: 'pl-header',
-  props: {
-    name: String,
-    family: String,
-    sale: Number,
-    bonus: Number,
-    sale_persent: Number,
-    bonus_persent: Number
+  components: {
+    plHeaderDashboard,
+    plHeaderText,
   },
-  computed: {
-    summa: function() {
-      return Number(this.sale) + Number(this.bonus)
+  data() {
+    return {
+      plLogo
     }
   },
-  filters: {
-    priceFormat
-  }
+  computed: {
+    isMain() {
+      return this.$route.name === 'dashboard'
+    }
+  },
 }
 </script>
 
-<style>
+<style lang="scss">
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: all 0.3s ease;
+  }
 </style>

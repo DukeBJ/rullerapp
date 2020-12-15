@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pl-header-atwork title="Список замеров" />
     <main class="card-place">
       <div class="container">
         <div class="row justify-content-center">
@@ -14,13 +13,11 @@
 </template>
 
 <script>
-import plHeaderAtwork from '@/components/pl-header-atwork.vue'
 import plAtworkList from '@/components/atwork/pl-atwork-list.vue'
 
 export default {
   name: 'plAtworkPage',
   components: {
-    plHeaderAtwork,
     plAtworkList
   },
   data() {

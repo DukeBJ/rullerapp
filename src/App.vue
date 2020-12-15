@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <transition name="fade" mode="out-in">
-      <div class="main-logo" v-if="isMain" key="logo"><img :src="plLogo"></div>
-      <div class="backlink" v-else key="backlink"><a @click="$router.go(-1)"></a></div>
-    </transition>
     <Reveal :closeOnNavigation="true">
       <router-link :to="{name: 'dashboard'}">
         <span>Статистика</span>
@@ -16,7 +12,7 @@
       </router-link>
     </Reveal>
     <div id="page-wrap">
-      <pl-header :name="firstname" :family="lastname" :sale="sale" :bonus="bonus" :bonus_persent="bonusPersent" :sale_persent="salePersent" />
+      <pl-header/>
       <!-- <transition name="pageswipe" mode="out-in"> -->
       <transition>
         <router-view class="page-view" />
@@ -30,7 +26,7 @@
 <script>
 import plHeader from '@/components/pl-header.vue'
 import plFooter from '@/components/pl-footer.vue'
-import plLogo from '@/assets/img/logo.svg'
+
 import { Reveal } from 'vue-burger-menu'
 //import axios from 'axios'
 
@@ -44,14 +40,9 @@ export default {
   data() {
     return {
       info: null,
-      plLogo
     }
   },
-  computed: {
-    isMain() {
-      return this.$route.name === 'dashboard'
-    }
-  },
+
   // watch: {
   //   $router(to, from)
   // }
@@ -68,8 +59,8 @@ export default {
 }
 #page-wrap {
   position: relative;
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;//100vh;
+  overflow-x: hidden;
   &::before {
     content: "";
     position: absolute;
@@ -169,23 +160,6 @@ export default {
       animation: 0.3s slideInRight;
     }
 
-    .fade-enter, .fade-leave-to {
-      opacity: 0;
-    }
-    .fade-enter-active, .fade-leave-active {
-      transition: all 0.3s ease;
-    }
-
-    // @keyframes page-slide {
-    //   0% {
-    //     opacity: 0;
-    //     }
-    //   100% {
-    //     opacity: 1;
-    //   }
-    // }
-
-
 @keyframes slideInLeft {
   from {
     transform: translate3d(0, 0, 0);
@@ -214,27 +188,4 @@ export default {
   }
 }
 
-// .slideInRight {
-//   animation-name: slideInRight;
-// }
-// .fade-enter-active, .fade-leave-active {
-//   transition: opacity .75s ease;
-// }
-// .fade-enter, .fade-leave-active {
-//   opacity: 0;
-// }
-// .child-view {
-//   position: absolute;
-//   transition: all .75s cubic-bezier(.55,0,.1,1);
-// }
-// .slide-left-enter, .slide-right-leave-active {
-//   opacity: 0;
-//   -webkit-transform: translate(30px, 0);
-//   transform: translate(30px, 0);
-// }
-// .slide-left-leave-active, .slide-right-enter {
-//   opacity: 0;
-//   -webkit-transform: translate(-30px, 0);
-//   transform: translate(-30px, 0);
-// }
 </style>

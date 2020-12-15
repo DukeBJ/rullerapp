@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pl-header-atwork :title="title.check" />
     <main
       class="card-place"
       v-if="checkOrder()"
@@ -56,7 +55,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import plHeaderAtwork from '@/components/pl-header-atwork.vue'
 import plApertureCheck from '@/components/configurator/aperture/pl-aperture-check.vue'
 import plApertureSquare from '@/components/configurator/aperture/square/pl-aperture-square.vue'
 import plConstructConfig from '@/components/configurator/pl-construct-config.vue'
@@ -67,7 +65,6 @@ import plOrderService from '@/components/configurator/pl-order-service.vue'
 export default {
   name: 'pl-configurator-page',
   components: {
-    plHeaderAtwork,
     plApertureCheck,
     plApertureSquare,
     plConstructConfig,
