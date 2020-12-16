@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const state = {
   dashboard: {},
+  loading: true
 }
 const actions = {
   async GET_DASHBOARD_LIST({commit}) {
@@ -15,6 +16,7 @@ const actions = {
       .catch(err => {
         console.log(err)
       })
+      .finally(() => (state.loading = false))
   },
 }
 const mutations = { 

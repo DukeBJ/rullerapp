@@ -2,9 +2,10 @@
   <div class="card card-diagram">
     <h3 class="card-title">{{ card.title }}</h3>
     <pl-diagram-line
-      v-for="lineDiagram in card.lineDiagram"
-      v-bind:key="lineDiagram.id"
-      v-bind:lineDiagram="lineDiagram"
+      v-for="(lineDiagram, index) in card.lineDiagram"
+      :key="index"
+      :index="index"
+      :lineDiagram="lineDiagram"
     />
   </div>
 </template>

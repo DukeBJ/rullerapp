@@ -72,6 +72,11 @@ export default {
     transition: 0.3s ease-in;
   }
 }
+.page-view {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .bm-burger-button {
       position: absolute;
       width: 30px;

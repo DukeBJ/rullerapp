@@ -1,10 +1,13 @@
 <template>
   <div>
-    <main class="card-place">
+    <pl-loader
+      v-if="isLoading"
+    />
+    <main v-else class="card-place">
       <div class="container">
         <div class="row justify-content-center">
           <pl-schedule-list
-            v-bind:scheduleList="SCHEDULE_LIST"
+            :scheduleList="SCHEDULE_LIST"
           />
         </div>
       </div>
@@ -13,7 +16,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import plScheduleList from '@/components/schedule/pl-schedule-list.vue'
 
 export default {
@@ -22,14 +25,27 @@ export default {
     plScheduleList,
     
   },
+  data() {
+    return {
+      isLoading: true
+    }
+  },
   methods: {
     ...mapActions('schedule', [
         'GET_SCHEDULE_LIST',
     ]),
   },
+  watch: {
+    loading() {
+      this.isLoading = this.loading
+    }
+  },
   computed: {
     ...mapGetters('schedule', [
       'SCHEDULE_LIST',
+      ]),
+      ...mapState('schedule', [
+      'loading',
       ]),
     today: function() {
       let dateConstr = new Date().toJSON().slice(0,10)

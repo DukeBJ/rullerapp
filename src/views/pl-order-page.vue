@@ -1,5 +1,9 @@
 <template>
   <div>
+    <!-- <pl-loader
+      v-if="isLoading"
+    /> -->
+    {{testWindowPrice}}
     <main
       class="card-place"
       v-if="orderID !== null && thisOrder === true"
@@ -70,7 +74,8 @@ export default {
       isWindowEdit: false,
       editWinNo: null,
       winEdit: false,
-      isEnd: false
+      isEnd: false,
+      isLoading: true
     }
   },
 
@@ -79,13 +84,6 @@ export default {
         'GET_PRICE_LIST',
         'GET_LOCAL_ORDERS'
     ]),
-    // orderTitle() {
-    //   return 'Заказ №' + this.orderID
-    // },
-    // checkOrder() {
-    //   const index = this.orders.findIndex(ord => ord.id === this.orderID)
-    //   return this.orders[index]
-    // },
     editWindow(e) {
       console.log(e)
       this.editWinNo = e
@@ -111,7 +109,7 @@ export default {
       const config = window[index].config
 
       let totoalPrice = new Array()
-      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      const reducer = (accumulator, currentValue) => accumulator + currentValue
       // Тип механизмов окна (открываение/закрывание)
       const type = config.type
       let priceType = 0
@@ -196,6 +194,59 @@ export default {
       return sum
       }
     },
+    testWindowPrice(a) {
+      function circle(cfg, constr, pr) {
+        const x = cfg[constr]
+        let p = 0
+        if(x !== undefined) {
+          if (constr === "isMosquito") {
+            constr = "mosquito"
+            p = Number(pr[constr][x])
+          } else if (constr === "isChildlock") {
+            constr = "childlock"
+            p = Number(pr[constr][x])
+          } else if (constr === "isSlope") {
+            constr = "slope"
+            p = Number(pr[constr][x])
+          } else if (constr === "isEbb") {
+            constr = "ebb"
+            p = Number(pr[constr][x])
+          } else {
+            p = Number(pr[constr][x])
+          }
+          console.log(`Цена ${constr} окна ${p}`)
+        }
+        return p
+      }
+      if(a!==null) {
+      // Потом вместо [0] нужно будет подставлять (winNo - 1)
+      const price = this.orderPrice.constructions[0].config
+      const window = this.GET_ORDER.constructions
+      const index = a-1
+      const config = window[index].config
+      const arr = [
+        "type",
+        "profile",
+        "color",
+        "glassunit",
+        "hendless",
+        "sill",
+        "isMosquito",
+        "isChildlock",
+        "isSlope",
+        "isEbb"
+      ]
+      
+      let totoalPrice = new Array()
+      const reducer = (accumulator, currentValue) => accumulator + currentValue
+
+      for (let i=0;i<=9;i++) {
+        totoalPrice.push(circle(config, arr[i], price))
+      }
+
+      return totoalPrice.reduce(reducer)
+      }
+    },
     orderSum() {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       const servPrice = this.orderPrice.constructions[0].service
@@ -256,6 +307,9 @@ export default {
         orders: 'orders',
         service: 'service'
     }),
+    // ...mapState('orders', {
+    //     'loading'
+    // }),
     ...mapGetters('orders',[
         'PRICE_LIST',
         'GET_ORDER'

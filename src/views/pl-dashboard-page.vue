@@ -1,15 +1,17 @@
 <template>
   <div>
-    <main class="card-place">
+    <pl-loader
+      v-if="isLoading"
+    />
+    <main v-else class="card-place">
       <div class="container">
         <div class="row justify-content-center">
           <pl-card-list
-            v-bind:cardInfo="DASHBOARD_LIST.cardInfo"
           />
           <pl-donut-list
-            v-bind:donutInfo="DASHBOARD_LIST.donutInfo"
           />
-          <pl-compliment :name="DASHBOARD_LIST.firstname" />
+          <pl-compliment
+          />
         </div>
       </div>
     </main>
@@ -17,7 +19,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 import plCardList from '@/components/maindashboard/pl-card-list.vue'
 import plDonutList from '@/components/maindashboard/pl-donut-list.vue'
 import plCompliment from '@/components/maindashboard/pl-compliment.vue'
@@ -31,7 +33,7 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      isLoading: true
     }
   },
   methods: {
@@ -39,10 +41,18 @@ export default {
         'GET_DASHBOARD_LIST',
     ]),
   },
+  watch: {
+    loading() {
+      this.isLoading = this.loading
+    }
+  },
   computed: {
-    ...mapGetters('dashboard', [
-      'DASHBOARD_LIST',
-      ]),
+    ...mapState('dashboard', [
+        'loading',
+    ]),
+    // ...mapGetters('dashboard', [
+    //   'DASHBOARD_LIST',
+    //   ]),
   },
   mounted() {
     this.GET_DASHBOARD_LIST()

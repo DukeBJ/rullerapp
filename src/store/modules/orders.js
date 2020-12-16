@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const state = {
   prises: [],
-  localOrd: []
+  localOrd: [],
+  loading: true
 }
 const actions = {
   async GET_PRICE_LIST({commit}) {
@@ -16,6 +17,7 @@ const actions = {
       .catch(err => {
         console.log(err)
       })
+      .finally(() => (state.loading = false))
   },
   GET_LOCAL_ORDERS({commit}, orderID) {
     const ord = JSON.parse(localStorage.orders)

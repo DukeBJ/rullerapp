@@ -1,37 +1,20 @@
 import axios from 'axios'
 
+// Ключь от yandex API чтобы работать с Геокодом
+const yaKey = '7c5150d5-721b-4493-b1a0-4c6c98e8e544'
+
+// Убираем небольшой гемор, если localStorage.yandex не существует
 if (localStorage.yandex === undefined) {
   localStorage.yandex = ""
 }
 
-// function getYa(id, adress) {
-//   console.log(`${id} не найден в localStorage и будет сгенерерован у yandex`)
-//   const key = '7c5150d5-721b-4493-b1a0-4c6c98e8e544'
-//   let array = adress.split(' ')
-//   for (let i = 0; i < array.length; i++) {
-//     let str = array[i]
-//     str = str.replace(',', ' ')
-//     str = str.replace('.', ' ')
-//     str = str.trim()
-//     array[i] = str
-//   }
-//   const query = encodeURI(array.join(' '))
-//   await axios
-//   .get(`https://geocode-maps.yandex.ru/1.x/?apikey=${key}&geocode=${query}&format=json`)
-//   .then((response) => {
-//     const point = response.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
-//     commit('SET_YANDEX_POINT', {point, id})
-//   })
-//   .catch(err => {
-//     console.log(err)
-//   })
-// }
-
 const state = {
   schedule: [],
-  yandex: []
+  yandex: [],
+  loading: true
 }
 const actions = {
+  // Получаем список замеров на текущий день
   async GET_SCHEDULE_LIST({commit}) {
     await axios
       .get('/scheduleinfo.json')
@@ -43,20 +26,24 @@ const actions = {
       .catch(err => {
         console.log(err)
       })
+      .finally(() => (state.loading = false))
   },
+  // Получаем точки для адресов из списка замеров
   async GET_YANDEX_POINT({commit}, {id, adress}) {
     console.log(`${id}: ${adress}`)
     let yaStore
     let index
+    // Проверяем есть ли записи по этому замеру в localStorage.yandex
     if (localStorage.yandex !== "") {
       yaStore = JSON.parse(localStorage.yandex)
       index = yaStore.findIndex(ya => ya.id === id)
+      // Здесь нужно добавить комит на мутацию для добавления информации из localStorage.yandex в state.yandex
     } else {
       index = -1
     }
+    // Если запись не найдена, то добавляем ее
     if (index < 0) {
       console.log(`${id} не найден в localStorage и будет сгенерерован у yandex`)
-      const key = '7c5150d5-721b-4493-b1a0-4c6c98e8e544'
       let array = adress.split(' ')
       for (let i = 0; i < array.length; i++) {
         let str = array[i]
@@ -67,9 +54,10 @@ const actions = {
       }
       const query = encodeURI(array.join(' '))
       await axios
-      .get(`https://geocode-maps.yandex.ru/1.x/?apikey=${key}&geocode=${query}&format=json`)
+      .get(`https://geocode-maps.yandex.ru/1.x/?apikey=${yaKey}&geocode=${query}&format=json`)
       .then((response) => {
         const point = response.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+        console.log (point)
         commit('SET_YANDEX_POINT', {point, id})
       })
       .catch(err => {
@@ -77,6 +65,8 @@ const actions = {
       })
     } else {
       console.log(`В локалке есть точка к заказу ${id}`)
+      const point = yaStore[index].point
+      commit('SET_YANDEX_POINT', {point, id})
     }
   }
 }
@@ -97,7 +87,7 @@ const mutations = {
       obj.pos = pos
       console.log(obj)
       if (localStorage.yandex === "") {
-        localStorage.yandex = `[${JSON.stringify(obj)}]`
+        localStorage.yandex = `[{"id": ${id}, "point": ${point}}]`
         console.log(localStorage.yandex)
       } else {
         const arr = JSON.parse(localStorage.yandex)

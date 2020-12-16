@@ -12,11 +12,17 @@
         alt=""
       >
     </div>
-    <h2 class="name">{{ DASHBOARD_LIST.firstname }} {{ DASHBOARD_LIST.lastname }}</h2>
-    <div class="monthly-stat">
+    <h2 v-if="DASHBOARD_LIST.firstname" class="name">{{ DASHBOARD_LIST.firstname }} {{ DASHBOARD_LIST.lastname }}</h2>
+    <h2 v-else class="name">... загрузка данных ...</h2>
+    <div v-if="summa" class="monthly-stat">
       <div class="salary">Заработал с{{'\u00A0'}}начала месяца на{{ '\u00A0' }}сегодня<span>{{ summa | priceFormat}}</span></div>
       <div class="sale">{{ sale | priceFormat }} ({{ persent(sale) }}%) — продажи</div>
       <div class="bonus">{{ bonus | priceFormat }} ({{ persent(bonus) }}%) — бонус</div>
+    </div>
+    <div v-else class="monthly-stat">
+      <div class="salary">Заработал с{{'\u00A0'}}начала месяца на{{ '\u00A0' }}сегодня<span>—</span></div>
+      <div class="sale">—</div>
+      <div class="bonus">—</div>
     </div>
   </div>
 </template>

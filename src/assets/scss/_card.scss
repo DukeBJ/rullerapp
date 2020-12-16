@@ -129,10 +129,10 @@
         stroke-dashoffset: 0;
         stroke-linecap: round;
         animation: progress-circle 1s ease-out forwards;
-        &.donut_blue {
+        &.donut__skyblue {
           stroke: $plskyblue;
         }
-        &.donut_magenta {
+        &.donut__magenta {
           stroke: $plmagenta;
         }
       }

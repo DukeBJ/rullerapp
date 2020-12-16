@@ -164,12 +164,7 @@ const createNewOrder = (orderId) => ({
   id: orderId,
   buildType: "Панельный",
   constructions: [],
-  service: {
-    // isDismantling: true,
-    // isMounting: true,
-    // isDeliver: true,
-    // isGarbage: true
-  }
+  service: {}
 })
 
 const createNewConstruction = (constrNumber) => ({
@@ -182,7 +177,7 @@ const createNewConstruction = (constrNumber) => ({
 // const createNewConstruction = (constrNumber) => ({
 //   window: constrNumber,
 //   sizes: {},
-//   config: 'first',
+//   type: 'first',
 //   profile: 'lite60',
 //   color: 'white',
 //   glassunit: 'climatherm',

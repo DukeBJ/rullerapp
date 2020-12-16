@@ -9,8 +9,8 @@
             stroke-linejoin="round"
           />
           <circle class="donut-ring" cx="50%" cy="50%" r="15.91549430918954"
-            v-bind:class="'donut_' + donut.color"
-            v-bind:style="'stroke-dasharray:' + donut.persent + ', 100;'"
+            :class="'donut__' + color(index)"
+            :style="'stroke-dasharray:' + donut.persent + ', 100;'"
             fill="transparent"
             fill-opacity="0"
             stroke-width="3"
@@ -32,10 +32,20 @@ export default {
     donut: {
       type: Object,
       required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    }
+  },
+  methods: {
+    color(i) {
+      if (i === 0) {
+        return "skyblue"
+      } else if (i === 1) {
+        return "magenta"
+      }
     }
   }
 }
 </script>
-
-<style>
-</style>

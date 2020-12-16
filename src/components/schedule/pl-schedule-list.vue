@@ -2,20 +2,20 @@
   <div class="col-12">
     <pl-schedule
       v-for="schedule in scheduleList.filter(ds => ds.done == false)"
-      v-bind:key="schedule.number"
-      v-bind:number="schedule.number"
-      v-bind:time="schedule.time"
-      v-bind:done="schedule.done"
-      v-bind:customer="schedule.customer[0]"
+      :key="schedule.number"
+      :number="schedule.number"
+      :time="schedule.time"
+      :done="schedule.done"
+      :customer="schedule.customer[0]"
       @new-order-start="newOrder"
     />
     <pl-schedule
       v-for="schedule in scheduleList.filter(ds => ds.done == true)"
-      v-bind:key="schedule.number"
-      v-bind:number="schedule.number"
-      v-bind:time="schedule.time"
-      v-bind:done="schedule.done"
-      v-bind:customer="schedule.customer[0]"
+      :key="schedule.number"
+      :number="schedule.number"
+      :time="schedule.time"
+      :done="schedule.done"
+      :customer="schedule.customer[0]"
       @new-order-start="newOrder"
     />
   </div>
