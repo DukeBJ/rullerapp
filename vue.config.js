@@ -25,7 +25,7 @@ module.exports = {
       });
   },
   pwa: {
-    name: 'Замерщик. Пластика Окон',
+    name: '\u0417\u0430\u043c\u0435\u0440\u0449\u0438\u043a. \u041f\u043b\u0430\u0441\u0442\u0438\u043a\u0430 \u041e\u043a\u043e\u043d',
     themeColor: '#33C5F3',
     msTileColor: '#ffffff',
     appleMobileWebAppCapable: 'yes',
@@ -33,11 +33,26 @@ module.exports = {
 
     // настройки манифеста
     manifestOptions: {
+      icons: [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
       orientation: 'portrait',
       display: 'fullscreen',
       background_color: '#ffffff',
       start_url: '.'
     },
+    iconPaths: {
+      favicon32: 'favicon-32x32.png',
+      favicon16: 'favicon-16x16.png',
+      maskIcon: 'safari-pinned-tab.svg',
+      msTileImage: 'mstile-150x150.png',
+      appleTouchIcon: 'apple-touch-icon.png'
+      
+    }
 
     // // настройка workbox-плагина
     // workboxPluginMode: 'InjectManifest',
