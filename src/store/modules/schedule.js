@@ -87,18 +87,22 @@ const mutations = {
       obj.pos = pos
       console.log(obj)
       if (localStorage.yandex === "") {
-        localStorage.yandex = `[{"id": ${id}, "point": ${point}}]`
+        localStorage.yandex = `[{"id": "${id}", "point": "${point}"}]`
         console.log(localStorage.yandex)
       } else {
         const arr = JSON.parse(localStorage.yandex)
-        console.log(arr)
-        arr.push(obj)
-        localStorage.yandex = JSON.stringify(arr)
+        const int = arr.findIndex(ya => ya.id === id)
+        if(int < 0) {
+          arr.push(JSON.parse(`{"id": "${id}", "point": "${point}"}`))
+          localStorage.yandex = JSON.stringify(arr)
+        }
       }
       return state.yandex.push(obj)
     } else {
       console.log(`${id} уже в state.yandex`)
     }
+    console.log(`Сейчас в state.yandex`)
+    console.log(state.yandex)
   }
 }
 const getters = {
