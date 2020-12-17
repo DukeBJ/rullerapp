@@ -11,11 +11,12 @@ if (localStorage.yandex === undefined) {
 const state = {
   schedule: [],
   yandex: [],
-  loading: true
+  loading: Boolean()
 }
 const actions = {
   // Получаем список замеров на текущий день
   async GET_SCHEDULE_LIST({commit}) {
+    state.loading = true
     await axios
       .get('/scheduleinfo.json')
       .then((response) => {
@@ -53,6 +54,7 @@ const actions = {
         array[i] = str
       }
       const query = encodeURI(array.join(' '))
+      // Коннектимся к Yandex Geocode и получаем данные
       await axios
       .get(`https://geocode-maps.yandex.ru/1.x/?apikey=${yaKey}&geocode=${query}&format=json`)
       .then((response) => {
@@ -63,7 +65,7 @@ const actions = {
       .catch(err => {
         console.log(err)
       })
-    } else {
+    } else { // Если данные из яндекса уже загружались, забираем их из локалхоста
       console.log(`В локалке есть точка к заказу ${id}`)
       const point = yaStore[index].point
       commit('SET_YANDEX_POINT', {point, id})

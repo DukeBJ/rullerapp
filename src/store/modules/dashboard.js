@@ -2,10 +2,11 @@ import axios from 'axios'
 
 const state = {
   dashboard: {},
-  loading: true
+  loading: Boolean()
 }
 const actions = {
   async GET_DASHBOARD_LIST({commit}) {
+    state.loading = true
     await axios
       .get('/user.json')
       .then((response) => {
