@@ -11,6 +11,7 @@ if (localStorage.yandex === undefined) {
 const state = {
   schedule: [],
   yandex: [],
+  myLocation: "",
   loading: Boolean()
 }
 const actions = {
@@ -70,6 +71,22 @@ const actions = {
       const point = yaStore[index].point
       commit('SET_YANDEX_POINT', {point, id})
     }
+  },
+  // Получаем свою геопозицию
+  GET_MY_LOCATION({commit}) {
+    console.log(`Запрашиваем местоположение`)
+    const geo = navigator.geolocation
+    if (geo) {
+      geo.getCurrentPosition(showPosition)
+    } else {
+      console.log(`Не можем определить позицию`)
+    }
+    function showPosition(position) {
+      console.log(`Latitude: ${position.coords.latitude}`)
+      console.log(`Longitude: ${position.coords.longitude}`)
+      let myLocation = `${position.coords.latitude}%2C${position.coords.longitude}`
+      commit('SET_MY_LOCATION', myLocation)
+    }
   }
 }
 const mutations = { 
@@ -105,6 +122,11 @@ const mutations = {
     }
     console.log(`Сейчас в state.yandex`)
     console.log(state.yandex)
+  },
+  // Записываем полученное местоположение
+  SET_MY_LOCATION(state, myLocation) {
+    console.log(myLocation)
+    state.myLocation = myLocation
   }
 }
 const getters = {
@@ -115,6 +137,9 @@ const getters = {
   YANDEX_POINT(state) {
     console.log(state.yandex)
     return state.yandex
+  },
+  MY_LOCATION(state) {
+    return state.myLocation
   }
 }
 
@@ -124,4 +149,4 @@ export default {
   actions,
   mutations,
   getters
-} 
+}

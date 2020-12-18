@@ -155,7 +155,6 @@
           >Отправить</button>
         </template>
       </b-modal>
-
     </div>
 </template>
 
@@ -172,7 +171,7 @@ export default {
     customer: {
       type: Object,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -188,7 +187,8 @@ export default {
   },
   computed: {
     ...mapGetters('schedule', [
-      'YANDEX_POINT'
+      'YANDEX_POINT',
+      'MY_LOCATION'
     ]),
   },
   methods: {
@@ -196,7 +196,7 @@ export default {
         'ADD_ORDER',
     ]),
     ...mapActions('schedule', [
-        'GET_YANDEX_POINT'
+        'GET_YANDEX_POINT',
     ]),
     addNewOrder: function(number) {
       this.ADD_ORDER(number)
@@ -205,8 +205,8 @@ export default {
     map(number) {
       const index = this.YANDEX_POINT.findIndex(ord => ord.id === number)
       const point = this.YANDEX_POINT[index].pos
-      return `https://yandex.ru/maps/?rtext=${point}&rtt=auto`
-    }
+      return `https://yandex.ru/maps/?rtext=${this.MY_LOCATION}${point}&rtt=auto`
+    },
   },
   mounted() {
     const id = this.number

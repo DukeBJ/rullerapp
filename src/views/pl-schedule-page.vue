@@ -12,6 +12,7 @@
         </div>
       </div>
     </main>
+
   </div>
 </template>
 
@@ -23,28 +24,28 @@ export default {
   name: 'pl-schedule-page',
   components: {
     plScheduleList,
-    
   },
   data() {
     return {
-      isLoading: true
+      isLoading: true,
     }
   },
   methods: {
     ...mapActions('schedule', [
         'GET_SCHEDULE_LIST',
+        'GET_MY_LOCATION'
     ]),
   },
   watch: {
     loading() {
       this.isLoading = this.loading
-    }
+    },
   },
   computed: {
     ...mapGetters('schedule', [
       'SCHEDULE_LIST',
       ]),
-      ...mapState('schedule', [
+    ...mapState('schedule', [
       'loading',
       ]),
     today: function() {
@@ -54,10 +55,11 @@ export default {
       let dd = dateConstr.slice(8,10)
       dateConstr = dd + '.' + mm + '.' + yyyy
       return dateConstr
-    }
+    },
   },
   mounted() {
     this.GET_SCHEDULE_LIST()
+    this.GET_MY_LOCATION()
   },
 }
 </script>
