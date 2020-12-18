@@ -5,12 +5,18 @@ import store from './store'
 import plLoader from './components/pl-loader.vue'
 import BootstrapVue from 'bootstrap-vue'
 import axios from 'axios'
+import {Vue2Storage} from 'vue2-storage'
 //import './registerServiceWorker'
 import './assets/scss/custom.scss'
 
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue, axios)
+Vue.use(Vue2Storage, {
+  prefix: 'pl_',
+  driver: 'local',
+  ttl: 60 * 60 * 24 * 1000 // 24 часа
+})
 Vue.prototype.$axios = axios
 Vue.component('pl-loader', plLoader)
 

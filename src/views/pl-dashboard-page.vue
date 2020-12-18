@@ -57,6 +57,13 @@ export default {
   mounted() {
     this.GET_DASHBOARD_LIST()
   },
+  created () {
+    this.$storage.set('test', { key: 'value' }, { ttl: 60 * 1000 })
+    const data = this.$storage.get('test')
+    const fallback = this.$storage.get('unknown', 'fallback') // Not in storage
+    console.log(data) // { key: 'value' }
+    console.log(fallback) // "fallback"
+  }
 }
 </script>
 
