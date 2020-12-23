@@ -104,12 +104,29 @@ footer {
     height: 26px;
     width: 50px;
     background-image: url('../../assets/img/icons/tape-arrow.svg');
-    transition: 0.5s;
-    transform: rotateX(180deg);
+    transform: rotateX(180deg) translateX(-50%);
     background-repeat: no-repeat;
-    background-position: center;
-    top: 3px;
-    left: 0;
+    background-position: center 6px;
+    left: 50%;
+    bottom: 0;
+    z-index: 1;
+    transition: all 1s ease-in-out;
+  }
+  &.rotate::before {
+    transform: rotateX(0deg) translateX(-50%);
+    background-position: center 10px;
+    transition: all 1s ease-in-out;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    height: 26px;
+    width: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    background-color: $plskyblue;
+    border-radius: 50px 50px 0 0;
   }
 }
 

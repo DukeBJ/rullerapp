@@ -2,7 +2,7 @@
   {
     "number": "6541-54",
     "time": "15:00 — 16:30",
-    "strat": false,
+    "start": false,
     "startTime": "",
     "done": false,
     "customer": [
@@ -19,7 +19,7 @@
   {
     "number": "6542-54",
     "time": "12:00 — 13:30",
-    "strat": false,
+    "start": false,
     "startTime": "",
     "done": false,
     "customer": [
@@ -36,7 +36,7 @@
   {
     "number": "6543-54",
     "time": "14:00 — 15:30",
-    "strat": false,
+    "start": false,
     "startTime": "",
     "done": false,
     "customer": [
@@ -53,7 +53,7 @@
   {
     "number": "6544-54",
     "time": "10:30 — 12:00",
-    "strat": true,
+    "start": true,
     "startTime": "",
     "done": true,
     "customer": [
@@ -70,7 +70,7 @@
   {
     "number": "6545-54",
     "time": "19:00 — 20:30",
-    "strat": false,
+    "start": false,
     "startTime": "",
     "done": false,
     "customer": [
@@ -87,7 +87,7 @@
   {
     "number": "6546-54",
     "time": "8:00 — 9:30",
-    "strat": true,
+    "start": true,
     "startTime": "",
     "done": true,
     "customer": [

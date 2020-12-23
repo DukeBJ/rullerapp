@@ -1,4 +1,5 @@
 <template>
+  
     <div class="card card-shedule">
       <div class="card-header">
         <div class="client">
@@ -9,101 +10,22 @@
         </div>
       </div>
 
-        <div
-        class="card-body"
-        v-if="isShow"
-        >
-          <div class="client-name">
-            <div class="block-info">
-              <h4>Заказчик</h4>
-              <div>{{ customer.name }}</div>
-            </div>
-            <nav>
-              <a :href="`tel:+${customer.phone}`">
-                <div class="square-button">
-                  <span class="phone"></span>
-                </div>
-              </a>
-            </nav>
-          </div>
-          <div class="client-adress">
-            <div class="block-info">
-              <div>{{ customer.adress }}</div>
-            </div>
-            <nav>
-              <a :href="map(number)" target="_blank" rel="nofollow noopener">
-                <div class="square-button">
-                  <span class="map"></span>
-                </div>
-              </a>
-            </nav>
-          </div>
-          <div class="before-price">
-            <div class="block-info">
-              <h4>Предварительный расчёт</h4>
-              <div>{{ customer.firstPrice | priceFormat }}</div>
-            </div>
-            <nav>
-              <a href="#">
-                <div class="square-button">
-                  <span class="search"></span>
-                </div>
-              </a>
-            </nav>
-          </div>
-          <div class="manager">
-            <div class="block-info">
-              <h4>Менеджер</h4>
-              <div>{{ customer.manager }}</div>
-            </div>
-            <nav>
-              <div class="square-button">
-                <span class="msg"></span>
-              </div>
-            </nav>
-          </div>
-          <div class="comment">
-            <div class="block-info">
-              <h4>Комментарии</h4>
-              <div>{{ customer.comment }}</div>
-            </div>
-          </div>
+      <transition name="customer-card">
+        <pl-customer-card
+          v-if="isShow"
+          :customer="customer"
+          :number="number"
+        />
+      </transition>
 
-          <div class="flexwrap" v-if=" done === false ">
-
-            <button
-            class="app-btn btn__blue"
-            v-on:click="isStart = !isStart" v-if="isStart === false ">Начать замер</button>
-            
-            <div class="flexwrap" v-else>
-              <button
-                class="app-btn btn__blue"
-                @click="isModalPhoto = !isModalPhoto"
-              >Отправить в расчёт</button>
-              
-              <button
-                class="app-btn btn__blue"
-                @click="addNewOrder(number)"
-              >Самостоятельный расчёт</button>
-              
-              <button
-                class="app-btn btn__red"
-                @click="isModalEnd = !isModalEnd"
-              >Завершить замер</button>
-            </div>
-
-          </div>
-          <div v-else class="work-end">Замер завершён</div>
-
-        </div>
-
-      <button class="tape" v-on:click="isShow = !isShow"></button>
+      <button :class="!isShow ? 'tape' : 'tape rotate'" v-on:click="isShow = !isShow"></button>
+      
       <div v-show=" done === true " class="label-left"><span>Завершен</span></div>
 
       <b-modal
-      centered
-      v-model="isModalPhoto"
-      title="Прикрепите фото вашего замера"
+        centered
+        v-model="isModalPhoto"
+        title="Прикрепите фото вашего замера"
       >
 
         <form action="">
@@ -155,15 +77,21 @@
           >Отправить</button>
         </template>
       </b-modal>
+
     </div>
+    
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import priceFormat from '@/components/filters/priceFormat'
+import { mapActions } from 'vuex'
+
+import plCustomerCard from "@/components/schedule/pl-customer-card";
 
 export default {
   name: 'pl-schedule',
+  components: {
+    plCustomerCard
+  },
   props: {
     number: String,
     time: String,
@@ -179,47 +107,35 @@ export default {
       isShow: false,
       isModalPhoto: false,
       isModalEnd: false,
-      isModalEndNot: false
+      isModalEndNot: false,
+      isPdf: false,
+      isChat: false
     }
-  },
-  filters: {
-    priceFormat
-  },
-  computed: {
-    ...mapGetters('schedule', [
-      'YANDEX_POINT',
-      'MY_LOCATION'
-    ]),
   },
   methods: {
     ...mapActions('configurator', [
         'ADD_ORDER',
     ]),
-    ...mapActions('schedule', [
-        'GET_YANDEX_POINT',
-    ]),
+    
     addNewOrder: function(number) {
       this.ADD_ORDER(number)
       this.$router.push({ name: 'configurator', params: {ordern: number}, query: { order: number } })
     },
-    map(number) {
-      const index = this.YANDEX_POINT.findIndex(ord => ord.id === number)
-      const point = this.YANDEX_POINT[index].pos
-      return `https://yandex.ru/maps/?rtext=${this.MY_LOCATION}${point}&rtt=auto`
-    },
   },
-  mounted() {
-    const id = this.number
-    const adress = this.customer.adress
-    const payload= {
-      id,
-      adress
-    }
-    this.GET_YANDEX_POINT(payload)
-  }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .customer-card-enter, .customer-card-leave-to {
+    transition: all 0.5s ease-in-out;
+    max-height: 0;
+  }
+  .customer-card-enter-active, .customer-card-leave-active {
+    transition: all 0.5s ease-in-out;
+  }
+  .customer-card-leave, .customer-card-enter-to {
+    transition: all 0.5s ease-in-out;
+    max-height: 1000px;
+  }
 
 </style>
