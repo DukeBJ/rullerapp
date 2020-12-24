@@ -15,7 +15,7 @@
             </div>
           </router-link>
         </div>
-        <div class="nav-bottom__el">
+        <!-- <div class="nav-bottom__el">
           <div class="square-button">
             <span class="msg"></span>
           </div>
@@ -24,7 +24,7 @@
           <div class="square-button">
             <span class="info"></span>
           </div>
-        </div>
+        </div> -->
     </nav>
   </footer>
 </template>

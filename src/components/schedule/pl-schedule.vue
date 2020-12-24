@@ -84,7 +84,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-
 import plCustomerCard from "@/components/schedule/pl-customer-card";
 
 export default {
@@ -95,7 +94,7 @@ export default {
   props: {
     number: String,
     time: String,
-    done: Boolean,
+    // done: Boolean,
     customer: {
       type: Object,
       required: true,
@@ -108,8 +107,7 @@ export default {
       isModalPhoto: false,
       isModalEnd: false,
       isModalEndNot: false,
-      isPdf: false,
-      isChat: false
+      done: false
     }
   },
   methods: {

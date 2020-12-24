@@ -10,6 +10,7 @@ if (localStorage.yandex === undefined) {
 
 const state = {
   schedule: [],
+  prichina: [],
   yandex: [],
   myLocation: "",
   loading: Boolean()
@@ -22,8 +23,12 @@ const actions = {
       .get('/scheduleinfo.json')
       .then((response) => {
         console.log(response.data)
-        const schedule = response.data
+        // Список замеров
+        const schedule = response.data.zameri
+        // Список причин для отказа
+        const prichina = response.data.prichina
         commit('SET_SCHEDULE', schedule)
+        commit('SET_PRICHINA', prichina)
       })
       .catch(err => {
         console.log(err)
@@ -48,9 +53,9 @@ const actions = {
       console.log(`${id} не найден в localStorage и будет сгенерерован у yandex`)
       let array = adress.split(' ')
       for (let i = 0; i < array.length; i++) {
+        // Тут нужно дописать нормальный фильтр. У меня , пока, лапки ((
         let str = array[i]
-        str = str.replace(',', ' ')
-        str = str.replace('.', ' ')
+        str = str.replace(/[,.#№:;]/g, ' ')
         str = str.trim()
         array[i] = str
       }
@@ -92,7 +97,15 @@ const actions = {
 const mutations = { 
   SET_SCHEDULE(state, schedule) {
     console.log(`Устанавливаем schedule в соответствии с полученными данными`)
+    // Нужно очистить время и нормализировать
+    // schedule.forEach(element => {
+    //   element.time.trim()
+    // })
     state.schedule = schedule
+  },
+  SET_PRICHINA(state, prichina) {
+    console.log(`Устанавливаем список возможных причин для отказа`)
+    state.prichina = prichina
   },
   SET_YANDEX_POINT(state, {id, point}) {
     const index = state.yandex.findIndex(ya => ya.id === id)
@@ -134,6 +147,10 @@ const getters = {
     console.log(`Получаем значения из state.schedule геттером SCHEDULE_LIST`)
     return state.schedule
   },
+  PRICHINA_LIST(state) {
+    console.log(`Получаем значения из state.prichina геттером PRICHINA_LIST`)
+    return state.prichina
+  },
   YANDEX_POINT(state) {
     console.log(state.yandex)
     return state.yandex
@@ -150,3 +167,9 @@ export default {
   mutations,
   getters
 }
+
+// timeNormalize(el) {
+//   const time = el.time
+//   const number = el.number
+//   this.state.schedule
+// }

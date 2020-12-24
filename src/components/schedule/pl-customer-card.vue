@@ -4,10 +4,10 @@
     <div class="client-name">
       <div class="block-info">
         <h4>Заказчик</h4>
-        <div>{{ customer.name }}</div>
+        <div>{{ nameNormalize }}</div>
       </div>
       <nav v-if="customer.phone">
-        <a :href="`tel:+7${customer.phone}`">
+        <a :href="`tel:+7${phoneNormalize}`">
           <div class="square-button">
             <span class="phone"></span>
           </div>
@@ -17,7 +17,7 @@
 
     <div class="client-adress">
       <div class="block-info">
-        <div>{{ customer.adress }}</div>
+        <div>{{ adressNornalize }}</div>
       </div>
       <nav v-if="map(number)">
         <a :href="map(number)" target="_blank" rel="nofollow noopener">
@@ -31,7 +31,8 @@
     <div class="before-price">
       <div class="block-info">
         <h4>Предварительный расчёт</h4>
-        <div>{{ customer.firstPrice | priceFormat }}</div>
+        <div v-if="customer.firstPrice">{{ customer.firstPrice | priceFormat }}</div>
+        <div v-else>Не рассчитан</div>
       </div>
       <nav v-if="isPdf">
         <a href="#">
@@ -109,7 +110,8 @@ export default {
       isModalEnd: false,
       isModalEndNot: false,
       isPdf: false,
-      isChat: false
+      isChat: false,
+      done: false
     }
   },
   filters: {
@@ -120,6 +122,25 @@ export default {
       'YANDEX_POINT',
       'MY_LOCATION'
     ]),
+    adressNornalize() {
+      const adr = this.customer.adress
+      return adr.slice(2)
+    },
+    phoneNormalize() {
+      let phone = this.customer.phone
+      phone = phone.trim()
+      phone = phone.replace(/[^\d]/g, '')
+      if (phone.length == 11) {
+        phone = phone.slice(1)
+      }
+      return phone
+    },
+    nameNormalize() {
+      let name = this.customer.name
+      name = name.replace(/[\d()]/g, '')
+      name = name.trim()
+      return name
+    }
   },
   methods: {
     ...mapActions('schedule', [
@@ -134,6 +155,7 @@ export default {
         return false
       }
     },
+    
   },
   mounted() {
     const id = this.number

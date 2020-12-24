@@ -1,104 +1,126 @@
-[
-  {
-    "number": "6541-54",
-    "time": "15:00 — 16:30",
-    "start": false,
-    "startTime": "",
-    "done": false,
-    "customer": [
-      {
+{
+  "zameri": [
+    {
+      "number": "265502",
+      "time": "10                                      ",
+      "customer": {
+        "name": "Александр 8(925) 353 14 02",
+        "phone": "8(925) 3531402",
+        "adress": ": 140074, Московская обл, Люберецкий р-н, Томилино рп, Жуковского ул, дом № 2, кв. 4",
+        "firstPrice": "",
+        "manager": "Тумашова Юлия",
+        "comment": "готов заключиться на дому. уже у нас заказывал окна позвони за 15 минут, так как закрытпа калитка, над калиткой синяя табличка Жуковского ул, дом № 2,"
+      }
+    },
+    {
+      "number": "265523",
+      "time": "8-9                                   ",
+      "customer": {
         "name": "Вильгельмина Христорождественская",
-        "phone": 79993331122,
-        "adress": "Москва, ул. Барклая, д.6, стр.26, кв.140",
-        "firstPrice": 165052,
-        "manager": "Лариса Петрова",
-        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "phone": "+7 (925) 353-14-02",
+        "adress": ": 140074, Москва, ул. Барклая, д.6, стр.26, кв.140",
+        "firstPrice": "165052",
+        "manager": "Тумашова Юлия",
+        "comment": "готов заключиться на дому. уже у нас заказывал окна позвони за 15 минут, так как закрытпа калитка, над калиткой синяя табличка Жуковского ул, дом № 2,"
       }
-    ]
-  },
-  {
-    "number": "6542-54",
-    "time": "12:00 — 13:30",
-    "start": false,
-    "startTime": "",
-    "done": false,
-    "customer": [
+    },
+    {
+      "number":"265543",
+      "time":"12-13                                   ",
+      "customer":{
+      "name":"Ольга 8 910 323 73 76",
+      "phone":"8(910) 3237376",
+      "adress":": 143080, Московская обл, Одинцовский р-н, ВНИИССОК п, Михаила Кутузова ул, дом № 1, кв. 420",
+      "firstPrice":"33000",
+      "manager":"Безгубова Антонина",
+      "comment":"по-дешевле, взять с собой каталог (возможно будет в ламинации), балконный блок"
+      }
+      },
       {
-        "name": "Лина Христорождественская",
-        "phone": 79993331122,
-        "adress": "Домодедово, улица Правды, д.5, кв.34",
-        "firstPrice": 265052,
-        "manager": "Лариса Петрова",
-        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-      }
-    ]
-  },
-  {
-    "number": "6543-54",
-    "time": "14:00 — 15:30",
-    "start": false,
-    "startTime": "",
-    "done": false,
-    "customer": [
-      {
-        "name": "Нина Христорождественская",
-        "phone": 79993331122,
-        "adress": "Люберцы, Смирновская улица, 8, кв.6",
-        "firstPrice": 365052,
-        "manager": "Лариса Петрова",
-        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-      }
-    ]
-  },
-  {
-    "number": "6544-54",
-    "time": "10:30 — 12:00",
-    "start": true,
-    "startTime": "",
-    "done": true,
-    "customer": [
-      {
-        "name": "Анна Христорождественская",
-        "phone": 79993331122,
-        "adress": "Москва, улица Академика Комарова, д.12, кв.45",
-        "firstPrice": 465052,
-        "manager": "Лариса Петрова",
-        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-      }
-    ]
-  },
-  {
-    "number": "6545-54",
-    "time": "19:00 — 20:30",
-    "start": false,
-    "startTime": "",
-    "done": false,
-    "customer": [
-      {
-        "name": "Светлана Христорождественская",
-        "phone": 79993331122,
-        "adress": "Москва, Талдомская улица, 2Б, кв.83",
-        "firstPrice": 565052,
-        "manager": "Лариса Петрова",
-        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-      }
-    ]
-  },
-  {
-    "number": "6546-54",
-    "time": "8:00 — 9:30",
-    "start": true,
-    "startTime": "",
-    "done": true,
-    "customer": [
-      {
-        "name": "Марина Христорождественская",
-        "phone": 79993331122,
-        "adress": "Балашиха, шоссе Энтузиастов, д.23, кв.65",
-        "firstPrice": 665052,
-        "manager": "Лариса Петрова",
-        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-      }
-    ]
-  }
-]
+        "number":"265454",
+        "time":"11                                      ",
+        "customer":{
+        "name":"Алексей  8(916) 750 57 42",
+        "phone":"8(916) 7505742",
+        "adress":": 143180, Московская обл, Звенигород г, Нахабинское ш, дом № 1, корпус 1",
+        "firstPrice":"41000",
+        "manager":"Тумашова Юлия",
+        "comment":"готов заключиться на дому"
+        }
+        },
+        {
+          "number":"265547",
+          "time":"14-15                                   ",
+          "customer":{
+          "name":"Ольга 8 910 323 73 76",
+          "phone":"8(910) 3237376",
+          "adress":": 143080, Московская обл, Одинцовский р-н, ВНИИССОК п, Михаила Кутузова ул, дом № 1, кв. 420",
+          "firstPrice":"33000",
+          "manager":"Безгубова Антонина",
+          "comment":"по-дешевле, взять с собой каталог (возможно будет в ламинации), балконный блок"
+          }
+          },
+          {
+            "number":"265457",
+            "time":"17                                      ",
+            "customer":{
+            "name":"Алексей  8(916) 750 57 42",
+            "phone":"8(916) 7505742",
+            "adress":": 143180, Московская обл, Звенигород г, Нахабинское ш, дом № 1, корпус 1",
+            "firstPrice":"41000",
+            "manager":"Тумашова Юлия",
+            "comment":"готов заключиться на дому"
+            }
+            }
+  ],
+  "prichina":[
+    {
+      "name":"Рассрочка или кредит",
+      "kod":"000000001"
+    },
+    {
+      "name":"Тех. отказ",
+      "kod":"000000002"
+    },
+    {
+      "name":"Клиент отсутствовал на объекте",
+      "kod":"000000003"
+    },
+    {
+      "name":"Необходимы доп. согласования по заказу",
+      "kod":"000000004"
+    },
+    {
+      "name":"Юр. Лицо",
+      "kod":"000000005"
+    },
+    {
+      "name":"Дорого",
+      "kod":"000000006"
+    },
+    {
+      "name":"Тендер среди компаний",
+      "kod":"000000007"
+    },
+    {
+      "name":"Далеко. Не выезжаем",
+      "kod":"000000008"
+    },
+    {
+      "name":"Клиент хочет в офис",
+      "kod":"000000009"
+    },
+    {
+      "name":"Замер сотруднику",
+      "kod":"000000010"
+    },
+    {
+      "name":"Думает",
+      "kod":"000000011"
+    },
+    {
+      "name":"Не готовы проемы",
+      "kod":"000000012"
+    }
+  ]
+}
