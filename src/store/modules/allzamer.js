@@ -9,7 +9,7 @@ const actions = {
   async GET_MEASUREMENTS_LIST({commit}) {
     state.loading = true
     await axios
-      .get('/zamermonth.json')
+      .get('./zamermonth.json')
       .then((response) => {
         console.log(response.data)
         // Список замеров

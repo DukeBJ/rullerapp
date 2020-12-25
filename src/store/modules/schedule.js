@@ -2,6 +2,7 @@ import axios from 'axios'
 
 // Ключь от yandex API чтобы работать с Геокодом
 const yaKey = '7c5150d5-721b-4493-b1a0-4c6c98e8e544'
+const phone = '9260004483'
 
 // Убираем небольшой гемор, если localStorage.yandex не существует
 if (localStorage.yandex === undefined) {
@@ -17,10 +18,12 @@ const state = {
 }
 const actions = {
   // Получаем список замеров на текущий день
+  // async GET_SCHEDULE_LIST({commit}) {
   async GET_SCHEDULE_LIST({commit}) {
     state.loading = true
     await axios
-      .get('/scheduleinfo.json')
+      // .get('./scheduleinfo.json')
+      .get(`./get.php?req=today&phone=${phone}`)
       .then((response) => {
         console.log(response.data)
         // Список замеров
@@ -101,7 +104,11 @@ const mutations = {
     // schedule.forEach(element => {
     //   element.time.trim()
     // })
-    state.schedule = schedule
+    console.log(schedule)
+    if (schedule) {
+      state.schedule = schedule
+    }
+    console.log(state.schedule)
   },
   SET_PRICHINA(state, prichina) {
     console.log(`Устанавливаем список возможных причин для отказа`)

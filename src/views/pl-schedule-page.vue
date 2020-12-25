@@ -7,8 +7,10 @@
       <div class="container">
         <div class="row justify-content-center">
           <pl-schedule-list
+            v-if="SCHEDULE_LIST.length"
             :scheduleList="SCHEDULE_LIST"
           />
+          <h3 v-else>Нет замеров на сегодня</h3>
         </div>
       </div>
     </main>

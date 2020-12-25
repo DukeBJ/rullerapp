@@ -17,7 +17,7 @@ export default new Vuex.Store({
     dashboard,
     schedule,
     orders,
-    allzamer
+    allzamer,
     //test
   },
 })

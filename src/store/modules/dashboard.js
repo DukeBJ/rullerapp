@@ -8,7 +8,7 @@ const actions = {
   async GET_DASHBOARD_LIST({commit}) {
     state.loading = true
     await axios
-      .get('/user.json')
+      .get('./user.json')
       .then((response) => {
         console.log(response.data)
         const dashboard = response.data

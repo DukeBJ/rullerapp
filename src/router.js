@@ -5,13 +5,13 @@ import plSchedule from './views/pl-schedule-page.vue'
 import plAtwork from './views/pl-atwork-page.vue'
 import plConfigurator from './views/pl-configurator-page.vue'
 import plOrder from './views/pl-order-page.vue'
-import Test from './views/TestPage.vue'
+import login from './views/login.vue'
 
 
 Vue.use(Router)
 
 export default new Router ({
-  // base: '/app/',
+  base: '/app/',
   mode: 'history',
   routes: [
     {
@@ -41,9 +41,9 @@ export default new Router ({
       props: true
     },
     {
-      path: '/test/',
-      name: "test",
-      component: Test,
+      path: '/login/',
+      name: "login",
+      component: login,
     },
   ]
 })

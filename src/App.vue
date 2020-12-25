@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 import plHeader from '@/components/pl-header.vue'
 import plFooter from '@/components/pl-footer.vue'
 
@@ -40,12 +41,20 @@ export default {
   data() {
     return {
       info: null,
+      // autorz: false
     }
   },
+  computed: {
+    ...mapState('account', [
+      'auth',
+    ]),
+  },
+  beforeMount() {
+    if (!this.auth) {
+      return this.$router.push({name: 'login'})
+    }
+  }
 
-  // watch: {
-  //   $router(to, from)
-  // }
 }
 </script>
 
