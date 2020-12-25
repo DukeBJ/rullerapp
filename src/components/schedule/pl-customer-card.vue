@@ -43,16 +43,18 @@
       </nav>
     </div>
 
-    <div class="zamer-done">
+    <div
+      class="zamer-done"
+      v-if="isWaiting">
       <div class="block-info">
         <h4>Окончательный расчёт</h4>
         <div v-if="customer.firstPrice">{{ customer.firstPrice | priceFormat }}</div>
         <div v-else>Не рассчитан</div>
       </div>
-      <nav v-if="isPdf">
+      <nav v-if="isSelf">
         <a href="#">
           <div class="square-button">
-            <span class="search"></span>
+            <span class="switch"></span>
           </div>
         </a>
       </nav>
@@ -77,31 +79,45 @@
       </div>
     </div>
 
-    <div class="flexwrap" v-if=" done === false ">
+    <transition name="card-end" mode="out-in">
 
-      <button
-      class="app-btn btn__blue"
-      v-on:click="isStart = !isStart" v-if="isStart === false ">Начать замер</button>
-      
-      <div class="flexwrap" v-else>
-        <button
-          class="app-btn btn__blue"
-          @click="isModalPhoto = !isModalPhoto"
-        >Отправить в расчёт</button>
-        
-        <button
-          class="app-btn btn__blue"
-          @click="addNewOrder(number)"
-        >Самостоятельный расчёт</button>
-        
-        <button
-          class="app-btn btn__red"
-          @click="isModalEnd = !isModalEnd"
-        >Завершить замер</button>
+      <div class="flexwrap" v-if="!isEnd">
+
+        <transition name="card-btn" mode="out-in">
+
+          <button
+            class="app-btn btn__blue"
+            v-if="!isStart"
+            @click="start">
+            Начать замер
+          </button>
+          
+          <div class="flexwrap" v-else>
+            <button
+              class="app-btn btn__blue"
+              @click="self">
+              Отправить в расчёт
+            </button>
+            
+            <button
+              class="app-btn btn__blue"
+              @click="addNewOrder(number)">
+              Самостоятельный расчёт
+            </button>
+            
+            <button
+              class="app-btn btn__red"
+              @click="end">
+              Завершить замер
+            </button>
+          </div>
+
+          </transition>
+
       </div>
+      <div v-else class="work-end">Замер завершён</div>
 
-    </div>
-    <div v-else class="work-end">Замер завершён</div>
+    </transition>
 
   </div>
 </template>
@@ -116,17 +132,16 @@ export default {
 
   },
   props: 
-    ['customer', 'number'],
+    ['customer', 'number', 'isEnd'],
   data() {
     return {
       isStart: false,
-      isShow: false,
-      isModalPhoto: false,
       isModalEnd: false,
       isModalEndNot: false,
       isPdf: false,
       isChat: false,
-      done: false
+      isWaiting: true,
+      isSelf: true
     }
   },
   filters: {
@@ -170,7 +185,21 @@ export default {
         return false
       }
     },
-    
+    start(e) {
+      this.$emit('mensure-start', e)
+      this.isStart = true
+    },
+    addNewOrder(number) {
+      this.$emit('to-config', number)
+    },
+    self() {
+      const modalSelf = true
+      this.$emit('modal-self', modalSelf)
+    },
+    end() {
+      const modalEnd = true
+      this.$emit('mensure-end', modalEnd)
+    }
   },
   mounted() {
     const id = this.number
@@ -181,6 +210,28 @@ export default {
     }
     this.GET_YANDEX_POINT(payload)
   }
-
 }
 </script>
+
+<style lang="scss" scoped>
+  .card-end-enter,
+  .card-end-leave-to,
+  .card-btn-enter,
+  .card-btn-leave-to {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+  }
+  .card-end-enter-active,
+  .card-end-leave-active,
+  .card-btn-enter-active,
+  .card-btn-leave-active {
+    transition: all 0.3s ease-in-out;
+  }
+  .card-end-leave,
+  .card-end-enter-to,
+  .card-btn-leave,
+  .card-btn-enter-to {
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+  }
+</style>

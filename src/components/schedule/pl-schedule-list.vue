@@ -1,5 +1,15 @@
 <template>
   <div class="col-12">
+    <!-- <pl-schedule
+      v-for="schedule in timeSort"
+      :key="schedule.number"
+      :number="schedule.number"
+      :time="schedule.time"
+      :customer="schedule.customer"
+      @new-order-start="newOrder"
+    /> -->
+    
+    <!-- <h3>Демо данные</h3> -->
     <pl-schedule
       v-for="schedule in timeSort"
       :key="schedule.number"
