@@ -15,9 +15,14 @@
 export default {
   name: 'pl-header-text',
   components: {},
+  props: {
+    title: {
+      type: String,
+      default: "тут заголовок"
+    }
+  },
   data() {
     return {
-      title: 'text',
     }
   },
   computed: {

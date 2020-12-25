@@ -11,6 +11,7 @@
         />
         <pl-header-text
           v-else
+          :title="pageText"
         />
       </div>
     </div>
@@ -37,6 +38,12 @@ export default {
   computed: {
     isMain() {
       return this.$route.name === 'dashboard'
+    },
+    pageText() {
+      if (this.$route.name === 'atwork'){
+        return "Список замеров"
+      }
+      return "text"
     }
   },
 }
