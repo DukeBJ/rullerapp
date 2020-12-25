@@ -1,0 +1,284 @@
+[
+  {
+    "number": 261134,
+    "date": "17.12.2020",
+    "price": 9100,
+    "status": 3
+  },
+  {
+    "number": 264148,
+    "date": "08.12.2020",
+    "price": 164200,
+    "status": 1
+  },
+  {
+    "number": 264159,
+    "date": "08.12.2020",
+    "price": 100000,
+    "status": 3
+  },
+  {
+    "number": 264229,
+    "date": "05.12.2020",
+    "price": 41000,
+    "status": 3
+  },
+  {
+    "number": 264237,
+    "date": "05.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 264240,
+    "date": "05.12.2020",
+    "price": 53300,
+    "status": 3
+  },
+  {
+    "number": 264332,
+    "date": "07.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 264413,
+    "date": "07.12.2020",
+    "price": 30000,
+    "status": 3
+  },
+  {
+    "number": 264418,
+    "date": "08.12.2020",
+    "price": 60300,
+    "status": 3
+  },
+  {
+    "number": 264424,
+    "date": "07.12.2020",
+    "price": 82500,
+    "status": 3
+  },
+  {
+    "number": 264434,
+    "date": "07.12.2020",
+    "price": 25600,
+    "status": 3
+  },
+  {
+    "number": 264454,
+    "date": "12.12.2020",
+    "price": 120000,
+    "status": 3
+  },
+  {
+    "number": 264465,
+    "date": "09.12.2020",
+    "price": 45000,
+    "status": 3
+  },
+  {
+    "number": 264496,
+    "date": "09.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 264513,
+    "date": "15.12.2020",
+    "price": 27600,
+    "status": 3
+  },
+  {
+    "number": 264582,
+    "date": "07.12.2020",
+    "price": 42500,
+    "status": 3
+  },
+  {
+    "number": 264586,
+    "date": "16.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 264606,
+    "date": "08.12.2020",
+    "price": 45600,
+    "status": 3
+  },
+  {
+    "number": 264678,
+    "date": "10.12.2020",
+    "price": 0,
+    "status": 2
+  },
+  {
+    "number": 264681,
+    "date": "12.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 264720,
+    "date": "12.12.2020",
+    "price": 0,
+    "status": 2
+  },
+  {
+    "number": 264722,
+    "date": "10.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 264802,
+    "date": "12.12.2020",
+    "price": 32500,
+    "status": 3
+  },
+  {
+    "number": 264891,
+    "date": "12.12.2020",
+    "price": 0,
+    "status": 2
+  },
+  {
+    "number": 264893,
+    "date": "14.12.2020",
+    "price": 56000,
+    "status": 3
+  },
+  {
+    "number": 264895,
+    "date": "14.12.2020",
+    "price": 2930000,
+    "status": 1
+  },
+  {
+    "number": 264934,
+    "date": "14.12.2020",
+    "price": 21800,
+    "status": 3
+  },
+  {
+    "number": 264961,
+    "date": "18.12.2020",
+    "price": 37000,
+    "status": 3
+  },
+  {
+    "number": 264972,
+    "date": "15.12.2020",
+    "price": 37100,
+    "status": 3
+  },
+  {
+    "number": 264991,
+    "date": "15.12.2020",
+    "price": 0,
+    "status": 2
+  },
+  {
+    "number": 264992,
+    "date": "15.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 265026,
+    "date": "16.12.2020",
+    "price": 0,
+    "status": 2
+  },
+  {
+    "number": 265062,
+    "date": "17.12.2020",
+    "price": 22700,
+    "status": 3
+  },
+  {
+    "number": 265108,
+    "date": "17.12.2020",
+    "price": 18400,
+    "status": 3
+  },
+  {
+    "number": 265109,
+    "date": "16.12.2020",
+    "price": 64000,
+    "status": 1
+  },
+  {
+    "number": 265160,
+    "date": "17.12.2020",
+    "price": 85000,
+    "status": 3
+  },
+  {
+    "number": 265210,
+    "date": "18.12.2020",
+    "price": 0,
+    "status": 2
+  },
+  {
+    "number": 265216,
+    "date": "18.12.2020",
+    "price": 45000,
+    "status": 1
+  },
+  {
+    "number": 265219,
+    "date": "17.12.2020",
+    "price": 28600,
+    "status": 3
+  },
+  {
+    "number": 265239,
+    "date": "18.12.2020",
+    "price": 90000,
+    "status": 3
+  },
+  {
+    "number": 265396,
+    "date": "21.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 265407,
+    "date": "22.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 265454,
+    "date": "24.12.2020",
+    "price": 0,
+    "status": 1
+  },
+  {
+    "number": 265459,
+    "date": "22.12.2020",
+    "price": 46857.94,
+    "status": 3
+  },
+  {
+    "number": 265478,
+    "date": "22.12.2020",
+    "price": 30400,
+    "status": 3
+  },
+  {
+    "number": 265502,
+    "date": "23.12.2020",
+    "price": 18800,
+    "status": 3
+  },
+  {
+    "number": 265543,
+    "date": "24.12.2020",
+    "price": 0,
+    "status": 0
+  }
+]

@@ -1,27 +1,31 @@
 <template>
     <div
       class="card card-active"
+    >
+    <!-- <div
+      class="card card-active"
       :class="{ disabled: !active.done }"
       @click="gotoOrder"
-    >
+    > -->
       <div class="card-header">
-        <div class="price" :class="{ opacity20: !active.done }">{{ active.price | priceFormat }}</div>
+        <div class="price">{{ measurement.price | priceFormat }}</div>
+        <!-- <div class="price" :class="{ opacity20: !active.done }">{{ active.price | priceFormat }}</div> -->
         <div class="custumer-info">
           <div class="client">
-            №{{ active.number }}
+            №{{ measurement.number }}
           </div>
           <div class="date">
-            {{ active.date }}
+            {{ measurement.date }}
           </div>
         </div>
-        <div class="status">
+        <!-- <div class="status">
           <span v-if="active.done == true" class="bg__blue"></span>
           <span v-else class="bg__yellow"></span>
-        </div>
+        </div> -->
       </div>
 
-      <div v-if=" active.done == true " class="label-left"><span>Рассчитан</span></div>
-      <div v-else class="label-left bg__yellow"><span>Ожидает</span></div>
+      <!-- <div v-if=" active.done == true " class="label-left"><span>Рассчитан</span></div>
+      <div v-else class="label-left bg__yellow"><span>Ожидает</span></div> -->
 
     </div>
 </template>
@@ -31,7 +35,7 @@ import priceFormat from '@/components/filters/priceFormat'
 export default {
   name: 'pl-atwork',
   props: {
-    active: {
+    measurement: {
       type: Object,
       required: true,
     }
@@ -41,7 +45,7 @@ export default {
   },
   methods: {
     gotoOrder() {
-      this.$router.push({ name: 'order', params: {id: this.active.number} })
+      this.$router.push({ name: 'order', params: {id: this.measurement.number} })
     }
   }
 }

@@ -1,11 +1,17 @@
 <template>
   <div>
-    <main class="card-place">
+    <pl-loader
+      v-if="isLoading"
+    />
+    <main v-else class="card-place">
       <div class="container">
         <div class="row justify-content-center">
           <pl-atwork-list
-            v-bind:calculationPrice="calculationPrice"
+            v-if="MEASUREMENTS_LIST.length !== 0"
+            :measurements="MEASUREMENTS_LIST"
           />
+
+          <h4 v-else>В этом месяце замеров не было</h4>
         </div>
       </div>
     </main>
@@ -13,6 +19,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapState } from 'vuex'
 import plAtworkList from '@/components/atwork/pl-atwork-list.vue'
 
 export default {
@@ -22,51 +29,29 @@ export default {
   },
   data() {
     return {
-      calculationPrice: [
-        {
-          id: 1,
-          number: '6541-54',
-          date: '23.01.2020',
-          price: '96658',
-          done: true
-        },
-        {
-          id: 2,
-          number: '6542-54',
-          date: '23.01.2020',
-          price: '969658',
-          done: true
-        },
-        {
-          id: 3,
-          number: '6543-54',
-          date: '23.01.2020',
-          price: '16658',
-          done: true
-        },
-        {
-          id: 4,
-          number: '6544-54',
-          date: '23.01.2020',
-          price: '36658',
-          done: false
-        },
-        {
-          id: 5,
-          number: '6545-54',
-          date: '23.01.2020',
-          price: '46658',
-          done: true
-        },
-        {
-          id: 6,
-          number: '6546-54',
-          date: '23.01.2020',
-          price: '126658',
-          done: false
-        },
-      ]
+      isLoading: true,
     }
-  }
+  },
+  methods: {
+    ...mapActions('allzamer', [
+        'GET_MEASUREMENTS_LIST',
+    ]),
+  },
+  watch: {
+    loading() {
+      this.isLoading = this.loading
+    },
+  },
+  computed: {
+    ...mapGetters('allzamer', [
+      'MEASUREMENTS_LIST',
+      ]),
+    ...mapState('allzamer', [
+      'loading',
+      ]),
+  },
+  mounted() {
+    this.GET_MEASUREMENTS_LIST()
+  },
 }
 </script>

@@ -1,9 +1,9 @@
 <template>
   <div class="col-12">
     <pl-atwork
-      v-for="active in calculationPrice"
-      v-bind:key="active.id"
-      v-bind:active="active"
+      v-for="(measurement, index) in measurements"
+      :key="index"
+      :measurement="measurement"
     />
   </div>
 </template>
@@ -17,9 +17,10 @@ export default {
     plAtwork
   },
   props: {
-    calculationPrice: {
+    measurements: {
       type: Array,
       required: true,
+      //default: () => { return []},
     }
   },
 }

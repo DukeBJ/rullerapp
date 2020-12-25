@@ -43,6 +43,21 @@
       </nav>
     </div>
 
+    <div class="zamer-done">
+      <div class="block-info">
+        <h4>Окончательный расчёт</h4>
+        <div v-if="customer.firstPrice">{{ customer.firstPrice | priceFormat }}</div>
+        <div v-else>Не рассчитан</div>
+      </div>
+      <nav v-if="isPdf">
+        <a href="#">
+          <div class="square-button">
+            <span class="search"></span>
+          </div>
+        </a>
+      </nav>
+    </div>
+
     <div class="manager">
       <div class="block-info">
         <h4>Менеджер</h4>
