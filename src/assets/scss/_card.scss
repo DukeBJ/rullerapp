@@ -276,12 +276,18 @@
   }
 }
 
-.bg__ {
-  &yellow{
+.bg {
+  &__yellow{
     background-color: $plyellow;
   }
-  &blue{
+  &__blue{
     background-color: $plskyblue;
+  }
+  &__gray{
+    background-color: $plgrey;
+  }
+  &__red{
+    background-color: $plcarmin;
   }
 }
 
