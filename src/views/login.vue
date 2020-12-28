@@ -105,6 +105,8 @@ export default {
     checkLogin() {
       console.log(this.phone)
       console.log(this.pass)
+      this.$cookies.set('phone', this.phone, '30d', '/')
+      this.$cookies.set('pass', this.pass, '30d', '/login')
       const pass = this.pass
       const phone = this.phone
       const payload = {
@@ -130,15 +132,25 @@ export default {
   //   }
   // },
   computed: {
-    // ...mapGetters('account', [
-    //   'login',
-    // ]),
     ...mapState('account', [
       'auth',
       'login',
       'loginErr'
     ]),
+    checkCookiesPhone() {
+      if (this.$cookies.get('phone')) {
+        return this.$cookies.get('phone')
+      } else {
+        return this.phone
+      }
+    },
+    checkCookiesPass() {
+      return 0
+    },
   },
+  mounted() {
+
+  }
 }
 </script>
 
