@@ -2,37 +2,75 @@
   <div>
     <main class="card-place">
       <div class="container">
-        <div class="row justify-content-center">
-          <form action="" @submit.prevent>
-            <div class="col-12">
-              <label for="phone">Телефон</label>
+        <div class="row justify-content-center align-items-center">
+          <div class="col-12">
+            <img :src="plRullet" height="100" alt="" class="mb-4">
+            <h3>Замерщик
               <br>
-              <input
+              «Пластика Окон»
+            </h3>
+          </div>
+          <form
+            action=""
+            @submit.prevent
+            class="login-in"
+            >
+            <div class="col-12 input-relative">
+              <label
+                :class="{'labeldn' : phone != ''}"
+                for="phone">
+                Телефон без восьмёрки
+              </label>
+              <the-mask
+                class="input-big"
+                mask="+7 (###) ###-##-##"
+                v-model="phone"
                 type="tel"
-                name="phone"
                 id="phone"
-                v-model="phone">
-              <br><br>
+                placeholder=""/>
             </div>
-            <div class="col-12">
-              <label for="login">Пароль</label>
-              <br>
+            <div class="col-12 input-relative">
+              <label
+                :class="{'labeldn' : pass != ''}"
+                for="password">
+                Пароль
+              </label>
               <input
+                class="input-big"
                 type="password"
                 name="password"
                 id="password"
                 v-model="pass">
-              <br><br>
             </div>
             <div class="col-12">
-              <input type="submit" @click="checkLogin" value="Отправить">
+              <input
+                class="app-btn btn__blue"
+                type="submit"
+                @click="checkLogin"
+                value="Отправить">
+            </div>
+            <div class="col-12">
+              <b-alert
+                :show="loginErr != ''"
+                dismissible
+                variant="warning"
+              >
+                <div>{{loginErr}}<br>
+                Ошибка соединения, попробуйте позже.</div>
+              </b-alert>
+              <b-alert
+                :show="(login != 1) && (login != '')"
+                dismissible
+                variant="danger"
+              >
+                <div>{{returnLogin(login)}}</div>
+              </b-alert>
+            </div>
+            <code>--------------</code>
+            <div class="col-12">
+            {{phone}} <br> {{pass}}
             </div>
           </form>
-          <div class="col-12">
-          {{phone}} <br> {{pass}}
-          <br><br>
-          {{returnLogin(login)}}
-          </div>
         </div>
       </div>
     </main>
@@ -42,15 +80,21 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import {TheMask} from 'vue-the-mask'
+import plRullet from '@/assets/img/roll-small.svg'
 
 export default {
   name: 'pl-schedule-page',
   components: {
+    TheMask
   },
   data() {
     return {
       phone: '',
       pass: '',
+      plRullet,
+      dismissCountDown: 10,
+
       // isLogin: 'нету'
     }
   },
@@ -75,6 +119,9 @@ export default {
       } else {
         return login
       }
+    },
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
     }
   },
   // watch: {
@@ -88,9 +135,25 @@ export default {
     // ]),
     ...mapState('account', [
       'auth',
-      'login'
+      'login',
+      'loginErr'
     ]),
   },
 }
 </script>
 
+<style lang="scss" scoped>
+  .page-view {
+    height: 100vh;
+    main {
+      height: 100%;
+      .container {
+        height: 100%;
+        .row {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+</style>

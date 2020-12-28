@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Reveal :closeOnNavigation="true">
+    <Reveal
+      v-if="this.$route.name != 'login'"
+      :closeOnNavigation="true">
       <router-link :to="{name: 'dashboard'}">
         <span>Статистика</span>
       </router-link>
@@ -12,13 +14,20 @@
       </router-link>
     </Reveal>
     <div id="page-wrap">
-      <pl-header/>
+      <pl-header
+        v-if="this.$route.name != 'login'"
+      />
       <!-- <transition name="pageswipe" mode="out-in"> -->
       <transition>
         <router-view class="page-view" />
       </transition>
-      <div class="indent"></div>
-      <pl-footer/>
+      <div
+        v-if="this.$route.name != 'login'"
+        class="indent"
+        ></div>
+      <pl-footer
+        v-if="this.$route.name != 'login'"
+      />
     </div>
   </div>
 </template>

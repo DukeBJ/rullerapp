@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const state = {
   auth: false,
-  showLoginForm: false,
-  login: ''
+  login: '',
+  loginErr: ''
 }
 const actions = {
   // Получаем список замеров на текущий день
@@ -16,23 +16,9 @@ const actions = {
         commit('SET_LOGIN', reqAuth)
       })
       .catch(err => {
-        console.log(err)
+        commit('SET_LOGIN_ERROR', err)
       })
       // .finally(() => (state.loading = false))
-  },
-
-  showLogin({ commit }) {
-      commit('showForm')
-  },
-  hideLogin({ commit }) {
-      commit('hideForm')
-  },
-  attemptLogin({ commit }) {
-      // not when empty => need to add stuff to state
-      commit('authorize')
-  },
-  logout({ commit }) {
-      commit('deauthorize')
   },
 }
 const mutations = {
@@ -43,19 +29,10 @@ const mutations = {
       state.login = 'Не правильный телефон или пароль'
     }
   },
-  showForm(state) {
-      state.showLoginForm = true
-  },
-  hideForm(state) {
-      state.showLoginForm = false
-  },
-  authorize(state) {
-      state.auth = true
-      state.showLoginForm = false
-  },
-  deauthorize(state) {
-      state.auth = false
-  },
+  SET_LOGIN_ERROR(state, err) {
+    console.log(err)
+    state.loginErr = err
+  }
 }
 
 export default {

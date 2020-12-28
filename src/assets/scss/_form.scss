@@ -78,3 +78,50 @@ fieldset.form-group {
 legend {
   text-align: left;
 }
+
+.login-in {
+  width: 100%;
+  max-width: 400px;
+}
+
+.input-relative {
+  position: relative;
+  label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(11px);
+    opacity: .7;
+    font-size: 18px;
+    width: fit-content;
+    transition: all .3s ease-in-out;
+    &.labeldn {
+      transition: all .3s ease-in-out;
+      transform: translateX(-50%) translateY(-22px);
+      font-size: 14px;
+    }
+  }
+  .input-big {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    height: auto;
+    padding: 6px 20px;
+    border: 1px solid $pldarkgreen;
+    font-weight: 500;
+    font-size: 14px;
+    color: $pldarkgreen;
+    line-height: 2.6;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    background: transparent;
+    transition: all .3s ease-in-out;
+    &::placeholder {
+      color: $pldarkgreen70;
+    }
+    &:focus {
+      transition: all .3s ease-in-out;
+      border-color: $plskyblue;
+      outline: 0;
+    }
+  }
+}
