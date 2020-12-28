@@ -59,7 +59,7 @@ export default {
     ]),
   },
   beforeMount() {
-    if (!this.auth) {
+    if (!this.auth && (this.$route.name != 'login')) {
       return this.$router.push({name: 'login'})
     }
   }
