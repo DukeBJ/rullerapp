@@ -60,7 +60,8 @@ export default {
     },
   },
   mounted() {
-    this.GET_SCHEDULE_LIST()
+    const phone = this.$cookies.get('phone')
+    this.GET_SCHEDULE_LIST(phone)
     this.GET_MY_LOCATION()
   },
 }

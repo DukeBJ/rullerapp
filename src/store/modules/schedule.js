@@ -2,7 +2,6 @@ import axios from 'axios'
 
 // Ключь от yandex API чтобы работать с Геокодом
 const yaKey = '7c5150d5-721b-4493-b1a0-4c6c98e8e544'
-const phone = '9260004483'
 
 // Убираем небольшой гемор, если localStorage.yandex не существует
 if (localStorage.yandex === undefined) {
@@ -19,7 +18,7 @@ const state = {
 const actions = {
   // Получаем список замеров на текущий день
   // async GET_SCHEDULE_LIST({commit}) {
-  async GET_SCHEDULE_LIST({commit}) {
+  async GET_SCHEDULE_LIST({commit}, phone) {
     state.loading = true
     await axios
       // .get('./scheduleinfo.json')

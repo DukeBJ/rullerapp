@@ -124,7 +124,17 @@ export default {
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown
-    }
+    },
+    checkCookiesPhone() {
+      if (this.$cookies.get('phone')) {
+        this.phone = this.$cookies.get('phone')
+      }
+    },
+    checkCookiesPass() {
+      if (this.$cookies.get('pass')) {
+        this.pass = this.$cookies.get('pass')
+      }
+    },
   },
   // watch: {
   //   loginin() {
@@ -137,19 +147,10 @@ export default {
       'login',
       'loginErr'
     ]),
-    checkCookiesPhone() {
-      if (this.$cookies.get('phone')) {
-        return this.$cookies.get('phone')
-      } else {
-        return this.phone
-      }
-    },
-    checkCookiesPass() {
-      return 0
-    },
   },
   mounted() {
-
+    this.checkCookiesPhone()
+    this.checkCookiesPass()
   }
 }
 </script>
