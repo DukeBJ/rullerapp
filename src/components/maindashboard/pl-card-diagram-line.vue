@@ -1,12 +1,16 @@
 <template>
-  <div class="card card-diagram">
-    <h3 class="card-title">{{ card.title }}</h3>
-    <pl-diagram-line
-      v-for="(lineDiagram, index) in card.lineDiagram"
-      :key="index"
-      :index="index"
-      :lineDiagram="lineDiagram"
-    />
+  <div class="col-12">
+    <div class="card card-diagram">
+      <h3 class="card-title">Заказы</h3>
+      <pl-diagram-line
+        v-for="(item, index) in prod"
+        :key="index"
+        :index="index"
+        :card="item"
+        :type="Object.keys(item)[0]"
+        :total="total(prod)"
+      />
+    </div>
   </div>
 </template>
 
@@ -18,10 +22,17 @@ export default {
   components: {
     plDiagramLine,
   },
-  props: {
-    card: {
-      type: Object,
-      required: true,
+  props: ['prod'],
+  methods: {
+    total(prod) {
+      let sumArr = new Array()
+      prod.forEach(element => {
+        sumArr.push(element[Object.keys(element)].num)
+      })
+      let result = sumArr.reduce(function(sum, current) {
+        return sum + current;
+      }, 0)
+      return result
     }
   }
 }

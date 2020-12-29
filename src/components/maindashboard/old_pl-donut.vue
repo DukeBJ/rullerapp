@@ -3,14 +3,14 @@
       <div class="canvas">
         <svg width="260" height="260" viewBox="0 0 36 36" class="donut" role="img">
           <circle class="donut-back" cx="50%" cy="50%" r="15.91549430918954"
-            stroke="#FFFFFF"
+            stroke="#F2F2F2"
             fill="transparent"
             stroke-width="4"
             stroke-linejoin="round"
           />
           <circle class="donut-ring" cx="50%" cy="50%" r="15.91549430918954"
-            :class="'donut__skyblue'"
-            :style="'stroke-dasharray:' + equel + ', 100;'"
+            :class="'donut__' + color(index)"
+            :style="'stroke-dasharray:' + donut.persent + ', 100;'"
             fill="transparent"
             fill-opacity="0"
             stroke-width="3"
@@ -21,11 +21,11 @@
       <div class="donut-desc">
         <div class="donut-desc__wrap">
           <div class="donut-desc__title">Категория</div>
-          <div class="donut-desc__persent">{{ category }}</div>
+          <div class="donut-desc__persent">{{ donut.persent }}%</div>
         </div>
         <div class="donut-desc__wrap">
           <div class="donut-desc__title">Срастаемость</div>
-          <div class="donut-desc__persent">{{ equel }}%</div>
+          <div class="donut-desc__persent">{{ donut.persent }}%</div>
         </div>
       </div>
     </div>
@@ -35,23 +35,23 @@
 export default {
   name: 'pl-donut',
   props: {
-    category: {
-      type: Number,
+    donut: {
+      type: Object,
       required: true,
     },
-    equel: {
+    index: {
       type: Number,
       required: true,
     }
   },
   methods: {
-    // color(i) {
-    //   if (i === 0) {
-    //     return "skyblue"
-    //   } else if (i === 1) {
-    //     return "magenta"
-    //   }
-    // }
+    color(i) {
+      if (i === 0) {
+        return "skyblue"
+      } else if (i === 1) {
+        return "magenta"
+      }
+    }
   }
 }
 </script>

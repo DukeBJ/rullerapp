@@ -1,0 +1,84 @@
+{
+  "name": "Константин",
+  "lastname": "Константинопольский",
+  "sale": 192630.75,
+  "bonus": 64210.25,
+  "cardInfo": [
+    {
+      "title": "Самостоятельно",
+      "lineDiagram": [
+        {
+          "color": "blue",
+          "persent": 60,
+          "sale": 111321,
+          "description": "art/evo/smart"
+        },
+        {
+          "color": "yellow",
+          "persent": 18,
+          "sale": 34456.45,
+          "description": "art/evo/smart"
+        },
+        {
+          "color": "gray",
+          "persent": 12,
+          "sale": 34456,
+          "description": "алюминий"
+        }
+      ]
+    },
+    {
+      "title": "Офис",
+      "lineDiagram": [
+        {
+          "color": "blue",
+          "persent": 45,
+          "sale": 111321,
+          "description": "art/evo/smart"
+        },
+        {
+          "color": "yellow",
+          "persent": 11,
+          "sale": 34456,
+          "description": "art/evo/smart"
+        },
+        {
+          "color": "gray",
+          "persent": 3,
+          "sale": 34456,
+          "description": "алюминий"
+        }
+      ]
+    },
+    {
+      "title": "Повторный замер",
+      "lineDiagram": [
+        {
+          "persent": 25,
+          "sale": 111321,
+          "description": "art/evo/smart"
+        },
+        {
+          "persent": 6,
+          "sale": 34456,
+          "description": "art/evo/smart"
+        },
+        {
+          "persent": 3,
+          "sale": 34456,
+          "description": "алюминий"
+        }
+      ]
+    }
+  ],
+  "donutInfo": [
+    {
+      "title": "Срастаемость",
+      "persent": 80
+    },
+    {
+      "title": "Доля ламинации",
+      "persent": 60
+    }
+  ]
+}

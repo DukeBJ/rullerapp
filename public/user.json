@@ -1,84 +1,39 @@
 {
-  "firstname": "Константин",
-  "lastname": "Константинопольский",
+  "person": "Борисов Михаил Владимирович",
+  "sum": 256841,
   "sale": 192630.75,
-  "bonus": 64210.25,
-  "cardInfo": [
+  "fond": 234765,
+  "category": 3,
+  "equel": 66,
+  "zamer": [
     {
-      "title": "Самостоятельно",
-      "lineDiagram": [
-        {
-          "color": "blue",
-          "persent": 60,
-          "sale": 111321,
-          "description": "art/evo/smart"
-        },
-        {
-          "color": "yellow",
-          "persent": 18,
-          "sale": 34456.45,
-          "description": "art/evo/smart"
-        },
-        {
-          "color": "gray",
-          "persent": 12,
-          "sale": 34456,
-          "description": "алюминий"
-        }
-      ]
+      "all": 65
     },
-    {
-      "title": "Офис",
-      "lineDiagram": [
-        {
-          "color": "blue",
-          "persent": 45,
-          "sale": 111321,
-          "description": "art/evo/smart"
-        },
-        {
-          "color": "yellow",
-          "persent": 11,
-          "sale": 34456,
-          "description": "art/evo/smart"
-        },
-        {
-          "color": "gray",
-          "persent": 3,
-          "sale": 34456,
-          "description": "алюминий"
-        }
-      ]
-    },
-    {
-      "title": "Повторный замер",
-      "lineDiagram": [
-        {
-          "persent": 25,
-          "sale": 111321,
-          "description": "art/evo/smart"
-        },
-        {
-          "persent": 6,
-          "sale": 34456,
-          "description": "art/evo/smart"
-        },
-        {
-          "persent": 3,
-          "sale": 34456,
-          "description": "алюминий"
-        }
-      ]
+    { 
+      "mayby": 57,
+      "self": 37,
+      "office": 7
     }
   ],
-  "donutInfo": [
+  "prod":
+  [
     {
-      "title": "Срастаемость",
-      "persent": 80
+      "self": {
+        "num": 66,
+        "sum": 115345.34
+      }
     },
     {
-      "title": "Доля ламинации",
-      "persent": 60
+      "office": {
+        "num": 13,
+        "sum": 34345.34
+      }
+    },
+    {
+      "other": {
+        "num": 9,
+        "sum": 21512.34
+      }
     }
   ]
 }

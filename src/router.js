@@ -5,7 +5,7 @@ import plSchedule from './views/pl-schedule-page.vue'
 import plAtwork from './views/pl-atwork-page.vue'
 import plConfigurator from './views/pl-configurator-page.vue'
 import plOrder from './views/pl-order-page.vue'
-import login from './views/login.vue'
+import plLogin from './views/pl-login.vue'
 
 
 Vue.use(Router)
@@ -43,7 +43,7 @@ export default new Router ({
     {
       path: '/login/',
       name: "login",
-      component: login,
+      component: plLogin,
     },
   ]
 })

@@ -1,10 +1,10 @@
 <template>
   <div class="line-graph" :class="'graph__' + color(index)">
-    <div class="percent">{{ lineDiagram.persent }}%</div>
-    <div class="line"><span :style=" 'width:' + lineDiagram.persent + '%'"></span></div>
+    <div class="percent">{{ card[type].num }} шт.</div>
+    <div class="line"><span :style=" 'width:' + persent(card[type].num) + '%'"></span></div>
     <div class="row priceinfo">
-      <div class="col-6 price"><span>{{ lineDiagram.sale | priceFormat }}</span></div>
-      <div class="col-6 info"><span>{{ lineDiagram.description }}</span></div>
+      <div class="col-6 price"><span>{{ card[type].sum | priceFormat }}</span></div>
+      <div class="col-6 info"><span>{{ decsription(type) }}</span></div>
     </div>
   </div>
 </template>
@@ -18,13 +18,21 @@ export default {
     }
   },
   props: {
-    lineDiagram: {
+    card: {
       type: Object,
       required: true,
     },
     index: {
       type: Number,
       required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+    },
+    total: {
+      type: Number,
+      required: true
     }
   },
   filters: {
@@ -39,7 +47,20 @@ export default {
       } else if (i === 2) {
         return "gray"
       }
-    }
+    },
+    decsription(type) {
+      if (type == "self") {
+        return "Самостоятельно"
+      } else if (type == "office") {
+        return "В офисе"
+      } else if (type == "other") {
+        return "Повторный выезд"
+      }
+    },
+    persent(num) {
+      let persent = (num * 100) / Number(this.total)
+      return persent
+    },
   }
 }
 </script>

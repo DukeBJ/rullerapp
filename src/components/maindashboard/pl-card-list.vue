@@ -1,15 +1,15 @@
 <template>
   <div class="col-12">
     <pl-card-diagram-line
-      v-for="(card, index) in DASHBOARD_LIST.cardInfo"
+      v-for="(card, key, index) in prod"
       :key="index"
       :card="card"
+      :type="key"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex"
 import plCardDiagramLine from '@/components/maindashboard/pl-card-diagram-line.vue'
 
 export default {
@@ -17,6 +17,7 @@ export default {
   components: {
     plCardDiagramLine,
   },
+  props: ['prod'],
   // props: {
   //   cardInfo: {
   //     type: Array,
@@ -24,9 +25,7 @@ export default {
   //   }
   // },
   computed: {
-    ...mapGetters('dashboard', [
-      'DASHBOARD_LIST',
-      ]),
+  
   }
 }
 </script>

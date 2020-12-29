@@ -6,11 +6,15 @@
     <main v-else class="card-place">
       <div class="container">
         <div class="row justify-content-center">
-          <pl-card-list
+          <pl-card-diagram-line
+            :prod="DASHBOARD_LIST.prod"
           />
-          <pl-donut-list
-          />
+          <div>
+            <h3>Рекламационный фонд:</h3>
+            <div>{{DASHBOARD_LIST.fond}}</div>
+          </div>
           <pl-compliment
+            :person="DASHBOARD_LIST.person"
           />
         </div>
       </div>
@@ -19,17 +23,15 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
-import plCardList from '@/components/maindashboard/pl-card-list.vue'
-import plDonutList from '@/components/maindashboard/pl-donut-list.vue'
+import {mapActions, mapGetters, mapState} from 'vuex'
 import plCompliment from '@/components/maindashboard/pl-compliment.vue'
+import PlCardDiagramLine from '../components/maindashboard/pl-card-diagram-line.vue'
 
 export default {
     name: 'pl-dashboard-page',
     components: {
-      plCardList,
-      plDonutList,
       plCompliment,
+      PlCardDiagramLine,
   },
   data() {
     return {
@@ -50,9 +52,9 @@ export default {
     ...mapState('dashboard', [
         'loading',
     ]),
-    // ...mapGetters('dashboard', [
-    //   'DASHBOARD_LIST',
-    //   ]),
+    ...mapGetters('dashboard', [
+      'DASHBOARD_LIST',
+      ]),
   },
   mounted() {
     this.GET_DASHBOARD_LIST()
