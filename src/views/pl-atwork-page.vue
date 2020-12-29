@@ -7,7 +7,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <pl-atwork-list
-            v-if="MEASUREMENTS_LIST.length !== 0"
+            v-if="MEASUREMENTS_LIST.length != 0"
             :measurements="MEASUREMENTS_LIST"
           />
 
@@ -51,7 +51,8 @@ export default {
       ]),
   },
   mounted() {
-    this.GET_MEASUREMENTS_LIST()
+    const phone = this.$cookies.get('phone')
+    this.GET_MEASUREMENTS_LIST(phone)
   },
 }
 </script>

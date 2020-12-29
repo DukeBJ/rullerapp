@@ -106,7 +106,7 @@ export default {
       console.log(this.phone)
       console.log(this.pass)
       this.$cookies.set('phone', this.phone, '30d', '/')
-      this.$cookies.set('pass', this.pass, '30d', '/login')
+      this.$cookies.set('pass', this.pass, '30d', '/login/')
       const pass = this.pass
       const phone = this.phone
       const payload = {
