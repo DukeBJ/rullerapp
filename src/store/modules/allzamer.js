@@ -6,10 +6,12 @@ const state = {
 }
 const actions = {
   // Получаем список замеров на текущий день
-  async GET_MEASUREMENTS_LIST({commit}) {
+  // async GET_MEASUREMENTS_LIST({commit}) {
+  async GET_MEASUREMENTS_LIST({commit}, phone) {
     state.loading = true
     await axios
-      .get('./zamermonth.json')
+      // .get('./scheduleinfo.json')
+      .get(`./get.php?req=all&phone=${phone}`)
       .then((response) => {
         console.log(response.data)
         // Список замеров
