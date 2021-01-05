@@ -6,12 +6,12 @@ const state = {
 }
 const actions = {
   // Получаем список замеров на текущий день
-  async GET_MEASUREMENTS_LIST({commit}) {
-  // async GET_MEASUREMENTS_LIST({commit}, phone) {
+  // async GET_MEASUREMENTS_LIST({commit}) {
+  async GET_MEASUREMENTS_LIST({commit}, phone) {
     state.loading = true
     await axios
-      .get('./zamermonth.json')
-      // .get(`./get.php?req=all&phone=${phone}`)
+      // .get('./zamermonth.json')
+      .get(`./get.php?req=all&phone=${phone}`)
       .then((response) => {
         console.log('Получаем ответ для всех замеров')
         console.log(response.data)
@@ -28,14 +28,12 @@ const actions = {
 const mutations = { 
   SET_MEASUREMENTS(state, measurements) {
     console.log(`Устанавливаем measurements в соответствии с полученными данными`)
-    console.log(measurements)
     state.measurements = measurements
   }
 }
 const getters = {
   MEASUREMENTS_LIST(state) {
     console.log(`Получаем значения из state.measurements геттером MEASUREMENTS_LIST`)
-    console.log(state.measurements)
     return state.measurements
   },
 }

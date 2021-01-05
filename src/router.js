@@ -11,7 +11,7 @@ import plLogin from './views/pl-login.vue'
 Vue.use(Router)
 
 export default new Router ({
-  // base: '/app/',
+  base: '/app/',
   mode: 'history',
   routes: [
     {
